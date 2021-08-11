@@ -103,7 +103,7 @@ POSTMAN:
 
 API:
 
-BOOTSCRAP:
+BOOTSTRAP:
 
 
 ![download-2](https://user-images.githubusercontent.com/86076993/128651943-f9ad1584-1947-48ca-a943-d9be9fb78ea2.png)
