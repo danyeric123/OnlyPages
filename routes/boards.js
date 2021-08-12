@@ -12,3 +12,6 @@ const router = Router();
 
 /*---------- Protected Routes ----------*/
 router.use(decodeUserFromToken)
+
+// "/boards/:id" --> show board
+// "/boards/:boardId/posts/:postId" --> show given post
