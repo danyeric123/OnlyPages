@@ -12,14 +12,8 @@ class ProfileList extends Component {
     this.setState({ profiles })
   }
 
-  handleAddFriend = async (id) => {
-    await this.props.handleAddFriend(id)
-    const profiles = await getAllProfiles()
-    this.setState({ profiles })
-  }
-
-  handleRemoveFriend = async (id) => {
-    await this.props.handleRemoveFriend(id)
+  handleFriend = async (id) => {
+    await this.props.handleFriend(id)
     const profiles = await getAllProfiles()
     this.setState({ profiles })
   }
@@ -33,8 +27,7 @@ class ProfileList extends Component {
           key={profile._id}
           profile={profile}
           userProfile={this.props.userProfile}
-          handleAddFriend={this.handleAddFriend}
-          handleRemoveFriend={this.handleRemoveFriend}
+          handleFriend={this.handleFriend}
         />
         ))}
       </>
