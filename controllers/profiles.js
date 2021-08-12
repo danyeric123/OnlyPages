@@ -1,5 +1,4 @@
 import { Profile } from "../models/profile.js"
-import { Media } from '../models/media.js'
 
 export {
   userProfile,
