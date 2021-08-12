@@ -1,16 +1,20 @@
 import { Profile } from "../models/profile.js"
-import { Media } from '../models/media.js'
 
 export {
   userProfile,
   index,
   friendAndUnfriend,
+  addBook,
 }
 
 function userProfile(req, res) {
   Profile.findById(req.user.profile)
-  .populate('books')
+  .populate('posts')
+  .populate('read')
+  .populate('wantToRead')
+  .populate('currentlyReading')
   .populate('friends')
+  .populate('authors')
   .then(profile => {
     res.json(profile)
   })
@@ -34,5 +38,17 @@ function friendAndUnfriend(req, res) {
     profile.save()
     .then(()=> res.json(profile))
   })
+}
+
+/**
+ * One controller for all three book lists
+ * 
+ * You also create the book document here since the book model is only for use
+ * by the profile user
+ * 
+ * The form will give you what you need with regard to what list the book should be added to
+ */
+function addBook(req,res){
+
 }
 
