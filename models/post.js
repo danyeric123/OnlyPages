@@ -1,5 +1,5 @@
 import mongoose from 'mongoose'
-import { replySchema } from './reply'
+import { replySchema } from './reply.js'
 
 export {
   Post,

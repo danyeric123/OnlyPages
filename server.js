@@ -6,6 +6,9 @@ import logger from 'morgan'
 import cors from 'cors'
 import { router as profilesRouter } from './routes/profiles.js'
 import { router as authRouter } from './routes/auth.js'
+import { router as postsRouter } from './routes/posts.js'
+import { router as boardsRouter } from './routes/boards.js'
+import { router as reviewsRouter } from './routes/reviews.js'
 import('./config/database.js')
 
 const app = express()
@@ -14,8 +17,11 @@ app.use(cors())
 app.use(logger('dev'))
 app.use(express.json())
 
-app.use('/api/users', profilesRouter)
-app.use('/api/auth', authRouter)
+app.use('/profiles', profilesRouter)
+app.use('/posts', postsRouter)
+app.use('/reviews', reviewsRouter)
+app.use('/boards', boardsRouter)
+app.use('/auth', authRouter)
 
 app.get('/*', function (req, res) {
   res.sendFile(

@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import * as boardsCtrl from '../controllers/boards'
+// import * as boardsCtrl from '../controllers/boards.js'
 import { decodeUserFromToken, checkAuth } from '../middleware/auth.js'
 
 export {
