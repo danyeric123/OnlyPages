@@ -24,7 +24,7 @@ function create(req, res) {
       })
       .catch(err=>{
         console.log(err)
-        res.json()
+        return res.status(400).json(err)
       })
 }
 
@@ -42,7 +42,7 @@ function reply(req, res) {
       })
       .catch(err=>{
         console.log(err)
-        res.redirect('/reviews')
+        return res.status(400).json(err)
       })
 }
 
@@ -58,7 +58,7 @@ function deleteReview(req,res){
         })
         .catch(err=>{
           console.log(err)
-          res.redirect('/reviews')
+          return res.status(400).json(err)
         })
 }
 
@@ -69,7 +69,7 @@ function edit(req, res) {
       })
       .catch(err=>{
         console.log(err)
-        res.redirect('/reviews')
+        return res.status(400).json(err)
       })
 }
 
@@ -81,7 +81,7 @@ function update(req, res) {
       })
       .catch((err) => {
         console.log(err)
-        res.redirect('/')
+        return res.status(400).json(err)
       })
 }
 
@@ -99,6 +99,6 @@ function likeAndUnlike(req,res){
       })
       .catch(err=>{
         console.log(err)
-        res.redirect('/reviews')
+        return res.status(400).json(err)
       })
 }

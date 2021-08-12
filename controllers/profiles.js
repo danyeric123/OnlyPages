@@ -4,6 +4,7 @@ export {
   userProfile,
   index,
   friendAndUnfriend,
+  addBook,
 }
 
 function userProfile(req, res) {
@@ -44,6 +45,8 @@ function friendAndUnfriend(req, res) {
  * 
  * You also create the book document here since the book model is only for use
  * by the profile user
+ * 
+ * The form will give you what you need with regard to what list the book should be added to
  */
 function addBook(req,res){
 
