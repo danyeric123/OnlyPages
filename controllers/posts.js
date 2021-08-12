@@ -27,7 +27,7 @@ function index(req, res) {
         })
         .catch(err=>{
           console.log(err)
-          res.json()
+          return res.status(400).json(err)
         })
 }
 
@@ -46,7 +46,7 @@ function create(req, res) {
       })
       .catch(err=>{
         console.log(err)
-        res.json()
+        return res.status(400).json(err)
       })
 }
 
@@ -65,7 +65,7 @@ function show(req, res) {
       })
       .catch(err=>{
         console.log(err)
-        // res.redirect('/posts')
+        return res.status(400).json(err)
       })
 }
 
@@ -78,7 +78,7 @@ function categoryShow(req, res) {
       })
       .catch(err=>{
         console.log(err)
-        // res.redirect('/posts')
+        return res.status(400).json(err)
       })
 }
 
@@ -94,7 +94,7 @@ function reply(req, res) {
       })
       .catch(err=>{
         console.log(err)
-        res.redirect('/posts')
+        return res.status(400).json(err)
       })
 }
 
@@ -110,7 +110,7 @@ function deletePost(req,res){
         })
         .catch(err=>{
           console.log(err)
-          res.redirect('/posts')
+          return res.status(400).json(err)
         })
 }
 
@@ -124,7 +124,7 @@ function edit(req, res) {
       })
       .catch(err=>{
         console.log(err)
-        res.redirect('/posts')
+        return res.status(400).json(err)
       })
 }
 
@@ -136,7 +136,7 @@ function update(req, res) {
       })
       .catch((err) => {
         console.log(err)
-        res.redirect('/')
+        return res.status(400).json(err)
       })
 }
 
@@ -154,6 +154,6 @@ function likeAndUnlike(req,res){
       })
       .catch(err=>{
         console.log(err)
-        res.redirect('/posts')
+        return res.status(400).json(err)
       })
 }
