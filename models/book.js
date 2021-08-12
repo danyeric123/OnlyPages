@@ -12,10 +12,7 @@ const bookSchema = new Schema({
   title: String,
   publish: Date,
   coverImage: String,
-  author: {
-    type: Schema.Types.ObjectId,
-    ref: 'Author'
-  },
+  authors: [String],
   // Where should categories be?
   categories: [String],
   reviews: [{
