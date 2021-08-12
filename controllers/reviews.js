@@ -18,7 +18,7 @@ function create(req, res) {
                 .then(profile=>{
                   profile.reviews.push(review._id)
                   profile.save()
-                  //What am I supposed to pass here???
+                  // Should I be passing the reviews or the profile?
                   res.json(profile)
                 })
       })
@@ -77,7 +77,7 @@ function update(req, res) {
   req.body.categories=req.body.categories.split("; ")
   Review.findByIdAndUpdate(req.params.id, req.body, {new: true})
       .then((review) => {
-        res.redirect(`/reviews/${req.params.id}`)
+        res.json(review)
       })
       .catch((err) => {
         console.log(err)

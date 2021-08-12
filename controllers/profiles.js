@@ -1,7 +1,7 @@
 import { Profile } from "../models/profile.js"
 
 export {
-  userProfile,
+  show,
   index,
   friendAndUnfriend,
   addBook,
@@ -10,7 +10,7 @@ export {
   removeBook,
 }
 
-function userProfile(req, res) {
+function show(req, res) {
   Profile.findById(req.user.profile)
   .then(profile => {
     profile = populateAll(profile)
@@ -62,7 +62,8 @@ function edit(req, res) {
 
 //Update the profile given an id
 function update(req, res) {
-  Profile.findByIdAndUpdate(req.params.id, req.body, {new: true})
+  if(req.user.profile.equals(req.params.id)){
+    Profile.findByIdAndUpdate(req.params.id, req.body, {new: true})
         .then((profile) => {
           profile = populateAll(profile)
           res.json(profile)
@@ -71,6 +72,11 @@ function update(req, res) {
           console.log(err)
           return res.status(400).json(err)
         })
+  }else{
+    let err = {error:"User not Aurthorized"}
+    console.log(err)
+    return res.status(400).json(err)
+  }
 }
 
 //Fix this functionality to do unfriending too
