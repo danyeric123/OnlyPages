@@ -40,7 +40,7 @@ function create(req, res) {
                 .then(profile=>{
                   profile.posts.push(post._id)
                   profile.save()
-                  res.status(200)
+                  res.json(post)
                 })
       })
       .catch(err=>{
