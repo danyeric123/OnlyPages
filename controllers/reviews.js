@@ -28,7 +28,6 @@ function index(res,req){
 }
 
 function create(req, res) {
-  req.body.author = req.user.profile
   Review.create(req.body)
       .then((review)=> {
         Profile.findById(req.user.profile)
