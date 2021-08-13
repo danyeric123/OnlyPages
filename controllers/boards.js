@@ -1,4 +1,5 @@
 import { Board } from '../models/board.js'
+import { Post } from '../models/post.js'
 import { Profile } from '../models/profile.js'
 
 export { 
@@ -61,6 +62,10 @@ function categoryShow(req,res){
 }
 
 function deleteBoard(req,res){
+  Board.find({_id:req.params.boardId})
+      .then(board=>{
+        Post.deleteMany({_id: {$in:[board.posts]}})
+      })
   Board.findOneAndDelete({_id:req.params.boardId})
   .then(()=>{
     res.status(200)

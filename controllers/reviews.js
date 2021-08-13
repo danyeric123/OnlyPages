@@ -18,9 +18,8 @@ function create(req, res) {
                 .then(profile=>{
                   profile.reviews.push(review._id)
                   profile.save()
-                  // Should I be passing the reviews or the profile?
-                  res.json(profile)
                 })
+        res.json(review)
       })
       .catch(err=>{
         console.log(err)
