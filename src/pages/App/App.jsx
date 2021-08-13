@@ -8,6 +8,8 @@ import * as authService from '../../services/authService'
 import ProfileList from '../ProfileList/ProfileList'
 import ProfileDetails from '../ProfileDetails/ProfileDetails'
 import * as profileAPI from '../../services/profileService'
+import Post from "../../components//Post/Post"
+
 
 class App extends Component {
 	state = {
@@ -35,6 +37,7 @@ class App extends Component {
 		return (
 			<>
 				<NavBar user={this.state.user} />
+				<Route exact path='/Post'><Post/></Route>
 				<Route exact path='/'>
           <Landing user={user} />
         </Route>
