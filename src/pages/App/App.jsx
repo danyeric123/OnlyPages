@@ -32,12 +32,12 @@ class App extends Component {
   }
 
 	handleAddBook = async book => {
-    const updatedProfile = await profileAPI.addMedia(book)
+    const updatedProfile = await profileAPI.addBook(book)
     this.setState({userProfile: updatedProfile})
   }
 
-  handleRemoveBook = async api_id => {
-    const updatedProfile = await profileAPI.removeBook(api_id)
+  handleRemoveBook = async (api_id,collection)=> {
+    const updatedProfile = await profileAPI.removeBook(api_id,collection)
     this.setState({userProfile: updatedProfile})
   }
 

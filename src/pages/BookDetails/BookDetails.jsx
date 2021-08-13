@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import * as bookAPI from '../../services/bookService'
 import ReviewForm from '../../components/ReviewForm/ReviewForm'
-import BookForm from '../../components/MediaForm/BookForm'
+// import BookForm from '../../components/MediaForm/BookForm'
 import * as reviewsAPI from '../../services/reviewService'
 import ReviewCard from '../../components/ReviewCard/ReviewCard'
 
