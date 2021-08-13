@@ -12,3 +12,5 @@ const router = Router();
 
 /*---------- Protected Routes ----------*/
 router.use(decodeUserFromToken)
+router.post('/', checkAuth, reviewsCtrl.create)
+router.delete('/:id', checkAuth, reviewsCtrl.delete)
