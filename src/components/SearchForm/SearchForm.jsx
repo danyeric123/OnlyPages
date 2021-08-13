@@ -5,7 +5,6 @@ class Search extends Component {
 		invalidForm: true,
 		formData: {
 			query: '',
-			type: ''
 		},
   }
 
@@ -38,23 +37,6 @@ class Search extends Component {
           onChange={this.handleChange}
           required
         />
-        <input
-          type="radio"
-          id="movieChoice"
-          name="type"
-          value="movie"
-          onChange={this.handleChange}
-        />
-        <label htmlFor="movieChoice">Movie</label>
-        <input
-          required
-          type="radio"
-          id="tvChoice"
-          name="type"
-          value="tv"
-          onChange={this.handleChange}
-        />
-        <label htmlFor="movieChoice">TV</label>
         <button
           type="submit"
     			disabled={this.state.invalidForm}
