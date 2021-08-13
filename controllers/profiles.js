@@ -96,7 +96,11 @@ function friendAndUnfriend(req, res) {
  * You also create the book document here since the book model is only for use
  * by the profile user
  * 
- * The form will give you what you need with regard to what list the book should be added to
+ * The params.collection will give you which collection it should go to 
+ * (params.id gives you which book based on api_id)
+ * 
+ * When you add you will need to check if the book is already in our database
+ * If it isn't, then create it. Otherwise just add it
  */
 function addBook(req,res){
 

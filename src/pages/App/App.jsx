@@ -8,6 +8,7 @@ import * as authService from '../../services/authService'
 import ProfileList from '../ProfileList/ProfileList'
 import ProfileDetails from '../ProfileDetails/ProfileDetails'
 import * as profileAPI from '../../services/profileService'
+import BookDetails from '../BookDetails/BookDetails'
 
 class App extends Component {
 	state = {
@@ -27,6 +28,16 @@ class App extends Component {
 
 	handleFriend = async (friendId) => {
     const updatedProfile = await profileAPI.friendAndUnfriend(friendId)
+    this.setState({userProfile: updatedProfile})
+  }
+
+	handleAddBook = async book => {
+    const updatedProfile = await profileAPI.addMedia(book)
+    this.setState({userProfile: updatedProfile})
+  }
+
+  handleRemoveBook = async api_id => {
+    const updatedProfile = await profileAPI.removeBook(api_id)
     this.setState({userProfile: updatedProfile})
   }
 
@@ -59,6 +70,15 @@ class App extends Component {
 						location={location}
 					/> : <Redirect to="/login" />
 				}/>
+				<Route exact path='/movies/:id' render={({ match }) => 
+          authService.getUser() ?
+            <BookDetails 
+              match={match}
+              userProfile={userProfile}
+							handleAddBook={this.handleAddBook}
+							handleRemoveMedia={this.handleRemoveBook}
+            /> : <Redirect to='/login' />
+        }/>
 			</>
 		)
 	}
