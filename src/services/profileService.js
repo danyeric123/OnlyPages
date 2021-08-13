@@ -28,11 +28,22 @@ export function friendAndUnfriend(id) {
     ).then((res) => res.json())
 }
 
-export function addBook(id) {
+export function addBook(id,collection) {
   return fetch(
-    `${BASE_URL}/book/${id}`,
+    `${BASE_URL}/books/${id}/${collection}`,
     {
       method: 'PATCH',
+      headers: { Authorization: "Bearer " + tokenService.getToken() }
+    },
+    { mode: "cors" }
+    ).then((res) => res.json())
+}
+
+export function removeBook(id,collection) {
+  return fetch(
+    `${BASE_URL}/books/${id}/${collection}`,
+    {
+      method: 'DELETE',
       headers: { Authorization: "Bearer " + tokenService.getToken() }
     },
     { mode: "cors" }
