@@ -70,7 +70,7 @@ class App extends Component {
 						location={location}
 					/> : <Redirect to="/login" />
 				}/>
-				<Route exact path='/movies/:id' render={({ match }) => 
+				<Route exact path='/books/:id' render={({ match }) => 
           authService.getUser() ?
             <BookDetails 
               match={match}

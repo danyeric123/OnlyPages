@@ -1,6 +1,5 @@
 import { Board } from '../models/board.js'
 import { Post } from '../models/post.js'
-import * as postsCtrl from '../controllers/posts.js'
 import { Profile } from '../models/profile.js'
 
 export { 

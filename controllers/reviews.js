@@ -1,13 +1,30 @@
 import { Review } from '../models/review.js'
 import { Profile } from '../models/profile.js'
+import { Book } from '../models/book.js'
 
 export { 
+  index,
   create, 
   reply,
   deleteReview as delete,
   edit,
   update,
   likeAndUnlike,
+}
+
+function index(res,req){
+  Review.find({book:req.params.bookId})
+        .then(reviews=>{
+          reviews.populate("author")
+                  .populate("likes")
+                  .populate("replies")
+                  .execPopulate()
+          res.json(reviews)
+        })
+        .catch(err=>{
+          console.log(err)
+          return res.status(400).json(err)
+        })
 }
 
 function create(req, res) {
@@ -19,6 +36,10 @@ function create(req, res) {
                   profile.reviews.push(review._id)
                   profile.save()
                 })
+        Book.findById(req.body.book)
+            .then(book=>{
+              book.reviews.push(review._id)
+            })
         res.json(review)
       })
       .catch(err=>{

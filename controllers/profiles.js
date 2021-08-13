@@ -86,11 +86,19 @@ function update(req, res) {
 //Fix this functionality to do unfriending too
 function friendAndUnfriend(req, res) {
   Profile.findById(req.user.profile)
-  .populate('friends')
   .then(profile=> {
-    profile.friends.push(req.params.id)
+    if(profile.friends.includes(req.params.id)){
+      profile.friends.remove(req.params.id)
+    }else{
+      profile.friends.push(req.params.id)
+    }
+    profile.populate("friends").execPopulate()
     profile.save()
     .then(()=> res.json(profile))
+  })
+  .catch(err=>{
+    console.log(err)
+    return res.status(400).json(err)
   })
 }
 
