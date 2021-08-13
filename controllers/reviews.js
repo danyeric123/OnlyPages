@@ -53,7 +53,7 @@ function deleteReview(req,res){
           profile.save()
           Review.findOneAndDelete({_id: req.params.reviewId})
           .then(() => {
-            res.redirect(`/reviews`)
+            res.status(200)
           })
         })
         .catch(err=>{
@@ -95,7 +95,7 @@ function likeAndUnlike(req,res){
           review.likes.remove({_id:req.user.profile._id})
           review.save()
         }
-        res.redirect(req.headers.referer)
+        res.json(review)
       })
       .catch(err=>{
         console.log(err)
