@@ -48,13 +48,9 @@ class MovieDetails extends Component {
             handleRemoveMedia={this.props.handleRemoveMedia}
           />  
         } */}
-        <h4>Runtime: {searchResult?.runtime} minutes</h4>
-        <h4>Budget: ${searchResult?.budget}</h4>
-        <h4>Revenue: ${searchResult?.revenue}</h4>
-        <h3>Genres:</h3>
-        {searchResult.genres?.map(genre => 
-          <a key={genre.id} href={`/search/movies/genre/${genre.id}`}>
-            <p>{genre.name}</p>
+        {searchResult.categories?.map(category => 
+          <a key={category} href={`/books/category/${category}`}>
+            <p>{category}</p>
           </a>
         )}
         {(searchResult.reviews?.length > 0) &&
