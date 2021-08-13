@@ -40,8 +40,7 @@ function create(req, res) {
                 .then(profile=>{
                   profile.posts.push(post._id)
                   profile.save()
-                  //What am I supposed to pass here???
-                  res.json(profile)
+                  res.status(200)
                 })
       })
       .catch(err=>{
@@ -105,7 +104,7 @@ function deletePost(req,res){
           profile.save()
           Post.findOneAndDelete({_id: req.params.postId})
           .then(() => {
-            res.redirect(`/posts`)
+            res.status(200)
           })
         })
         .catch(err=>{
@@ -117,10 +116,7 @@ function deletePost(req,res){
 function edit(req, res) {
   Post.findById(req.params.id)
       .then(post => {
-        res.render('posts/edit', {
-          title: `Edit Post`,
-          post
-        })
+        res.json(post)
       })
       .catch(err=>{
         console.log(err)
@@ -132,7 +128,7 @@ function update(req, res) {
   req.body.categories=req.body.categories.split("; ")
   Post.findByIdAndUpdate(req.params.id, req.body, {new: true})
       .then((post) => {
-        res.redirect(`/posts/${req.params.id}`)
+        res.json(post)
       })
       .catch((err) => {
         console.log(err)
@@ -150,7 +146,7 @@ function likeAndUnlike(req,res){
           post.likes.remove({_id:req.user.profile._id})
           post.save()
         }
-        res.redirect(req.headers.referer)
+        res.json(post)
       })
       .catch(err=>{
         console.log(err)
