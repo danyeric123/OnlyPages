@@ -28,6 +28,9 @@ const NavBar = ({ user, handleLogout }) => {
 							<li>
 								<Link to="/signup">Sign Up</Link>
 							</li>
+							<li>
+								<Link to='/Post'>Post</Link>
+							</li>
 						</ul>
 					</div>
 				</nav>
