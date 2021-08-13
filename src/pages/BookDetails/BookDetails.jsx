@@ -13,7 +13,8 @@ class MovieDetails extends Component {
 
   async componentDidMount() {
     const searchResult = await bookAPI.searchOne(this.props.match.params.id)
-    this.setState({searchResult})
+    const reviews = await reviewsAPI.getReviews(this.props.match.params.id)
+    this.setState({searchResult,reviews})
   }
 
   /*

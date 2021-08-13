@@ -12,5 +12,10 @@ const router = Router();
 
 /*---------- Protected Routes ----------*/
 router.use(decodeUserFromToken)
+router.get('/:bookId', checkAuth, reviewsCtrl.index)
 router.post('/', checkAuth, reviewsCtrl.create)
 router.delete('/:id', checkAuth, reviewsCtrl.delete)
+router.get('/:id/edit', checkAuth, reviewsCtrl.edit)
+router.get('/:id/like', checkAuth, reviewsCtrl.likeAndUnlike)
+router.patch('/:id', checkAuth, reviewsCtrl.update)
+router.post('/:id', checkAuth, reviewsCtrl.reply)
