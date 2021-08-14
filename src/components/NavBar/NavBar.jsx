@@ -29,7 +29,7 @@ const NavBar = ({ user, handleLogout }) => {
 								<Link to="/signup">Sign Up</Link>
 							</li>
 							<li>
-								<Link to='/Post'>Post</Link>
+								<Link to="/add">Add Post</Link>
 							</li>
 						</ul>
 					</div>

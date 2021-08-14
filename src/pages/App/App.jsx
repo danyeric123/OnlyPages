@@ -8,7 +8,8 @@ import * as authService from '../../services/authService'
 import ProfileList from '../ProfileList/ProfileList'
 import ProfileDetails from '../ProfileDetails/ProfileDetails'
 import * as profileAPI from '../../services/profileService'
-import Post from "../../components//Post/Post"
+import AddPost from '../addPost/addPost'
+import AllPost from '../AllPost/AllPost.jsx'
 
 
 class App extends Component {
@@ -32,15 +33,32 @@ class App extends Component {
     this.setState({userProfile: updatedProfile})
   }
 
+	// handleaddPost = async newPostData => {
+	// 	const newPost = await profileAPI.create(newPostData);
+	// 	this.setState(state => ({
+	// 		posts: [...state.posts, newPost] 
+	// 	}),() => this.props.history.push('/'));
+	// } 
+	
+
 	render() {
 		const { user, userProfile } = this.state
 		return (
 			<>
 				<NavBar user={this.state.user} />
-				<Route exact path='/Post'><Post/></Route>
 				<Route exact path='/'>
           <Landing user={user} />
         </Route>
+				<Route exact path='/' render={()=>
+				<AllPost
+				posts={this.state.posts}
+				/>
+				}/>
+				<Route exact path='/add' render={() =>
+				<AddPost
+					handleAddPost={this.handleAddPost}
+					/>
+				}/>
 				<Route exact path='/signup'>
           <Signup history={this.props.history} handleSignupOrLogin={this.handleSignupOrLogin}/>
         </Route>
