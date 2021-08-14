@@ -1,6 +1,8 @@
 // s.1 import react 
 import { render } from "@testing-library/react"
+
 import React, { Component } from "react"
+
 // s.2 import react-router
 import { Link } from "react-router-dom"
 
@@ -8,58 +10,75 @@ import { Link } from "react-router-dom"
 class Post extends Component{
   
   state={
-    count:0
-  }
-
+    invalidForm:true,
+    formData: {
+      title:'',
+      posts:'',
+    }
+  };
   
+  formRef = React.createRef();
+
+  handleSubmit = e => {
+  e.preventDefault();
+  // We will write the handleAddPuppy function in our App.js after this step.
+  this.props.handlePost(this.state.formData);
+  };
 
   handleChange = e => {
-    this.props.updatePost('')
-    this.setState({
-      [e.target.post]: e.target.value,
-    })
-  }
+  const formData = {...this.state.formData, [e.target.title]: e.target.value};
+  this.setState({
+    formData,
+    invalidForm: !this.formRef.current.checkValidity()
+  });
+  };
   
-  handleSubmit = async e => {
-    // const { history, updatePost } = this.props
-    // e.preventDefault()
-    // try {
-    //   await authService.signup(this.state)
-    //   history.push('/')
-    // } catch (err) {
-    //   updatePost(err.message)
-    // }
-  }
-
-// s.3.2 render Post /sanity check
-render(){
-  return(
-    <form>
-      <div> 
-        <img src="https://www.placecage.com/c/200/300" alt="" />
-      </div>
-      <div> 
-        <textarea input="">title</textarea>
-      </div>
-     <textarea input="">
-
-     </textarea>
-       <button type='Submit' value="Submit">submit</button>
-       <button type='like' value="like">like</button>
-       <button type='dislike'
-       className='dec' onClick={this.decrement}
-       value="dislike">dislike</button>
-       <button type='edit' value="edit">edit</button>
-       <button type='reply' value="reply">reply</button>
-       <button type='delete
-       ' value="delete
-       ">delete
-       </button>
+  // s.3.2 render Post /sanity check
+  render(){
+    const { title, posts} = this.state.formData
+    return(
+      <>
+      <form ref={this.formRef} autoComplete="off" onSubmit={this.handleSubmit}>
+          
+          <div className="mb-3">
+            <label htmlFor="titleInput" className="form-label">
+              title (required)
+            </label>
+            <input
+              type="text"
+              className="form-control"
+              id="titleInput"
+              name="title"
+              value={title}
+              onChange={this.handleChange}
+              required
+            />
+          </div>
+          <div className="mb-3">
+            <label htmlFor="postInput" className="form-label">
+              post (required)
+            </label>
+            <input
+              type="text"
+              className="form-control"
+              id="postInput"
+              name="post"
+              value={Post}
+              onChange={this.handleChange}
+              required
+            />
+          </div>
+          <button
+            type="submit"
+            className="btn btn-success"
+            disabled={this.state.invalidForm}
+          >
+            Add post
+          </button>
       </form>
-    )
-    }
+      </>
+    );
   }
+} 
 
-
-//s.4 export Post
-export default Post
+export default Post;
