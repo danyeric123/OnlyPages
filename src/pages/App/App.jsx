@@ -8,9 +8,10 @@ import * as authService from '../../services/authService'
 import ProfileList from '../ProfileList/ProfileList'
 import ProfileDetails from '../ProfileDetails/ProfileDetails'
 import * as profileAPI from '../../services/profileService'
-import AddPost from '../addPost/addPost'
-import AllPost from '../AllPost/AllPost.jsx'
-
+import PostList from '../PostList/PostList'
+import PostDetail from '../PostDetails/PostDetails'
+import AddPost from '../AddPost/AddPost'
+import PostDetails from '../PostDetails/PostDetails'
 
 class App extends Component {
 	state = {
@@ -49,16 +50,6 @@ class App extends Component {
 				<Route exact path='/'>
           <Landing user={user} />
         </Route>
-				<Route exact path='/' render={()=>
-				<AllPost
-				posts={this.state.posts}
-				/>
-				}/>
-				<Route exact path='/add' render={() =>
-				<AddPost
-					handleAddPost={this.handleAddPost}
-					/>
-				}/>
 				<Route exact path='/signup'>
           <Signup history={this.props.history} handleSignupOrLogin={this.handleSignupOrLogin}/>
         </Route>
@@ -80,6 +71,18 @@ class App extends Component {
 						location={location}
 					/> : <Redirect to="/login" />
 				}/>
+			<Route exact path='/posts'>
+				<PostList />
+			</Route>
+			<Route exact path='/Add'>
+				<AddPost/>
+			</Route>
+			<Route exact path='/post'
+			render={({location}) =>
+			<PostDetails location = {Location}
+			/>
+			}
+			/>	
 			</>
 		)
 	}
