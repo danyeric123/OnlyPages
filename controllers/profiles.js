@@ -1,3 +1,4 @@
+import { Book } from "../models/book.js"
 import { Profile } from "../models/profile.js"
 
 export {
@@ -13,8 +14,10 @@ export {
 function show(req, res) {
   Profile.findById(req.user.profile)
   .then(profile => {
-    profile = populateAll(profile)
-    res.json(profile)
+    populateAll(profile)
+          .then(profile=>{
+            res.json(profile)
+          })
   })
   .catch(err=>{
     console.log(err)
@@ -24,13 +27,12 @@ function show(req, res) {
 
 // Helper function for helping populate everything
 function populateAll(profile){
-  profile.populate('posts')
+  return profile.populate('posts')
   .populate('read')
   .populate('wantToRead')
   .populate('currentlyReading')
   .populate('friends')
   .populate('authors').execPopulate()
-  return profile
 }
 
 function index(req, res) {
@@ -51,7 +53,7 @@ function edit(req, res) {
           if(req.user.profile.equals(req.params.id)){
             res.json(profile)
           }else{
-            res.redirect(`/profiles/${profile._id}`)
+            return res.status(400)
           }
         })
         .catch(err=>{
@@ -65,8 +67,10 @@ function update(req, res) {
   if(req.user.profile.equals(req.params.id)){
     Profile.findByIdAndUpdate(req.params.id, req.body, {new: true})
         .then((profile) => {
-          profile = populateAll(profile)
-          res.json(profile)
+          populateAll(profile)
+          .then(profile=>{
+            res.json(profile)
+          })
         })
         .catch(err=>{
           console.log(err)
@@ -82,11 +86,19 @@ function update(req, res) {
 //Fix this functionality to do unfriending too
 function friendAndUnfriend(req, res) {
   Profile.findById(req.user.profile)
-  .populate('friends')
   .then(profile=> {
-    profile.friends.push(req.params.id)
+    if(profile.friends.includes(req.params.id)){
+      profile.friends.remove(req.params.id)
+    }else{
+      profile.friends.push(req.params.id)
+    }
+    profile.populate("friends").execPopulate()
     profile.save()
     .then(()=> res.json(profile))
+  })
+  .catch(err=>{
+    console.log(err)
+    return res.status(400).json(err)
   })
 }
 
@@ -96,13 +108,60 @@ function friendAndUnfriend(req, res) {
  * You also create the book document here since the book model is only for use
  * by the profile user
  * 
- * The form will give you what you need with regard to what list the book should be added to
+ * The params.collection will give you which collection it should go to 
+ * (params.id gives you which book based on api_id)
+ * 
+ * When you add you will need to check if the book is already in our database
+ * If it isn't, then create it. Otherwise just add it
  */
 function addBook(req,res){
+    Book.findOne({api_id:req.params.bookId})
+    .then(book=>{
+      if(book){
+        addToCollection(req.user.profile, book,req.params.collection,res)
+      }else{
+        Book.create(req.body)
+        .then(book=>{
+          addToCollection(req.user.profile,book,req.params.collection,res)
+        })
+      }
+    })
+    .catch(err=>{
+      console.log(err)
+      return res.status(400).json(err)
+    })
+}
 
+function addToCollection(profile, book,collection,res){
+  Profile.findById(profile)
+  .then(profile=>{
+    profile[collection].push(book._id)
+    profile.save()
+    populateAll(profile)
+    .then(profile=>{
+      res.json(profile)
+    })
+  })
 }
 
 function removeBook(req,res){
+  Profile.findById(req.user.profile)
+  .then(profile=>{
+    removeFromCollection(profile,req.params.bookId,req.params.collection,res)
+  })
+  .catch(err=>{
+    console.log(err)
+    return res.status(400).json(err)
+  })
+}
+
+function removeFromCollection(profile,bookId,collection,res){
+  profile[collection].remove({_id:bookId})
+  profile.save()
+  populateAll(profile)
+          .then(profile=>{
+            res.json(profile)
+          })
 
 }
 

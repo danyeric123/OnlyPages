@@ -1,7 +1,9 @@
 import { Review } from '../models/review.js'
 import { Profile } from '../models/profile.js'
+import { Book } from '../models/book.js'
 
 export { 
+  index,
   create, 
   reply,
   deleteReview as delete,
@@ -10,17 +12,34 @@ export {
   likeAndUnlike,
 }
 
+function index(res,req){
+  Review.find({book:req.params.bookId})
+        .then(reviews=>{
+          reviews.populate("author")
+                  .populate("likes")
+                  .populate("replies")
+                  .execPopulate()
+          res.json(reviews)
+        })
+        .catch(err=>{
+          console.log(err)
+          return res.status(400).json(err)
+        })
+}
+
 function create(req, res) {
-  req.body.author = req.user.profile
   Review.create(req.body)
       .then((review)=> {
         Profile.findById(req.user.profile)
                 .then(profile=>{
                   profile.reviews.push(review._id)
                   profile.save()
-                  // Should I be passing the reviews or the profile?
-                  res.json(profile)
                 })
+        Book.findById(req.body.book)
+            .then(book=>{
+              book.reviews.push(review._id)
+            })
+        res.json(review)
       })
       .catch(err=>{
         console.log(err)
@@ -53,7 +72,7 @@ function deleteReview(req,res){
           profile.save()
           Review.findOneAndDelete({_id: req.params.reviewId})
           .then(() => {
-            res.redirect(`/reviews`)
+            res.status(200)
           })
         })
         .catch(err=>{
@@ -95,7 +114,7 @@ function likeAndUnlike(req,res){
           review.likes.remove({_id:req.user.profile._id})
           review.save()
         }
-        res.redirect(req.headers.referer)
+        res.json(review)
       })
       .catch(err=>{
         console.log(err)

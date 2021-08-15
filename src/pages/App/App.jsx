@@ -82,6 +82,15 @@ class App extends Component {
 			/>
 			}
 			/>	
+				<Route exact path='/books/:id' render={({ match }) => 
+          authService.getUser() ?
+            <BookDetails 
+              match={match}
+              userProfile={userProfile}
+							handleAddBook={this.handleAddBook}
+							handleRemoveMedia={this.handleRemoveBook}
+            /> : <Redirect to='/login' />
+        }/>
 			</>
 		)
 	}

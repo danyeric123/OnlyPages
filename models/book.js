@@ -9,6 +9,7 @@ const Schema = mongoose.Schema
 
 // Do we need a book model?
 const bookSchema = new Schema({
+  api_id: String,
   title: String,
   publish: Date,
   coverImage: String,
