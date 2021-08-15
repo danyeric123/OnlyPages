@@ -1,16 +1,21 @@
 import React, { Component } from 'react';
 
 class PostForm extends Component {
-  state = {  }
+  state = { 
+    invalidForm:true,
+    FormData:{
+      
+    }
+   }
+
+  formRef = React.createRef();
   render() { 
     return (
        <>
+
         <form action="">
           <textarea type="text" name="test"/>
           <button
-            type="submit"
-            className="btn btn-success"
-            disabled={this.state.invalidForm}
           >
             Submit Post
           </button>

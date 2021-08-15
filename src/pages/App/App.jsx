@@ -9,7 +9,6 @@ import ProfileList from '../ProfileList/ProfileList'
 import ProfileDetails from '../ProfileDetails/ProfileDetails'
 import * as profileAPI from '../../services/profileService'
 import PostList from '../PostList/PostList'
-import PostDetail from '../PostDetails/PostDetails'
 import AddPost from '../AddPost/AddPost'
 import PostDetails from '../PostDetails/PostDetails'
 
@@ -77,7 +76,7 @@ class App extends Component {
 			<Route exact path='/Add'>
 				<AddPost/>
 			</Route>
-			<Route exact path='/post'
+			<Route exact path='/posts/:id'
 			render={({location}) =>
 			<PostDetails location = {Location}
 			/>
