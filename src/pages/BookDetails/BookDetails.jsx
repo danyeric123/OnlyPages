@@ -1,20 +1,21 @@
 import React, { Component } from 'react'
 import * as bookAPI from '../../services/bookService'
 import ReviewForm from '../../components/ReviewForm/ReviewForm'
-// import BookForm from '../../components/MediaForm/BookForm'
+import BookForm from '../../components/BookForm/BookForm'
 import * as reviewsAPI from '../../services/reviewService'
 import ReviewCard from '../../components/ReviewCard/ReviewCard'
 
-class MovieDetails extends Component {
+//this is for when a user clicks on a book card details button
+class BookDetails extends Component {
   state = {
     searchResult: {},
     reviews:[]
   }
 
   async componentDidMount() {
-    const searchResult = await bookAPI.searchOne(this.props.match.params.id)
+    const searchResult = await bookAPI.searchOneBook(this.props.match.params.id)
     const reviews = await reviewsAPI.getReviews(this.props.match.params.id)
-    this.setState({searchResult,reviews})
+    this.setState({searchResult: searchResult.item,reviews})
   }
 
   /*
@@ -38,17 +39,17 @@ class MovieDetails extends Component {
     const { searchResult } = this.state 
     return (
       <>
-        <h1>{searchResult.title}</h1>
-        <h3>{searchResult?.description}</h3>
+        <h1>{searchResult.volumeInfo.title}</h1>
+        <h3>{searchResult?.volumeInfo.description}</h3>
         
-        {/* {searchResult?.title &&
+        {searchResult?.volumeInfo.title &&
           <BookForm
-            media={searchResult}
+            book={searchResult}
             userProfile={this.props.userProfile}
-            handleAddMedia={this.props.handleAddMedia}
-            handleRemoveMedia={this.props.handleRemoveMedia}
+            handleAddBook={this.props.handleAddBook}
+            handleRemoveBook={this.props.handleRemoveBook}
           />  
-        } */}
+        }
         {searchResult.categories?.map(category => 
           <a key={category} href={`/books/category/${category}`}>
             <p>{category}</p>
@@ -72,4 +73,4 @@ class MovieDetails extends Component {
   }
 }
  
-export default MovieDetails;
+export default BookDetails;

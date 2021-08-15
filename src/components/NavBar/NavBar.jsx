@@ -9,14 +9,23 @@ const NavBar = ({ user, handleLogout, history }) => {
 				<nav>
 					<div>
 						<ul>
-							<li>Welcome, {user.name}</li>
 							<li>
-                <Link to="/users">Users</Link>
+                <Link to="/">LOGO PLACEHOLDER</Link>
               </li>
-							<li><Link to='' onClick={handleLogout}>LOG OUT</Link></li>
+							<li>Welcome, {user.name}</li>
 							<SearchForm 
                 history={history}
               />
+							<li>
+                <Link to="/users">Users</Link>
+              </li>
+							<li>
+                <Link to="/dashboard">My Library(PersonalDashboard)</Link>
+              </li>
+							<li>
+                <Link to="/board">Message Board</Link>
+              </li>
+							<li><Link to='' onClick={handleLogout}>LOG OUT</Link></li>
 						</ul>
 					</div>
 				</nav>
