@@ -5,7 +5,8 @@ import ReviewForm from '../../components/ReviewForm/ReviewForm'
 import * as reviewsAPI from '../../services/reviewService'
 import ReviewCard from '../../components/ReviewCard/ReviewCard'
 
-class MovieDetails extends Component {
+//this is for when a user clicks on a book card details button
+class BookDetails extends Component {
   state = {
     searchResult: {},
     reviews:[]
@@ -72,4 +73,4 @@ class MovieDetails extends Component {
   }
 }
  
-export default MovieDetails;
+export default BookDetails;
