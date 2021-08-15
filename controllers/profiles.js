@@ -17,6 +17,7 @@ function userProfile(req, res) {
   .populate('media')
   .populate('friends')
   .then(profile => {
+    // console.log(profile)
     res.json(profile)
   })
 }
