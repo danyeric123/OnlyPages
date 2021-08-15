@@ -41,7 +41,7 @@ class BookDetails extends Component {
     return (
       <>
         <h1>{searchResult?.volumeInfo?.title}</h1>
-        <h3>{searchResult?.volumeInfo?.description}</h3>
+        <div dangerouslySetInnerHTML={{__html:searchResult?.volumeInfo?.description}} />
         
         {searchResult?.volumeInfo?.title &&
           <BookForm

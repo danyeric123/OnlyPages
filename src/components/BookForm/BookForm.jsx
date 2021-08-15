@@ -3,12 +3,13 @@ import React, { Component } from 'react'
 class BookForm extends Component {
   state = {
     formData: {
-      id: this.props.book.id,
+      api_id: this.props.book.id,
       title:  this.props.book.title,
-      //image: this.props.book.imageLinks.thumbnail,//will need to be sized consistently
-      author: this.props.book.authors,//this is in an array!
+      coverImage: this.props.book.imageLinks?.thumbnail,//will need to be sized consistently
+      authors: this.props.book.authors,
       //snippet: this.props.book.searchInfo.textSnippet,
-      publishedDate: this.props.book.publishedDate
+      publish: this.props.book.publishedDate,
+      categories: this.props.book.categories
     }
   }
 

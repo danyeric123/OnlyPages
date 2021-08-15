@@ -10,18 +10,19 @@ const BookCard = ({
   handleAddBook,
   handleRemoveBook
 }) => {
+  let id = book.id
+  book = book.volumeInfo
+  book.id = id
   return (
     <>
       <a href={`/books/${book.id}`}>
-        <h1>{book.volumeInfo.title}</h1>
-      </a>
-      <a href={`/books/${book.id}`}>
+        <h1>{book.title}</h1>
         <img
           src={`http://books.google.com/books/content?id=${book.id}&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api`}
-          alt={`${book.volumeInfo.title} front cover`}
+          alt={`${book.title} front cover`}
         />
       </a>
-      <p>{book.snippet}</p>
+      {book.description}
       <p>Published Date: {moment(book.publishedDate).format("MMMM Do, YYYY")}</p>
       <BookForm
         book={book}
