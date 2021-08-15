@@ -25,6 +25,13 @@ class App extends Component {
     this.props.history.push("/");
   };
 
+	async componentDidMount() {
+    if (!this.state.userProfile) {
+      const userProfile = await profileAPI.getUserProfile()
+      this.setState({userProfile})
+    }
+  }
+
   handleSignupOrLogin = async () => {
     this.setState({ user: await authService.getUser(), userProfile: await profileAPI.getUserProfile()});
   };
@@ -48,7 +55,7 @@ class App extends Component {
 		const { user, userProfile } = this.state
 		return (
 			<>
-				<NavBar user={this.state.user} history={this.props.history} handleLogout={this.handleLogout} />
+				<NavBar user={user} userProfile={userProfile} history={this.props.history} handleLogout={this.handleLogout} />
 				<Route exact path='/'>
           <Landing user={user} />
         </Route>

@@ -17,6 +17,7 @@ function userProfile(req, res) {
   .populate('media')
   .populate('friends')
   .then(profile => {
+    // console.log(profile)
     res.json(profile)
   })
 }
@@ -166,7 +167,7 @@ function removeBook(req,res){
 }
 
 function removeFromCollection(profile,bookId,collection,res){
-  profile[collection].remove({_id:bookId})
+  profile[collection].remove({api_id:bookId})
   profile.save()
   populateAll(profile)
           .then(profile=>{

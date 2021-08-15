@@ -1,7 +1,7 @@
 import React from 'react'
 
 const ProfileDetails = ({ location, userProfile }) => {
-  const profile = location.state.profile
+  const profile = location.state.userProfile
   return (
     <>
       <h1>{profile.name}'s Deets</h1>

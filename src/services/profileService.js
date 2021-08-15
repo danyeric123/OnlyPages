@@ -28,9 +28,9 @@ export function friendAndUnfriend(id) {
     ).then((res) => res.json())
 }
 
-export function addBook(id,collection) {
+export function addBook(collection) {
   return fetch(
-    `${BASE_URL}/books/${id}/${collection}`,
+    `${BASE_URL}/books/${collection}`,
     {
       method: 'PATCH',
       headers: { Authorization: "Bearer " + tokenService.getToken() }
