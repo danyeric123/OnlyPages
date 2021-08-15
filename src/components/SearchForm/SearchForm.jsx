@@ -4,7 +4,7 @@ class Search extends Component {
   state = {
 		invalidForm: true,
 		formData: {
-			query: 'Hunger Games',
+			query: '',
 		},
   }
 

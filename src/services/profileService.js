@@ -19,7 +19,7 @@ export function getAllProfiles() {
 
 export function friendAndUnfriend(id) {
   return fetch(
-    `${BASE_URL}/friendAndUnfriend/${id}`,
+    `${BASE_URL}/friend/${id}`,
     {
       method: 'PATCH',
       headers: { Authorization: "Bearer " + tokenService.getToken() }

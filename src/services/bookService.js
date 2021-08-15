@@ -6,7 +6,6 @@
  * You can get a book based on subject category by doing: https://www.googleapis.com/books/v1/volumes/?q=searchterm+subject:categoryterm--Katia
  * example: https://www.googleapis.com/books/v1/volumes?q=birds+subject:nature
  */
-import axios from 'axios'
 //import * as tokenService from "./tokenService"
 
 const BASE_URL = "https://www.googleapis.com/books/v1/volumes"
