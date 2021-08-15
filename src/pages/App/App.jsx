@@ -19,6 +19,7 @@ class App extends Component {
 	handleLogout = () => {
     authService.logout();
     this.setState({ user: null, userProfile: null });
+		console.log(this.state)
     this.props.history.push("/");
   };
 
@@ -45,7 +46,7 @@ class App extends Component {
 		const { user, userProfile } = this.state
 		return (
 			<>
-				<NavBar user={this.state.user} />
+				<NavBar user={user} history={this.props.history} handleLogout={this.handleLogout} />
 				<Route exact path='/'>
           <Landing user={user} />
         </Route>
