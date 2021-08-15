@@ -14,11 +14,9 @@ export {
 
 function userProfile(req, res) {
   Profile.findById(req.user.profile)
-  .populate('media')
-  .populate('friends')
   .then(profile => {
-    // console.log(profile)
-    res.json(profile)
+    populateAll(profile)
+    .then(profile=>res.json(profile))
   })
 }
 
@@ -126,11 +124,12 @@ function friendAndUnfriend(req, res) {
  * If it isn't, then create it. Otherwise just add it
  */
 function addBook(req,res){
-    Book.findOne({api_id:req.params.bookId})
+    Book.findOne({api_id:req.body.api_id})
     .then(book=>{
       if(book){
         addToCollection(req.user.profile, book,req.params.collection,res)
       }else{
+        console.log(req.body)
         Book.create(req.body)
         .then(book=>{
           addToCollection(req.user.profile,book,req.params.collection,res)
@@ -167,12 +166,15 @@ function removeBook(req,res){
 }
 
 function removeFromCollection(profile,bookId,collection,res){
-  profile[collection].remove({api_id:bookId})
-  profile.save()
-  populateAll(profile)
-          .then(profile=>{
-            res.json(profile)
-          })
+  Book.find({api_id:bookId})
+  .then(book=>{
+    profile[collection].remove({_id:book[0]._id})
+    profile.save()
+    populateAll(profile)
+            .then(profile=>{
+              res.json(profile)
+            })
+  })
 
 }
 

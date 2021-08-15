@@ -41,8 +41,8 @@ class App extends Component {
     this.setState({userProfile: updatedProfile})
   }
 
-	handleAddBook = async book => {
-    const updatedProfile = await profileAPI.addBook(book)
+	handleAddBook = async (book,collection) => {
+    const updatedProfile = await profileAPI.addBook(book,collection)
     this.setState({userProfile: updatedProfile})
   }
 
