@@ -14,7 +14,7 @@ const profileSchema = new mongoose.Schema(
     wantToRead: [{type: mongoose.Schema.Types.ObjectId, ref: "Book"}],
     reviews: [{type: mongoose.Schema.Types.ObjectId, ref: "Review"}],
     friends: [{type: mongoose.Schema.Types.ObjectId, ref: "Profile"}],
-    authors: [{type: mongoose.Schema.Types.ObjectId, ref: "Author"}],
+    // authors: [{type: mongoose.Schema.Types.ObjectId, ref: "Author"}],
   },
   {
     timestamps: true,

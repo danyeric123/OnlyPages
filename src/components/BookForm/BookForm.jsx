@@ -15,22 +15,22 @@ class BookForm extends Component {
 
   handleAddBook = e => {
     e.preventDefault()
-    this.props.handleAddBook(this.state.formData)
+    this.props.handleAddBook(this.state.formData,"read")
   }
 
   handleRemoveBook = e => {
     e.preventDefault()
-    this.props.handleRemoveBook(this.state.formData.api_id)
+    this.props.handleRemoveBook(this.state.formData.api_id,"read")
   }
 
   render() { 
     return (
       <>
       {/* this is where they need to be able to add to collection, and from there they add to different reading lists?? */}
-        { this.props.userProfile?.book.some(book => book.id === this.state.formData.id) &&
+        { this.props.userProfile?.read.some(book => book.api_id === this.state.formData.api_id) &&
           <button onClick={this.handleRemoveBook}>REMOVE</button>
         }
-        { !this.props.userProfile?.Book.some(book => book.id === this.state.formData.id) &&
+        { !this.props.userProfile?.read.some(book => book.api_id === this.state.formData.api_id) &&
           <button onClick={this.handleAddBook}>ADD</button>
         }
       </>
