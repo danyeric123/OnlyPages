@@ -56,7 +56,7 @@ class BookDetails extends Component {
             <p>{category}</p>
           </a>
         )}
-        {(searchResult.reviews?.length > 0) &&
+        {(reviews?.length > 0) &&
         <>
           <h3>Reviews:</h3>
           {searchResult.reviews?.map(review =>
