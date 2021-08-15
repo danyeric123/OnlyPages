@@ -8,7 +8,9 @@ import * as authService from '../../services/authService'
 import ProfileList from '../ProfileList/ProfileList'
 import ProfileDetails from '../ProfileDetails/ProfileDetails'
 import * as profileAPI from '../../services/profileService'
+import BookSearch from "../BookSearch/BookSearch";
 import BookDetails from '../BookDetails/BookDetails'
+import * as bookAPI from '../../services/bookService'
 
 class App extends Component {
 	state = {
@@ -46,7 +48,7 @@ class App extends Component {
 		const { user, userProfile } = this.state
 		return (
 			<>
-				<NavBar user={user} history={this.props.history} handleLogout={this.handleLogout} />
+				<NavBar user={this.state.user} history={this.props.history} handleLogout={this.handleLogout} />
 				<Route exact path='/'>
           <Landing user={user} />
         </Route>
@@ -71,6 +73,22 @@ class App extends Component {
 						location={location}
 					/> : <Redirect to="/login" />
 				}/>
+			 <Route
+          exact
+          path="/search/:query"
+          render={({ match }) =>
+            authService.getUser() ? (
+              <BookSearch
+                match={match}
+                userProfile={userProfile}
+                handleAddBook={this.handleAddBook}
+                handleRemoveBook={this.handleRemoveBook}
+              />
+            ) : (
+              <Redirect to="/login" />
+            )
+          }
+        />
 				<Route exact path='/books/:id' render={({ match }) => 
           authService.getUser() ?
             <BookDetails 
