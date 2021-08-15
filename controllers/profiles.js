@@ -2,6 +2,7 @@ import { Book } from "../models/book.js"
 import { Profile } from "../models/profile.js"
 
 export {
+  userProfile,
   show,
   index,
   friendAndUnfriend,
@@ -9,6 +10,15 @@ export {
   edit,
   update,
   removeBook,
+}
+
+function userProfile(req, res) {
+  Profile.findById(req.user.profile)
+  .populate('media')
+  .populate('friends')
+  .then(profile => {
+    res.json(profile)
+  })
 }
 
 function show(req, res) {
