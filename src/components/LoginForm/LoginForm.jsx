@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import styles from './LoginForm.module.css'
+import * as authService from '../../services/authService'
 
 class LoginForm extends Component {
   state = {
@@ -13,7 +14,15 @@ class LoginForm extends Component {
   }
 
   handleSubmit = async e => {
+    const { history, handleSignupOrLogin } = this.props
     e.preventDefault()
+    try {
+      await authService.login(this.state);
+      handleSignupOrLogin()
+      history.push("/")
+    } catch (err) {
+        alert('Invalid Credentials')
+    }
   }
 
   render() {
