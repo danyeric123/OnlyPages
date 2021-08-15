@@ -13,12 +13,12 @@ const BookCard = ({
   return (
     <>
       <a href={`/books/${book.id}`}>
-        <h1>{book.title}</h1>
+        <h1>{book.volumeInfo.title}</h1>
       </a>
       <a href={`/books/${book.id}`}>
         <img
           src={`http://books.google.com/books/content?id=${book.id}&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api`}
-          alt={`${book.title} front cover`}
+          alt={`${book.volumeInfo.title} front cover`}
         />
       </a>
       <p>{book.snippet}</p>

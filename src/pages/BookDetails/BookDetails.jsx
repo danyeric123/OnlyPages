@@ -14,8 +14,9 @@ class BookDetails extends Component {
 
   async componentDidMount() {
     const searchResult = await bookAPI.searchOneBook(this.props.match.params.id)
+    console.log(searchResult)
     const reviews = await reviewsAPI.getReviews(this.props.match.params.id)
-    this.setState({searchResult: searchResult.item,reviews})
+    this.setState({searchResult,reviews})
   }
 
   /*
@@ -36,13 +37,13 @@ class BookDetails extends Component {
   }
 
   render() {
-    const { searchResult } = this.state 
+    const { searchResult, reviews } = this.state 
     return (
       <>
-        <h1>{searchResult.volumeInfo.title}</h1>
-        <h3>{searchResult?.volumeInfo.description}</h3>
+        <h1>{searchResult?.volumeInfo?.title}</h1>
+        <h3>{searchResult?.volumeInfo?.description}</h3>
         
-        {searchResult?.volumeInfo.title &&
+        {searchResult?.volumeInfo?.title &&
           <BookForm
             book={searchResult}
             userProfile={this.props.userProfile}
