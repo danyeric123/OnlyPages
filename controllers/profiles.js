@@ -166,10 +166,9 @@ function removeBook(req,res){
 }
 
 function removeFromCollection(profile,bookId,collection,res){
-  console.log(bookId)
   Book.find({api_id:bookId})
   .then(book=>{
-    profile[collection].remove({_id:book._id})
+    profile[collection].remove({_id:book[0]._id})
     profile.save()
     populateAll(profile)
             .then(profile=>{
