@@ -1,6 +1,6 @@
 import React from "react";
 import moment from "moment";
-import BookForm from "../../components/BookForm/BookForm";
+import BookForm from "../BookForm/BookForm";
 
 
 //this is what will be rendered to the book search page as a card component

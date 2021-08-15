@@ -10,6 +10,7 @@ import ProfileDetails from '../ProfileDetails/ProfileDetails'
 import * as profileAPI from '../../services/profileService'
 import BookSearch from "../BookSearch/BookSearch";
 import BookDetails from '../BookDetails/BookDetails'
+import * as bookAPI from '../../services/bookService'
 
 class App extends Component {
 	state = {

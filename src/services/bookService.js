@@ -7,16 +7,18 @@
  * example: https://www.googleapis.com/books/v1/volumes?q=birds+subject:nature
  */
 import axios from 'axios'
- const BASE_URL = "https://www.googleapis.com/books/v1/volumes"
+//import * as tokenService from "./tokenService"
 
- export function search(query) {
-   axios.get(`${BASE_URL}?q=${query}`)
-   .then(res => res.json)
- }
+const BASE_URL = "https://www.googleapis.com/books/v1/volumes"
 
- export function searchOne(id) {
-  axios.get(`${BASE_URL}/${id}`)
-  .then(res => res.json)
+export function searchAllBooks(query) {
+  return fetch(`${BASE_URL}?q=${query}`)
+  .then(res => res.json())
+}
+
+export function searchOneBook(id) {
+  return fetch(`${BASE_URL}/${id}`)
+  .then(res => res.data)
 }
 
 //search by subject? we'd need a second input to get this as a second parameter, the way i understand it you have to have a search term and a subject term not just search by subject term alone

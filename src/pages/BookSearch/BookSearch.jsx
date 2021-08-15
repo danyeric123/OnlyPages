@@ -13,15 +13,15 @@ class BookSearch extends Component {
 
   async componentDidMount() {
     const { params } = this.props.match;
-      const searchResults = await bookAPI.search(params.query);
-      this.setState({ searchResults: searchResults.items });
+      const searchResults = await bookAPI.searchAllBooks(params.query);
+      this.setState({ searchResults: searchResults.items});
     } 
 
 
   async componentDidUpdate(prevProps) {
     const { params } = this.props.match;
     if (params.query !== prevProps.match.params.query) {
-        const searchResults = await bookAPI.search(params.query);
+        const searchResults = await bookAPI.searchAllBooks(params.query);
         this.setState({ searchResults: searchResults.items});
       }
   }

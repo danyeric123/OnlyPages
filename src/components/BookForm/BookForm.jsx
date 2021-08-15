@@ -5,9 +5,9 @@ class BookForm extends Component {
     formData: {
       id: this.props.book.id,
       title:  this.props.book.title,
-      image: this.props.book.imageLinks.thumbnail,//will need to be sized consistently
+      //image: this.props.book.imageLinks.thumbnail,//will need to be sized consistently
       author: this.props.book.authors,//this is in an array!
-      snippet: this.props.book.searchInfo.textSnippet,
+      //snippet: this.props.book.searchInfo.textSnippet,
       publishedDate: this.props.book.publishedDate
     }
   }
