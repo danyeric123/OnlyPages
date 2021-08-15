@@ -1,0 +1,104 @@
+{
+  "kind": "books#volumes",
+  "totalItems": 2016,
+  "items": [
+      {
+          "kind": "books#volume",
+          "id": "lPV1CQAAQBAJ",
+          "etag": "m99EFYlWCxI",
+          "selfLink": "https://www.googleapis.com/books/v1/volumes/lPV1CQAAQBAJ",
+          "volumeInfo": {
+              "title": "The Test Book",
+              "authors": [
+                  "Mikael Krogerus",
+                  "Roman Tschäppeler"
+              ],
+              "publisher": "W. W. Norton & Company",
+              "publishedDate": "2015-10-05",
+              "description": "An essential library of tests for self-knowledge and success, from the strategic thinking experts behind the international bestseller The Decision Book. Are you clever? Can you self-motivate? Are you creative? How do you handle money? Can you lead others well? With their trademark style and wit, best-selling authors Mikael Krogerus and Roman Tschäppeler present sixty-four tests spanning intelligence and personality type; creativity and leadership skills; fitness and lifestyle; and knowledge and belief. From what you see in a Rorschach test to comparing your workout against a Navy SEAL’s, from EQ to IQ and Myers-Briggs in between, The Test Book offers a panoply of ways to assess yourself and decide what you need to succeed. As Krogerus and Tschäppeler highlight, you can only know whether you have the right skills, the right job, or the right partner when you know where you stand right now. Small enough to fit in your pocket but packed with insight and good humor, The Test Book delivers a quick, fun way to evaluate your life and happiness.",
+              "industryIdentifiers": [
+                  {
+                      "type": "ISBN_13",
+                      "identifier": "9780393247053"
+                  },
+                  {
+                      "type": "ISBN_10",
+                      "identifier": "0393247058"
+                  }
+              ],
+              "readingModes": {
+                  "text": true,
+                  "image": false
+              },
+              "pageCount": 208,
+              "printType": "BOOK",
+              "categories": [
+                  "Self-Help"
+              ],
+              "maturityRating": "NOT_MATURE",
+              "allowAnonLogging": true,
+              "contentVersion": "1.3.4.0.preview.2",
+              "panelizationSummary": {
+                  "containsEpubBubbles": false,
+                  "containsImageBubbles": false
+              },
+              "imageLinks": {
+                  "smallThumbnail": "http://books.google.com/books/content?id=lPV1CQAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+                  "thumbnail": "http://books.google.com/books/content?id=lPV1CQAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+              },
+              "language": "en",
+              "previewLink": "http://books.google.com/books?id=lPV1CQAAQBAJ&printsec=frontcover&dq=test&hl=&cd=1&source=gbs_api",
+              "infoLink": "https://play.google.com/store/books/details?id=lPV1CQAAQBAJ&source=gbs_api",
+              "canonicalVolumeLink": "https://play.google.com/store/books/details?id=lPV1CQAAQBAJ"
+          },
+          "saleInfo": {
+              "country": "US",
+              "saleability": "FOR_SALE",
+              "isEbook": true,
+              "listPrice": {
+                  "amount": 17.95,
+                  "currencyCode": "USD"
+              },
+              "retailPrice": {
+                  "amount": 9.99,
+                  "currencyCode": "USD"
+              },
+              "buyLink": "https://play.google.com/store/books/details?id=lPV1CQAAQBAJ&rdid=book-lPV1CQAAQBAJ&rdot=1&source=gbs_api",
+              "offers": [
+                  {
+                      "finskyOfferType": 1,
+                      "listPrice": {
+                          "amountInMicros": 17950000,
+                          "currencyCode": "USD"
+                      },
+                      "retailPrice": {
+                          "amountInMicros": 9990000,
+                          "currencyCode": "USD"
+                      },
+                      "giftable": true
+                  }
+              ]
+          },
+          "accessInfo": {
+              "country": "US",
+              "viewability": "PARTIAL",
+              "embeddable": true,
+              "publicDomain": false,
+              "textToSpeechPermission": "ALLOWED",
+              "epub": {
+                  "isAvailable": true,
+                  "acsTokenLink": "http://books.google.com/books/download/The_Test_Book-sample-epub.acsm?id=lPV1CQAAQBAJ&format=epub&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+              },
+              "pdf": {
+                  "isAvailable": false
+              },
+              "webReaderLink": "http://play.google.com/books/reader?id=lPV1CQAAQBAJ&hl=&printsec=frontcover&source=gbs_api",
+              "accessViewStatus": "SAMPLE",
+              "quoteSharingAllowed": false
+          },
+          "searchInfo": {
+              "textSnippet": "Small enough to fit in your pocket but packed with insight and good humor, The Test Book delivers a quick, fun way to evaluate your life and happiness."
+          }
+      }
+  ]
+}
