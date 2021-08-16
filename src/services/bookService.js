@@ -7,7 +7,6 @@
  * example: https://www.googleapis.com/books/v1/volumes?q=birds+subject:nature
  */
 
-
 const BASE_URL = "https://www.googleapis.com/books/v1/volumes"
 
 export function searchAllBooks(query) {

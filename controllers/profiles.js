@@ -2,6 +2,7 @@ import { Book } from "../models/book.js"
 import { Profile } from "../models/profile.js"
 
 export {
+  userProfile,
   show,
   index,
   friendAndUnfriend,
@@ -9,7 +10,6 @@ export {
   edit,
   update,
   removeBook,
-  userProfile,
 }
 
 function show(req, res) {
@@ -129,22 +129,22 @@ function friendAndUnfriend(req, res) {
  * When you add you will need to check if the book is already in our database
  * If it isn't, then create it. Otherwise just add it
  */
- function addBook(req,res){
-  Book.findOne({api_id:req.body.api_id})
-  .then(book=>{
-    if(book){
-      addToCollection(req.user.profile, book,req.params.collection,res)
-    }else{
-      Book.create(req.body)
-      .then(book=>{
-        addToCollection(req.user.profile,book,req.params.collection,res)
-      })
-    }
-  })
-  .catch(err=>{
-    console.log(err)
-    return res.status(400).json(err)
-  })
+function addBook(req,res){
+    Book.findOne({api_id:req.body.api_id})
+    .then(book=>{
+      if(book){
+        addToCollection(req.user.profile, book,req.params.collection,res)
+      }else{
+        Book.create(req.body)
+        .then(book=>{
+          addToCollection(req.user.profile,book,req.params.collection,res)
+        })
+      }
+    })
+    .catch(err=>{
+      console.log(err)
+      return res.status(400).json(err)
+    })
 }
 
 function addToCollection(profile, book, collection,res){

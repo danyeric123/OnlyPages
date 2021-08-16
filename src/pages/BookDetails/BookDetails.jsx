@@ -16,9 +16,9 @@ class BookDetails extends Component {
 
   async componentDidMount() {
     const searchResult = await bookAPI.searchOneBook(this.props.match.params.id)
+    console.log(searchResult)
     const reviews = await reviewsAPI.getReviews(this.props.match.params.id)
     this.setState({searchResult,reviews})
-    console.log(searchResult)
   }
 
   /*
@@ -39,7 +39,7 @@ class BookDetails extends Component {
   }
 
   render() {
-    const { searchResult,reviews } = this.state 
+    const { searchResult, reviews } = this.state 
     return (
       <>
       {searchResult.volumeInfo?.imageLinks?

@@ -28,8 +28,16 @@ class App extends Component {
 	handleLogout = () => {
     authService.logout();
     this.setState({ user: null, userProfile: null });
+		console.log(this.state)
     this.props.history.push("/");
   };
+
+	async componentDidMount() {
+    if (!this.state.userProfile) {
+      const userProfile = await profileAPI.getUserProfile()
+      this.setState({userProfile})
+    }
+  }
 
   handleSignupOrLogin = async () => {
     this.setState({ user: await authService.getUser(), userProfile: await profileAPI.getUserProfile()});
@@ -40,8 +48,8 @@ class App extends Component {
     this.setState({userProfile: updatedProfile})
   }
 
-	handleAddBook = async (book, collection) => {
-    const updatedProfile = await profileAPI.addBook(book, collection)
+	handleAddBook = async (book,collection) => {
+    const updatedProfile = await profileAPI.addBook(book,collection)
     this.setState({userProfile: updatedProfile})
   }
 
