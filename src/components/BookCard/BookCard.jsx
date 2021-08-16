@@ -29,6 +29,8 @@ const BookCard = ({
       <p>Author(s): {book.authors}</p>
       <p>Published Date: {moment(book.publishedDate).format("MMMM Do, YYYY")}</p>
       {book.description}
+      <br />
+        <br />
       <BookForm
         book={book}
         userProfile={userProfile}
