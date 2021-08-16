@@ -11,16 +11,19 @@ class BookForm extends Component {
       publish: this.props.book.publishedDate,
       categories: this.props.book.categories,
     },
-    collection: this.props.value,
   };
 
   handleSelect=(e)=>{
     console.log(e.target.value);
+    e.preventDefault();
+    const formData = {...this.state.formData, collection: e.target.value}
+    this.setState({formData})
   }
 
   handleAddBook = (e) => {
     e.preventDefault();
-    this.props.handleAddBook(this.state.formData, this.state.collection_type);
+    this.props.handleAddBook(this.state.formData, this.state.collection);
+    console.log(this.state.collection)
   };
 
   handleRemoveBook = (e) => {

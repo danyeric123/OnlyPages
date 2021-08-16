@@ -13,7 +13,7 @@ const BookCard = ({
   let id = book.id
   book = book.volumeInfo
   book.id = id
-  console.log(book)
+  // console.log(book)
   return (
     <>
       <a href={`/books/${id}`}>

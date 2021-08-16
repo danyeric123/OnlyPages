@@ -72,28 +72,6 @@ class App extends Component {
 						location={location}
 					/> : <Redirect to="/login" />
 				}/>
-			{/* 	<Route exact path="/profile/read" render={({ location }) =>
-					authService.getUser() ?
-					<ProfileDetails 
-						userProfile={userProfile}
-						location={location}
-					/> : <Redirect to="/login" />
-				}/>
-				<Route exact path="/profile/wanttoread" render={({ location }) =>
-					authService.getUser() ?
-					<ProfileDetails 
-						userProfile={userProfile}
-						location={location}
-					/> : <Redirect to="/login" />
-				}/>
-				<Route exact path="/profile/currentlyread" render={({ location }) =>
-					authService.getUser() ?
-					<ProfileDetails 
-						userProfile={userProfile}
-						location={location}
-					/> : <Redirect to="/login" />
-				}/> */}
-        
 			 <Route
           exact
           path="/search/:query"
@@ -116,7 +94,8 @@ class App extends Component {
               match={match}
               userProfile={userProfile}
 							handleAddBook={this.handleAddBook}
-							handleRemoveMedia={this.handleRemoveBook}
+							handleRemoveBook={this.handleRemoveBook}
+							handleSelect={this.handleSelect}
             /> : <Redirect to='/login' />
         }/>
 			</>
