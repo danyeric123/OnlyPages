@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import SearchForm from '../SearchForm/SearchForm'
 
-const NavBar = ({ user, handleLogout, history }) => {
+const NavBar = ({ user, userProfile, handleLogout, history }) => {
 	return (
 		<>
 			{user ? (
@@ -20,7 +20,10 @@ const NavBar = ({ user, handleLogout, history }) => {
                 <Link to="/users">Users</Link>
               </li>
 							<li>
-                <Link to="/dashboard">My Library(PersonalDashboard)</Link>
+							<Link to={{
+									pathname: '/profile',
+									state: {userProfile}
+								}} >My Library(PersonalDashboard)</Link>
               </li>
 							<li>
                 <Link to="/board">Message Board</Link>

@@ -10,22 +10,25 @@ const BookCard = ({
   handleAddBook,
   handleRemoveBook
 }) => {
+  let id = book.id
+  book = book.volumeInfo
+  book.id = id
+  console.log(book)
   return (
     <>
-      <a href={`/books/${book.id}`}>
+      <a href={`/books/${id}`}>
         <img
-          src={`http://books.google.com/books/content?id=${book.id}&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api`}
-          alt={`${book.volumeInfo.title} front cover`}
+          src={`http://books.google.com/books/content?id=${id}&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api`}
+          alt={`${book.title} front cover`}
         />
       </a>
-      <a href={`/books/${book.id}`}>
-        <h1>{book.volumeInfo.title}</h1>
+      <a href={`/books/${id}`}>
+        <h1>{book.title}</h1>
       </a>
-      {/* add ternary to only show subtitle if there is one */}
-      <p>Subtitle: {book.volumeInfo.subtitle}</p>
-      <p>Snippet: {book.searchInfo.textSnippet}</p>
-      <p>Author(s): {book.volumeInfo.authors}</p>
+      {book.subtitle && <p>Subtitle: {book.subtitle}</p>}
+      <p>Author(s): {book.authors}</p>
       <p>Published Date: {moment(book.publishedDate).format("MMMM Do, YYYY")}</p>
+      {book.description}
       <BookForm
         book={book}
         userProfile={userProfile}

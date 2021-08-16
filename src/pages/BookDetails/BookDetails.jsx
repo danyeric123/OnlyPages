@@ -15,7 +15,8 @@ class BookDetails extends Component {
   async componentDidMount() {
     const searchResult = await bookAPI.searchOneBook(this.props.match.params.id)
     const reviews = await reviewsAPI.getReviews(this.props.match.params.id)
-    this.setState({searchResult: searchResult.item,reviews})
+    this.setState({searchResult,reviews})
+    console.log(searchResult)
   }
 
   /*
@@ -39,10 +40,10 @@ class BookDetails extends Component {
     const { searchResult } = this.state 
     return (
       <>
-        <h1>{searchResult.volumeInfo.title}</h1>
-        <h3>{searchResult?.volumeInfo.description}</h3>
-        
-        {searchResult?.volumeInfo.title &&
+        <h1>{searchResult?.volumeInfo?.title}</h1>
+        <div dangerouslySetInnerHTML={{__html:searchResult?.volumeInfo?.description}} />
+        <br />
+        {searchResult?.volumeInfo?.title &&
           <BookForm
             book={searchResult}
             userProfile={this.props.userProfile}
@@ -50,15 +51,15 @@ class BookDetails extends Component {
             handleRemoveBook={this.props.handleRemoveBook}
           />  
         }
-        {searchResult.categories?.map(category => 
+        {searchResult?.categories?.map(category => 
           <a key={category} href={`/books/category/${category}`}>
             <p>{category}</p>
           </a>
         )}
-        {(searchResult.reviews?.length > 0) &&
+        {(searchResult?.reviews?.length > 0) &&
         <>
           <h3>Reviews:</h3>
-          {searchResult.reviews?.map(review =>
+          {searchResult?.reviews?.map(review =>
             <ReviewCard
               userProfile={this.props.userProfile}
               review={review}

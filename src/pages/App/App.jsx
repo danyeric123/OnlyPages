@@ -10,7 +10,7 @@ import ProfileDetails from '../ProfileDetails/ProfileDetails'
 import * as profileAPI from '../../services/profileService'
 import BookSearch from "../BookSearch/BookSearch";
 import BookDetails from '../BookDetails/BookDetails'
-import * as bookAPI from '../../services/bookService'
+// import * as bookAPI from '../../services/bookService'
 
 class App extends Component {
 	state = {
@@ -33,8 +33,8 @@ class App extends Component {
     this.setState({userProfile: updatedProfile})
   }
 
-	handleAddBook = async book => {
-    const updatedProfile = await profileAPI.addBook(book)
+	handleAddBook = async (book, api_id, collection) => {
+    const updatedProfile = await profileAPI.addBook(book, api_id, collection)
     this.setState({userProfile: updatedProfile})
   }
 
@@ -72,6 +72,28 @@ class App extends Component {
 						location={location}
 					/> : <Redirect to="/login" />
 				}/>
+			{/* 	<Route exact path="/profile/read" render={({ location }) =>
+					authService.getUser() ?
+					<ProfileDetails 
+						userProfile={userProfile}
+						location={location}
+					/> : <Redirect to="/login" />
+				}/>
+				<Route exact path="/profile/wanttoread" render={({ location }) =>
+					authService.getUser() ?
+					<ProfileDetails 
+						userProfile={userProfile}
+						location={location}
+					/> : <Redirect to="/login" />
+				}/>
+				<Route exact path="/profile/currentlyread" render={({ location }) =>
+					authService.getUser() ?
+					<ProfileDetails 
+						userProfile={userProfile}
+						location={location}
+					/> : <Redirect to="/login" />
+				}/> */}
+        
 			 <Route
           exact
           path="/search/:query"

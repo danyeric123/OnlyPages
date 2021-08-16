@@ -1,16 +1,19 @@
 import React, { Component } from 'react'
+//import MenuButton from '../MenuButton/MenuButton'
 //this is for what will be rendered on the book card to be pushed to a reading collection-WHERE?
 class BookForm extends Component {
+  
   state = {
     formData: {
-      id: this.props.book.id,
+      api_id: this.props.book.id,
       title:  this.props.book.title,
-      //image: this.props.book.imageLinks.thumbnail,//will need to be sized consistently
-      author: this.props.book.authors,//this is in an array!
-      //snippet: this.props.book.searchInfo.textSnippet,
-      publishedDate: this.props.book.publishedDate
+      coverImage: this.props.book.imageLinks?.thumbnail,//will need to be sized consistently
+      authors: this.props.book.authors,
+      publish: this.props.book.publishedDate,
+      categories: this.props.book.categories,
     }
   }
+
 
   handleAddBook = e => {
     e.preventDefault()
@@ -26,11 +29,13 @@ class BookForm extends Component {
     return (
       <>
       {/* this is where they need to be able to add to collection, and from there they add to different reading lists?? */}
-        { this.props.userProfile?.book.some(book => book.id === this.state.formData.id) &&
-          <button onClick={this.handleRemoveBook}>REMOVE</button>
+        { this.props.userProfile?.book.some(book => book.api._id === this.state.formData.id) &&
+          <button onClick={this.handleRemoveBook}>REMOVE BOOK</button>
+          // <MenuButton onClick={this.handleRemoveBook} />
         }
-        { !this.props.userProfile?.Book.some(book => book.id === this.state.formData.id) &&
-          <button onClick={this.handleAddBook}>ADD</button>
+        { !this.props.userProfile?.Book.some(book => book.api_id === this.state.formData.id) &&
+          <button onClick={this.handleAddBook}>ADD BOOK</button>
+          //<MenuButton onClick={this.handleAddBook} />
         }
       </>
     );
