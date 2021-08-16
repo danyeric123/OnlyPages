@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import styles from './SignupForm.module.css'
 import * as authService from '../../services/authService'
 
-class SignupForm extends Component {
+class EditProfileForm extends Component {
   state = {
     name: '',
     email: '',
@@ -113,4 +113,4 @@ class SignupForm extends Component {
   }
 }
 
-export default SignupForm
+export default EditProfileForm

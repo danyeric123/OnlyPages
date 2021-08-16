@@ -22,8 +22,8 @@ const NavBar = ({ user, userProfile, handleLogout, history }) => {
 							<li>
 							<Link to={{
 									pathname: '/profile',
-									state: {userProfile}
-								}} >My Library(PersonalDashboard)</Link>
+									state: {profile:userProfile}
+								}} >My Profile</Link>
               </li>
 							<li>
                 <Link to="/board">Message Board</Link>

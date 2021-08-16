@@ -1,12 +1,23 @@
 import React from "react";
+import { FaUserCircle } from "react-icons/fa"
 
 const ProfileDetails = ({ location, userProfile }) => {
   const { profile } = location.state;
-  console.log(profile.read)
-  
+
   return (
     <>
       <h1>{profile.name}'s Profile</h1>
+      {/* <img
+        src={profile.avatar}
+        alt="avatar"
+      /> */}
+      {profile.avatar?
+        <img
+          src={profile.avatar}
+          alt={profile.name} avatar
+        />:
+        <FaUserCircle size={70} />
+      }
       <h2>Friends List</h2>
       {profile.friends.map((profile) => (
         <>

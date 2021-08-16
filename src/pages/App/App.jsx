@@ -54,7 +54,7 @@ class App extends Component {
 		const { user, userProfile } = this.state
 		return (
 			<>
-				<NavBar user={this.state.user} history={this.props.history} handleLogout={this.handleLogout} />
+				<NavBar user={this.state.user} userProfile={userProfile} history={this.props.history} handleLogout={this.handleLogout} />
 				<Route exact path='/'>
           <Landing user={user} />
         </Route>
