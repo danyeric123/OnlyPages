@@ -4,6 +4,8 @@ import ReviewForm from '../../components/ReviewForm/ReviewForm'
 import BookForm from '../../components/BookForm/BookForm'
 import * as reviewsAPI from '../../services/reviewService'
 import ReviewCard from '../../components/ReviewCard/ReviewCard'
+import BookCard from '../../components/BookCard/BookCard'
+import { FaBook } from "react-icons/fa";
 
 //this is for when a user clicks on a book card details button
 class BookDetails extends Component {
@@ -40,17 +42,24 @@ class BookDetails extends Component {
     const { searchResult } = this.state 
     return (
       <>
-        <h1>{searchResult?.volumeInfo?.title}</h1>
+      {searchResult.volumeInfo?.imageLinks?
+        <img
+          src={searchResult.volumeInfo?.imageLinks.thumbnail}
+          alt={searchResult?.volumeInfo?.title} 
+        />:
+        <FaBook size={70} />
+      }
+        <h1>{searchResult.volumeInfo?.title}</h1>
+        <h3>{searchResult.volumeInfo?.authors?.join(" ,")}</h3>
         <div dangerouslySetInnerHTML={{__html:searchResult?.volumeInfo?.description}} />
         <br />
         <br />
-        <br />
-        {searchResult?.volumeInfo?.title &&
+        {searchResult?.volumeInfo?.title
+            &&
           <BookForm
             book={searchResult}
             userProfile={this.props.userProfile}
             handleAddBook={this.props.handleAddBook}
-            handleRemoveBook={this.props.handleRemoveBook}
           />  
         }
         {searchResult?.categories?.map(category => 

@@ -12,7 +12,7 @@ const ProfileDetails = ({ location, userProfile }) => {
           <h3 key={profile._id}>{profile.name}</h3>
         </>
       ))}
-      {/* Collections */}
+     
       <div>
         <h3>Previously Read Collection</h3>
         {profile.read.map((book) => (

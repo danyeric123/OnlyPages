@@ -9,6 +9,7 @@ export {
   edit,
   update,
   removeBook,
+  userProfile,
 }
 
 function show(req, res) {
@@ -22,6 +23,13 @@ function show(req, res) {
   .catch(err=>{
     console.log(err)
     return res.status(400).json(err)
+  })
+}
+function userProfile(req, res) {
+  Profile.findById(req.user.profile)
+  .then(profile => {
+    populateAll(profile)
+    .then(profile=>res.json(profile))
   })
 }
 
