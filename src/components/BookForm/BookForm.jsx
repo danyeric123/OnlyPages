@@ -11,51 +11,34 @@ class BookForm extends Component {
       publish: this.props.book.publishedDate,
       categories: this.props.book.categories,
     },
+    collection: ''
   };
 
   handleSelect=(e)=>{
-    console.log(e.target.value);
     e.preventDefault();
-    const formData = {...this.state.formData, collection: e.target.value}
-    this.setState({formData})
+    this.setState({collection: e.target.value})
   }
 
   handleAddBook = (e) => {
     e.preventDefault();
     this.props.handleAddBook(this.state.formData, this.state.collection);
-    console.log(this.state.collection)
+    console.log("this.state.collection:", this.state.collection)
   };
 
-  handleRemoveBook = (e) => {
-    e.preventDefault();
-    this.props.handleRemoveBook(this.state.formData.api_id);
-  };
+
 
   render() {
     return (
       <>
       <select onClick={this.handleSelect}>
-          <option value="read">READ</option>
-          <option value="wanttoread">WANTTOREAD</option>
-          <option selected value="currentlyreading">
+          {this.props.userProfile?.read.every(book=>book?.api_id !== this.state.formData.api_id)&&<option value="read">READ</option>}
+          {this.props.userProfile?.wantToRead.every(book=>book?.api_id !== this.state.formData.api_id)&&<option value="wantToRead">WANT TO READ</option>}
+          {this.props.userProfile?.currentlyReading.every(book=>book?.api_id !== this.state.formData.api_id)&&<option value="currentlyReading">
             CURRENTLY READING
-          </option>
+          </option>}
         </select>
-        <br />
-        <br />
-        {/* this is where they need to be able to add to collection, and from there they add to different reading lists?? */}
-        {
-          this.props.userProfile?.book.some(
-            (book) => book.api._id === this.state.formData.id
-          ) && <button onClick={this.handleRemoveBook}>REMOVE BOOK</button>
-          // <MenuButton onClick={this.handleRemoveBook} />
-        }
-        {
-          !this.props.userProfile?.Book.some(
-            (book) => book.api_id === this.state.formData.id
-          ) && <button onClick={this.handleAddBook}>ADD BOOK</button>
-          //<MenuButton onClick={this.handleAddBook} />
-        }
+      
+        <button onClick={this.handleAddBook}>ADD BOOK TO COLLECTION</button>
          <br />
         <br />
         

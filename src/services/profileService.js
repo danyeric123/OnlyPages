@@ -28,12 +28,14 @@ export function friendAndUnfriend(id) {
     ).then((res) => res.json())
 }
 
-export function addBook(id,collection) {
+export function addBook(book,collection) {
+  console.log( "profile services gets "+JSON.stringify(book))
   return fetch(
-    `${BASE_URL}/books/${id}/${collection}`,
+    `${BASE_URL}/books/${collection}`,
     {
       method: 'PATCH',
-      headers: { Authorization: "Bearer " + tokenService.getToken() }
+      headers: {'content-type': 'application/json', 'Authorization': 'Bearer ' + tokenService.getToken()},
+      body: JSON.stringify(book)
     },
     { mode: "cors" }
     ).then((res) => res.json())

@@ -18,6 +18,13 @@ class App extends Component {
     userProfile: null
   }
 
+  async componentDidMount() {
+    if (!this.state.userProfile) {
+      const userProfile = await profileAPI.getUserProfile()
+      this.setState({userProfile})
+    }
+  }
+
 	handleLogout = () => {
     authService.logout();
     this.setState({ user: null, userProfile: null });
@@ -81,7 +88,6 @@ class App extends Component {
                 match={match}
                 userProfile={userProfile}
                 handleAddBook={this.handleAddBook}
-                handleRemoveBook={this.handleRemoveBook}
               />
             ) : (
               <Redirect to="/login" />
