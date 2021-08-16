@@ -8,10 +8,17 @@ import * as authService from '../../services/authService'
 import ProfileList from '../ProfileList/ProfileList'
 import ProfileDetails from '../ProfileDetails/ProfileDetails'
 import * as profileAPI from '../../services/profileService'
+<<<<<<< HEAD
 import PostList from '../PostList/PostList'
 import AddPost from '../AddPost/AddPost'
 import PostDetails from '../PostDetails/PostDetails'
 import BookDetails from '../BookDetails/BookDetails'
+=======
+import BookSearch from "../BookSearch/BookSearch";
+import BookDetails from '../BookDetails/BookDetails'
+import * as bookAPI from '../../services/bookService'
+
+>>>>>>> 03f939adcb77f1fdd5d1d278f94c113afd6efdb2
 class App extends Component {
 	state = {
     user: authService.getUser(),
@@ -21,8 +28,16 @@ class App extends Component {
 	handleLogout = () => {
     authService.logout();
     this.setState({ user: null, userProfile: null });
+		console.log(this.state)
     this.props.history.push("/");
   };
+
+	async componentDidMount() {
+    if (!this.state.userProfile) {
+      const userProfile = await profileAPI.getUserProfile()
+      this.setState({userProfile})
+    }
+  }
 
   handleSignupOrLogin = async () => {
     this.setState({ user: await authService.getUser(), userProfile: await profileAPI.getUserProfile()});
@@ -33,6 +48,7 @@ class App extends Component {
     this.setState({userProfile: updatedProfile})
   }
 
+<<<<<<< HEAD
 	// handleAddPost = async newPostData => {
 	// 	const newPost = await postAPI.create(newPostData);
 	// 	this.setState(state => ({
@@ -40,12 +56,23 @@ class App extends Component {
 	// 	}),() => this.props.history.push('/'));
 	// } 
 	
+=======
+	handleAddBook = async (book,collection) => {
+    const updatedProfile = await profileAPI.addBook(book,collection)
+    this.setState({userProfile: updatedProfile})
+  }
+
+  handleRemoveBook = async (api_id,collection)=> {
+    const updatedProfile = await profileAPI.removeBook(api_id,collection)
+    this.setState({userProfile: updatedProfile})
+  }
+>>>>>>> 03f939adcb77f1fdd5d1d278f94c113afd6efdb2
 
 	render() {
 		const { user, userProfile } = this.state
 		return (
 			<>
-				<NavBar user={this.state.user} />
+				<NavBar user={user} userProfile={userProfile} history={this.props.history} handleLogout={this.handleLogout} />
 				<Route exact path='/'>
           <Landing user={user} />
         </Route>
@@ -70,6 +97,7 @@ class App extends Component {
 						location={location}
 					/> : <Redirect to="/login" />
 				}/>
+<<<<<<< HEAD
 			<Route exact path='/posts'>
 				<PostList />
 			</Route>
@@ -85,6 +113,24 @@ class App extends Component {
 			/>
 			}
 			/>	
+=======
+			 <Route
+          exact
+          path="/search/:query"
+          render={({ match }) =>
+            authService.getUser() ? (
+              <BookSearch
+                match={match}
+                userProfile={userProfile}
+                handleAddBook={this.handleAddBook}
+                handleRemoveBook={this.handleRemoveBook}
+              />
+            ) : (
+              <Redirect to="/login" />
+            )
+          }
+        />
+>>>>>>> 03f939adcb77f1fdd5d1d278f94c113afd6efdb2
 				<Route exact path='/books/:id' render={({ match }) => 
           authService.getUser() ?
             <BookDetails 

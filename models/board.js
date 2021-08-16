@@ -1,5 +1,4 @@
 import mongoose from 'mongoose'
-import { replySchema } from './reply'
 
 export {
   Board,

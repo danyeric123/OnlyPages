@@ -13,9 +13,10 @@ const router = Router();
 /*---------- Protected Routes ----------*/
 router.use(decodeUserFromToken)
 router.get("/", checkAuth, profilesCtrl.index)
+router.get("/userProfile", checkAuth, profilesCtrl.userProfile)
 router.get("/:id", checkAuth, profilesCtrl.show)
 router.put('/:id', checkAuth, profilesCtrl.update)
 router.get('/:id/edit', checkAuth, profilesCtrl.edit)
 router.patch("/friend/:id", checkAuth, profilesCtrl.friendAndUnfriend)
-router.patch("/book/:collection", checkAuth, profilesCtrl.addBook)
-router.delete("/book/:bookId/:collection", checkAuth, profilesCtrl.removeBook)
+router.patch("/books/:collection", checkAuth, profilesCtrl.addBook)
+router.delete("/books/:bookId/:collection", checkAuth, profilesCtrl.removeBook)

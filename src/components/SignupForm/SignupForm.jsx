@@ -7,6 +7,7 @@ class SignupForm extends Component {
   state = {
     name: '',
     email: '',
+    avatar: '',
     password: '',
     passwordConf: '',
   }
@@ -35,7 +36,7 @@ class SignupForm extends Component {
   }
 
   render() {
-    const { name, email, password, passwordConf } = this.state
+    const { name, email, avatar, password, passwordConf } = this.state
     return (
       <form
         autoComplete="off"
@@ -52,6 +53,19 @@ class SignupForm extends Component {
             id="name"
             value={name}
             name="name"
+            onChange={this.handleChange}
+          />
+        </div>
+        <div className={styles.inputContainer}>
+          <label htmlFor="avatar" className={styles.label}>
+            Avatar Image
+          </label>
+          <input
+            type="text"
+            autoComplete="off"
+            id="avatar"
+            value={avatar}
+            name="avatar"
             onChange={this.handleChange}
           />
         </div>
