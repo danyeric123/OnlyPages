@@ -16,9 +16,7 @@ function show(req, res) {
   Profile.findById(req.user.profile)
   .then(profile => {
     populateAll(profile)
-          .then(profile=>{
-            res.json(profile)
-          })
+    .then(profile=>res.json(profile))
   })
   .catch(err=>{
     console.log(err)
@@ -30,6 +28,10 @@ function userProfile(req, res) {
   .then(profile => {
     populateAll(profile)
     .then(profile=>res.json(profile))
+  })
+  .catch(err=>{
+    console.log(err)
+    return res.status(400).json(err)
   })
 }
 
@@ -45,6 +47,11 @@ function populateAll(profile){
 
 function index(req, res) {
   Profile.find({})
+  .populate('posts')
+  .populate('read')
+  .populate('wantToRead')
+  .populate('currentlyReading')
+  .populate('friends')
   .then((users) => {
     res.json(users)
   })
@@ -128,7 +135,6 @@ function friendAndUnfriend(req, res) {
     if(book){
       addToCollection(req.user.profile, book,req.params.collection,res)
     }else{
-      console.log(req.body)
       Book.create(req.body)
       .then(book=>{
         addToCollection(req.user.profile,book,req.params.collection,res)
@@ -144,6 +150,9 @@ function friendAndUnfriend(req, res) {
 function addToCollection(profile, book, collection,res){
   Profile.findById(profile)
   .then(profile=>{
+    profile.read.remove(book._id)
+    profile.currentlyReading.remove(book._id)
+    profile.wantToRead.remove(book._id)
     profile[collection].push(book._id)
     profile.save()
     populateAll(profile)

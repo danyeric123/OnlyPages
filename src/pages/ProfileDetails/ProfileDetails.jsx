@@ -2,6 +2,7 @@ import React from "react";
 
 const ProfileDetails = ({ location, userProfile }) => {
   const { profile } = location.state;
+  console.log(profile.read)
   
   return (
     <>
