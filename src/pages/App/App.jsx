@@ -11,7 +11,7 @@ import * as profileAPI from '../../services/profileService'
 import PostList from '../PostList/PostList'
 import AddPost from '../AddPost/AddPost'
 import PostDetails from '../PostDetails/PostDetails'
-
+import BookDetails from '../BookDetails/BookDetails'
 class App extends Component {
 	state = {
     user: authService.getUser(),
@@ -33,8 +33,8 @@ class App extends Component {
     this.setState({userProfile: updatedProfile})
   }
 
-	// handleaddPost = async newPostData => {
-	// 	const newPost = await profileAPI.create(newPostData);
+	// handleAddPost = async newPostData => {
+	// 	const newPost = await postAPI.create(newPostData);
 	// 	this.setState(state => ({
 	// 		posts: [...state.posts, newPost] 
 	// 	}),() => this.props.history.push('/'));
@@ -73,8 +73,11 @@ class App extends Component {
 			<Route exact path='/posts'>
 				<PostList />
 			</Route>
-			<Route exact path='/Add'>
-				<AddPost/>
+			<Route exact path='/Add' render={()=>
+				<AddPost
+				handleAddPost = {this.handleAddPost}
+				/>
+			}>
 			</Route>
 			<Route exact path='/posts/:id'
 			render={({location}) =>
