@@ -12,21 +12,23 @@ export {
   removeBook,
 }
 
-function userProfile(req, res) {
-  Profile.findById(req.user.profile)
-  .then(profile => {
-    populateAll(profile)
-    .then(profile=>res.json(profile))
-  })
-}
 
 function show(req, res) {
   Profile.findById(req.user.profile)
   .then(profile => {
     populateAll(profile)
-          .then(profile=>{
-            res.json(profile)
-          })
+    .then(profile=>res.json(profile))
+  })
+  .catch(err=>{
+    console.log(err)
+    return res.status(400).json(err)
+  })
+}
+function userProfile(req, res) {
+  Profile.findById(req.user.profile)
+  .then(profile => {
+    populateAll(profile)
+    .then(profile=>res.json(profile))
   })
   .catch(err=>{
     console.log(err)
@@ -46,6 +48,11 @@ function populateAll(profile){
 
 function index(req, res) {
   Profile.find({})
+  .populate('posts')
+  .populate('read')
+  .populate('wantToRead')
+  .populate('currentlyReading')
+  .populate('friends')
   .then((users) => {
     res.json(users)
   })
@@ -123,28 +130,30 @@ function friendAndUnfriend(req, res) {
  * When you add you will need to check if the book is already in our database
  * If it isn't, then create it. Otherwise just add it
  */
-function addBook(req,res){
-    Book.findOne({api_id:req.body.api_id})
-    .then(book=>{
-      if(book){
-        addToCollection(req.user.profile, book,req.params.collection,res)
-      }else{
-        console.log(req.body)
-        Book.create(req.body)
-        .then(book=>{
-          addToCollection(req.user.profile,book,req.params.collection,res)
-        })
-      }
-    })
-    .catch(err=>{
-      console.log(err)
-      return res.status(400).json(err)
-    })
+ function addBook(req,res){
+  Book.findOne({api_id:req.body.api_id})
+  .then(book=>{
+    if(book){
+      addToCollection(req.user.profile, book,req.params.collection,res)
+    }else{
+      Book.create(req.body)
+      .then(book=>{
+        addToCollection(req.user.profile,book,req.params.collection,res)
+      })
+    }
+  })
+  .catch(err=>{
+    console.log(err)
+    return res.status(400).json(err)
+  })
 }
 
-function addToCollection(profile, book,collection,res){
+function addToCollection(profile, book, collection,res){
   Profile.findById(profile)
   .then(profile=>{
+    profile.read.remove(book._id)
+    profile.currentlyReading.remove(book._id)
+    profile.wantToRead.remove(book._id)
     profile[collection].push(book._id)
     profile.save()
     populateAll(profile)
@@ -157,7 +166,7 @@ function addToCollection(profile, book,collection,res){
 function removeBook(req,res){
   Profile.findById(req.user.profile)
   .then(profile=>{
-    removeFromCollection(profile,req.params.bookId,req.params.collection,res)
+    removeFromCollection(profile,req.body.api_id,req.params.collection,res)
   })
   .catch(err=>{
     console.log(err)
@@ -166,9 +175,9 @@ function removeBook(req,res){
 }
 
 function removeFromCollection(profile,bookId,collection,res){
-  Book.find({api_id:bookId})
+  Book.findOne({api_id:bookId})
   .then(book=>{
-    profile[collection].remove({_id:book[0]._id})
+    profile[collection].remove({_id:book._id})
     profile.save()
     populateAll(profile)
             .then(profile=>{

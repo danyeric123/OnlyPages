@@ -37,7 +37,6 @@ class BookSearch extends Component {
               key={book.id}
               userProfile={this.props.userProfile}
               handleAddBook={this.props.handleAddBook}
-              handleRemoveBook={this.props.handleRemoveBook}
             />
           </>
         ))}

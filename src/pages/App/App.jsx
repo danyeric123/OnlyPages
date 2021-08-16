@@ -10,12 +10,19 @@ import ProfileDetails from '../ProfileDetails/ProfileDetails'
 import * as profileAPI from '../../services/profileService'
 import BookSearch from "../BookSearch/BookSearch";
 import BookDetails from '../BookDetails/BookDetails'
-import * as bookAPI from '../../services/bookService'
+// import * as bookAPI from '../../services/bookService'
 
 class App extends Component {
 	state = {
     user: authService.getUser(),
     userProfile: null
+  }
+
+  async componentDidMount() {
+    if (!this.state.userProfile) {
+      const userProfile = await profileAPI.getUserProfile()
+      this.setState({userProfile})
+    }
   }
 
 	handleLogout = () => {
@@ -89,7 +96,6 @@ class App extends Component {
                 match={match}
                 userProfile={userProfile}
                 handleAddBook={this.handleAddBook}
-                handleRemoveBook={this.handleRemoveBook}
               />
             ) : (
               <Redirect to="/login" />
@@ -102,7 +108,8 @@ class App extends Component {
               match={match}
               userProfile={userProfile}
 							handleAddBook={this.handleAddBook}
-							handleRemoveMedia={this.handleRemoveBook}
+							handleRemoveBook={this.handleRemoveBook}
+							handleSelect={this.handleSelect}
             /> : <Redirect to='/login' />
         }/>
 			</>
