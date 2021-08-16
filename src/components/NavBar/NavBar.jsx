@@ -12,7 +12,6 @@ const NavBar = ({ user, userProfile, handleLogout, history }) => {
 							<li>
                 <Link to="/">LOGO PLACEHOLDER</Link>
               </li>
-							<li>Welcome, {user.name}</li>
 							<SearchForm 
                 history={history}
               />

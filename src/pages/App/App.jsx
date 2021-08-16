@@ -10,6 +10,7 @@ import ProfileDetails from '../ProfileDetails/ProfileDetails'
 import * as profileAPI from '../../services/profileService'
 import BookSearch from "../BookSearch/BookSearch";
 import BookDetails from '../BookDetails/BookDetails'
+import EditProfileForm from '../../components/EditProfileForm/EditProfileForm'
 // import * as bookAPI from '../../services/bookService'
 
 class App extends Component {
@@ -23,6 +24,10 @@ class App extends Component {
       const userProfile = await profileAPI.getUserProfile()
       this.setState({userProfile})
     }
+  }
+
+  updateUserProfile = (updatedProfile) =>{
+    this.setState({userProfile:updatedProfile})
   }
 
 	handleLogout = () => {
@@ -64,7 +69,7 @@ class App extends Component {
 			<>
 				<NavBar user={user} userProfile={userProfile} history={this.props.history} handleLogout={this.handleLogout} />
 				<Route exact path='/'>
-          <Landing user={user} />
+          <Landing user={userProfile} />
         </Route>
 				<Route exact path='/signup'>
           <Signup history={this.props.history} handleSignupOrLogin={this.handleSignupOrLogin}/>
@@ -86,6 +91,15 @@ class App extends Component {
 						userProfile={userProfile}
 						location={location}
 					/> : <Redirect to="/login" />
+				}/>
+				<Route exact path="/profile/edit" render={({ location }) =>
+					authService.getUser() ?
+					<EditProfileForm
+						userProfile={userProfile}
+						location={location}
+            history={this.props.history}
+            updateUserProfile={this.updateUserProfile}
+					/> : <Redirect to="/profile" />
 				}/>
 			 <Route
           exact

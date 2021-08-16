@@ -1,5 +1,6 @@
 import React from "react";
 import { FaUserCircle } from "react-icons/fa"
+import { Link } from 'react-router-dom'
 
 const ProfileDetails = ({ location, userProfile }) => {
   const { profile } = location.state;
@@ -14,7 +15,7 @@ const ProfileDetails = ({ location, userProfile }) => {
         />:
         <FaUserCircle size={70} />
       }
-      <a href="#"></a>
+      <Link to="/profile/edit">EDIT BUTTON</Link>
       <h2>Friends List</h2>
       {profile.friends.map((profile) => (
         <>

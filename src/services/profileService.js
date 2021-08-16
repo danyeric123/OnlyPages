@@ -40,6 +40,17 @@ export function addBook(book,collection) {
     { mode: "cors" }
     ).then((res) => res.json())
 }
+export function update(id,profileUpdate) {
+  return fetch(
+    `${BASE_URL}/${id}`,
+    {
+      method: 'PUT',
+      headers: {'content-type': 'application/json', 'Authorization': 'Bearer ' + tokenService.getToken()},
+      body: JSON.stringify(profileUpdate)
+    },
+    { mode: "cors" }
+    ).then((res) => res.json())
+}
 
 export function removeBook(id,collection) {
   return fetch(
