@@ -70,7 +70,7 @@ class BookDetails extends Component {
         {(reviews?.length > 0) &&
         <>
           <h3>Reviews:</h3>
-          {searchResult?.reviews?.map(review =>
+          {reviews?.map(review =>
             <ReviewCard
               userProfile={this.props.userProfile}
               review={review}
