@@ -7,12 +7,13 @@ const PostList = ({ posts, title, handleDelete }) => {
       <h2>{title}</h2>
   {/* \/ this render all post on by\/*/}
       {posts.map((post) => (
-        <div className="PL" key={post.id}>
+        <div className="PL" key={post._id}>
           <Link to={`/posts/${post.id}`}>
           <h2>{ post.title }</h2>
 {/*\/shows name of the creator of the post/*/} 
           <p>Posted by { post.author.name }</p>
             </Link>
+            <button onClick={()=>handleDelete(post._id)}>Delete</button>
         </div>
       ))}
     </div>

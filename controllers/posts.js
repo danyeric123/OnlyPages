@@ -94,13 +94,15 @@ function reply(req, res) {
 }
 
 function deletePost(req,res){
-  Profile.findById(req.params.profileId)
+  Profile.findById(req.user.profile)
         .then((profile) => {
           profile.posts.remove({_id: req.params.postId})
           profile.save()
           Post.findOneAndDelete({_id: req.params.postId})
           .then(() => {
-            res.status(200)
+            Post.find({})
+            .populate("author")
+            .then(posts=>res.json(posts))
           })
         })
         .catch(err=>{

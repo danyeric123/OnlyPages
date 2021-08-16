@@ -5,12 +5,11 @@ import * as postAPI from '../../services/postService.js'
 const AddPost = () => {
   const [title, setTitle] = useState(''); 
   const [body, setBody] = useState(''); 
-  const [author, setAuthor] = useState('');
   const [categories, setCategories] = useState([])
 
  const handleSubmit = (e) =>{
    e.preventDefault();
-   const post ={ title, body, author, categories};
+   const post ={ title, body,categories};
    postAPI.create(post)
    console.log(post);
  }
@@ -46,18 +45,7 @@ const AddPost = () => {
         value={body}
         onChange={(e) => setBody(e.target.value)}
         ></textarea>
-        <label htmlFor="">post author</label>
-        <input type=
-        "text"
-        id="author"
-        required
-        value={author}
-        onChange={(e) => setAuthor(e.target.value)}
-        />
       <button>submit post</button>
-      <p>{ title }</p>
-      <p>{ body }</p>
-      <p>{ author }</p>
       </form>
     </div>
   );
