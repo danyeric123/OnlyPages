@@ -129,7 +129,6 @@ function addBook(req,res){
       if(book){
         addToCollection(req.user.profile, book,req.params.collection,res)
       }else{
-        console.log(req.body)
         Book.create(req.body)
         .then(book=>{
           addToCollection(req.user.profile,book,req.params.collection,res)
@@ -166,9 +165,9 @@ function removeBook(req,res){
 }
 
 function removeFromCollection(profile,bookId,collection,res){
-  Book.find({api_id:bookId})
+  Book.findOne({api_id:bookId})
   .then(book=>{
-    profile[collection].remove({_id:book[0]._id})
+    profile[collection].remove({_id:book._id})
     profile.save()
     populateAll(profile)
             .then(profile=>{

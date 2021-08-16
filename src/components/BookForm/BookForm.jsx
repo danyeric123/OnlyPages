@@ -10,7 +10,7 @@ class BookForm extends Component {
       //snippet: this.props.book.searchInfo.textSnippet,
       publish: this.props.book.publishedDate,
       categories: this.props.book.categories
-    }
+    },
   }
 
   handleAddBook = e => {
