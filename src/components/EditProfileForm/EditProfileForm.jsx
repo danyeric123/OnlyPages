@@ -19,6 +19,7 @@ class EditProfileForm extends Component {
     })
   }
 
+  //change this from authService.signup to edit?
   handleSubmit = async e => {
     const { history, updateMessage } = this.props
     e.preventDefault()
@@ -104,6 +105,9 @@ class EditProfileForm extends Component {
         </div>
         <div className={styles.inputContainer}>
           <button disabled={this.isFormInvalid()} className={styles.button}>Sign Up</button>
+          <Link to="/profile">
+            <button>SUBMIT</button>
+          </Link>
           <Link to="/">
             <button>Cancel</button>
           </Link>

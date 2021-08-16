@@ -7,10 +7,6 @@ const ProfileDetails = ({ location, userProfile }) => {
   return (
     <>
       <h1>{profile.name}'s Profile</h1>
-      {/* <img
-        src={profile.avatar}
-        alt="avatar"
-      /> */}
       {profile.avatar?
         <img
           src={profile.avatar}
@@ -18,6 +14,7 @@ const ProfileDetails = ({ location, userProfile }) => {
         />:
         <FaUserCircle size={70} />
       }
+      <a href="#"></a>
       <h2>Friends List</h2>
       {profile.friends.map((profile) => (
         <>

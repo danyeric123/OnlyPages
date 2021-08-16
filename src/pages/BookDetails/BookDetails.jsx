@@ -39,7 +39,7 @@ class BookDetails extends Component {
   }
 
   render() {
-    const { searchResult } = this.state 
+    const { searchResult,reviews } = this.state 
     return (
       <>
       {searchResult.volumeInfo?.imageLinks?
@@ -67,10 +67,10 @@ class BookDetails extends Component {
             <p>{category}</p>
           </a>
         )}
-        {(searchResult?.reviews?.length > 0) &&
+        {(reviews?.length > 0) &&
         <>
           <h3>Reviews:</h3>
-          {searchResult?.reviews?.map(review =>
+          {reviews?.map(review =>
             <ReviewCard
               userProfile={this.props.userProfile}
               review={review}

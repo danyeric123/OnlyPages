@@ -40,8 +40,8 @@ class App extends Component {
     this.setState({userProfile: updatedProfile})
   }
 
-	handleAddBook = async (book, api_id, collection) => {
-    const updatedProfile = await profileAPI.addBook(book, api_id, collection)
+	handleAddBook = async (book, collection) => {
+    const updatedProfile = await profileAPI.addBook(book, collection)
     this.setState({userProfile: updatedProfile})
   }
 
@@ -54,7 +54,7 @@ class App extends Component {
 		const { user, userProfile } = this.state
 		return (
 			<>
-				<NavBar user={this.state.user} userProfile={userProfile} history={this.props.history} handleLogout={this.handleLogout} />
+				<NavBar user={user} userProfile={userProfile} history={this.props.history} handleLogout={this.handleLogout} />
 				<Route exact path='/'>
           <Landing user={user} />
         </Route>
