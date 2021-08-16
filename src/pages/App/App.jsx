@@ -8,17 +8,15 @@ import * as authService from '../../services/authService'
 import ProfileList from '../ProfileList/ProfileList'
 import ProfileDetails from '../ProfileDetails/ProfileDetails'
 import * as profileAPI from '../../services/profileService'
-<<<<<<< HEAD
-import PostList from '../PostList/PostList'
-import AddPost from '../AddPost/AddPost'
-import PostDetails from '../PostDetails/PostDetails'
-import BookDetails from '../BookDetails/BookDetails'
-=======
 import BookSearch from "../BookSearch/BookSearch";
 import BookDetails from '../BookDetails/BookDetails'
 import * as bookAPI from '../../services/bookService'
+import PostDetails from '../PostDetails/PostDetails'
+import AddPost from '../AddPost/AddPost'
+import PostList from "../PostList/PostList"
+import PostLanding from "../PostLanding/PostLanding"
 
->>>>>>> 03f939adcb77f1fdd5d1d278f94c113afd6efdb2
+
 class App extends Component {
 	state = {
     user: authService.getUser(),
@@ -48,15 +46,6 @@ class App extends Component {
     this.setState({userProfile: updatedProfile})
   }
 
-<<<<<<< HEAD
-	// handleAddPost = async newPostData => {
-	// 	const newPost = await postAPI.create(newPostData);
-	// 	this.setState(state => ({
-	// 		posts: [...state.posts, newPost] 
-	// 	}),() => this.props.history.push('/'));
-	// } 
-	
-=======
 	handleAddBook = async (book,collection) => {
     const updatedProfile = await profileAPI.addBook(book,collection)
     this.setState({userProfile: updatedProfile})
@@ -66,7 +55,6 @@ class App extends Component {
     const updatedProfile = await profileAPI.removeBook(api_id,collection)
     this.setState({userProfile: updatedProfile})
   }
->>>>>>> 03f939adcb77f1fdd5d1d278f94c113afd6efdb2
 
 	render() {
 		const { user, userProfile } = this.state
@@ -97,23 +85,6 @@ class App extends Component {
 						location={location}
 					/> : <Redirect to="/login" />
 				}/>
-<<<<<<< HEAD
-			<Route exact path='/posts'>
-				<PostList />
-			</Route>
-			<Route exact path='/Add' render={()=>
-				<AddPost
-				handleAddPost = {this.handleAddPost}
-				/>
-			}>
-			</Route>
-			<Route exact path='/posts/:id'
-			render={({location}) =>
-			<PostDetails location = {Location}
-			/>
-			}
-			/>	
-=======
 			 <Route
           exact
           path="/search/:query"
@@ -130,7 +101,6 @@ class App extends Component {
             )
           }
         />
->>>>>>> 03f939adcb77f1fdd5d1d278f94c113afd6efdb2
 				<Route exact path='/books/:id' render={({ match }) => 
           authService.getUser() ?
             <BookDetails 
@@ -140,6 +110,15 @@ class App extends Component {
 							handleRemoveMedia={this.handleRemoveBook}
             /> : <Redirect to='/login' />
         }/>
+				<Route exact path='/posts'>
+					<PostLanding />
+				</Route>
+				<Route exact path='/add'>
+					<AddPost />
+				</Route>
+				<Route exact path='/posts/:id'>
+					<PostDetails/>
+				</Route>
 			</>
 		)
 	}

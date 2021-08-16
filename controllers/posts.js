@@ -14,17 +14,14 @@ export {
 }
 
 function index(req, res) {
-  Profile.findById(req.user.profile._id)
-        .then(profile=>{
-          //I need to deal with which posts will be displayed. For now, everything is displayed
           Post.find({})
             .populate('author')
             .populate('likes')
             .sort({createdAt: "desc"})
             .then((posts) => {
+              console.log(posts)
               res.json(posts)
             })
-        })
         .catch(err=>{
           console.log(err)
           return res.status(400).json(err)
@@ -33,7 +30,6 @@ function index(req, res) {
 
 function create(req, res) {
   req.body.author = req.user.profile
-  req.body.categories=req.body.categories.split("; ")
   Post.create(req.body)
       .then((post)=> {
         Profile.findById(req.user.profile)

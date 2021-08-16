@@ -1,15 +1,14 @@
-import React, { Component } from 'react';
+import { useParams } from "react-router";
 
-class PostDetails extends Component {
-  state = {
-    post: this.props.location.state
-  }
-  render() {
-    return(
-      <>
-      <h1>post details</h1>
-      </>
-    );
-  }
+const PostDetails = () => {
+  
+  const { id } =useParams();
+
+  return( 
+    <div className="postdetails">
+      <h2>Postdetails</h2>
+    </div>
+  );
 }
+
 export default PostDetails;

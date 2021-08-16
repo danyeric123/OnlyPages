@@ -1,21 +1,23 @@
-import React, { Component } from 'react'
-import PostCard from '../../components/PostCard/PostCard'
-
-class PostList extends Component {
+import { Link } from 'react-router-dom';
+const PostList = ({ posts, title, handleDelete }) => {
+ 
   
-  state={
-    posts: ['post1','post2','post3',]
-  }
-  render(){
-    return(
-      <>
-      <h1>Recent Post</h1>
-      {this.state.posts.map(post =>
-        <PostCard/>
-        )}
-      </>
-    )
-  }
+ return (
+    <div className="postlist">
+      <h2>{title}</h2>
+  {/* \/ this render all post on by\/*/}
+      {posts.map((post) => (
+        <div className="PL" key={post.id}>
+          <Link to={`/posts/${post.id}`}>
+          <h2>{ post.title }</h2>
+{/*\/shows name of the creator of the post/*/} 
+          <p>Posted by { post.author.name }</p>
+          <button onClick={() => handleDelete(post.id)}>Delete</button>
+            </Link>
+        </div>
+      ))}
+    </div>
+  );
 }
-
+ 
 export default PostList;

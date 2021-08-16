@@ -12,17 +12,7 @@ const NavBar = ({ user, userProfile, handleLogout, history }) => {
 							<li>
                 <Link to="/">LOGO PLACEHOLDER</Link>
               </li>
-<<<<<<< HEAD
-							<li>
-								<Link to="/add">Add Post</Link>
-							</li>
-							<li>
-								<Link to="/posts">Posts</Link>
-							</li>
-							<li><Link to='' onClick={handleLogout}>LOG OUT</Link></li>
-=======
 							<li>Welcome, {user.name}</li>
->>>>>>> 03f939adcb77f1fdd5d1d278f94c113afd6efdb2
 							<SearchForm 
                 history={history}
               />
@@ -38,7 +28,15 @@ const NavBar = ({ user, userProfile, handleLogout, history }) => {
 							<li>
                 <Link to="/board">Message Board</Link>
               </li>
-							<li><Link to='' onClick={handleLogout}>LOG OUT</Link></li>
+							<li>
+								<Link to='' onClick={handleLogout}>LOG OUT</Link>
+								</li>
+							<li>
+								<Link to='/posts'>Post</Link>
+							</li>
+							<li>
+								<Link to='/add'>Add Post</Link>
+							</li>
 						</ul>
 					</div>
 				</nav>
