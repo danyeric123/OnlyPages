@@ -26,7 +26,7 @@ const NavBar = ({ user, userProfile, handleLogout, history }) => {
 								}} >My Library(PersonalDashboard)</Link>
               </li>
 							<li>
-                <Link to="/board">Message Board</Link>
+                <Link to="/boards">Message Board</Link>
               </li>
 							<li><Link to='' onClick={handleLogout}>LOG OUT</Link></li>
 						</ul>
