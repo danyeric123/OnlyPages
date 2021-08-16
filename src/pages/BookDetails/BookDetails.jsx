@@ -4,6 +4,8 @@ import ReviewForm from '../../components/ReviewForm/ReviewForm'
 import BookForm from '../../components/BookForm/BookForm'
 import * as reviewsAPI from '../../services/reviewService'
 import ReviewCard from '../../components/ReviewCard/ReviewCard'
+import BookCard from '../../components/BookCard/BookCard'
+import { FaBook } from "react-icons/fa";
 
 //this is for when a user clicks on a book card details button
 class BookDetails extends Component {
@@ -40,18 +42,27 @@ class BookDetails extends Component {
     const { searchResult, reviews } = this.state 
     return (
       <>
-        <h1>{searchResult?.volumeInfo?.title}</h1>
+      {searchResult.volumeInfo?.imageLinks?
+        <img
+          src={searchResult.volumeInfo?.imageLinks.thumbnail}
+          alt={searchResult?.volumeInfo?.title} 
+        />:
+        <FaBook size={70} />
+      }
+        <h1>{searchResult.volumeInfo?.title}</h1>
+        <h3>{searchResult.volumeInfo?.authors?.join(" ,")}</h3>
         <div dangerouslySetInnerHTML={{__html:searchResult?.volumeInfo?.description}} />
-        
-        {searchResult?.volumeInfo?.title &&
+        <br />
+        <br />
+        {searchResult?.volumeInfo?.title
+            &&
           <BookForm
             book={searchResult}
             userProfile={this.props.userProfile}
             handleAddBook={this.props.handleAddBook}
-            handleRemoveBook={this.props.handleRemoveBook}
           />  
         }
-        {searchResult.categories?.map(category => 
+        {searchResult?.categories?.map(category => 
           <a key={category} href={`/books/category/${category}`}>
             <p>{category}</p>
           </a>
@@ -59,7 +70,7 @@ class BookDetails extends Component {
         {(reviews?.length > 0) &&
         <>
           <h3>Reviews:</h3>
-          {searchResult.reviews?.map(review =>
+          {searchResult?.reviews?.map(review =>
             <ReviewCard
               userProfile={this.props.userProfile}
               review={review}
