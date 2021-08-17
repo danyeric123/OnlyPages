@@ -7,7 +7,6 @@ import ReviewCard from "../../components/ReviewCard/ReviewCard";
 import { FaBook } from "react-icons/fa";
 import moment from "moment";
 
-
 class BookDetails extends Component {
   state = {
     searchResult: {},
@@ -66,30 +65,43 @@ class BookDetails extends Component {
             <p>Subtitle: {searchResult.volumeInfo?.subtitle}</p>
           )}
           {/* {searchResult.volumeInfo?.subtitle ? <p>Subtitle: {searchResult.volumeInfo?.subtitle}</p> : <p></p> } */}
-          <h3>Author(s): {searchResult.volumeInfo?.authors ? searchResult.volumeInfo?.authors.join(" ,") : "N/A"}</h3>
+          <h3>
+            Author(s):{" "}
+            {searchResult.volumeInfo?.authors
+              ? searchResult.volumeInfo?.authors.join(" ,")
+              : "N/A"}
+          </h3>
         </section>
         <section>
           <span>Description: </span>
-          {searchResult.volumeInfo?.description ? 
-          <div
-            dangerouslySetInnerHTML={{
-              __html: searchResult?.volumeInfo?.description
-            }}
-           /> : "N/A"}
+          {searchResult.volumeInfo?.description ? (
+            <div
+              dangerouslySetInnerHTML={{
+                __html: searchResult?.volumeInfo?.description,
+              }}
+            />
+          ) : (
+            "N/A"
+          )}
           {searchResult.volumeInfo?.publisher && (
-          <p>Publisher: {searchResult.volumeInfo?.publisher}</p>
+            <p>Publisher: {searchResult.volumeInfo?.publisher}</p>
           )}
           {searchResult.volumeInfo?.publishedDate && (
-          <p>PublishedDate: {moment(searchResult.volumeInfo?.publishedDate).format("MMMM Do, YYYY")}</p>
+            <p>
+              PublishedDate:{" "}
+              {moment(searchResult.volumeInfo?.publishedDate).format(
+                "MMMM Do, YYYY"
+              )}
+            </p>
           )}
           {searchResult.volumeInfo?.maturityRating && (
-          <p>Maturity Rating: {searchResult.volumeInfo?.maturityRating}</p>
+            <p>Maturity Rating: {searchResult.volumeInfo?.maturityRating}</p>
           )}
           {searchResult.volumeInfo?.pageCount && (
-          <p>PageCount: {searchResult.volumeInfo?.pageCount} pages</p>
+            <p>PageCount: {searchResult.volumeInfo?.pageCount} pages</p>
           )}
         </section>
-       {/*  <section>
+        {/*  <section>
           *************
           <p>Categories To Search For Similar Books</p>
           <ul>
@@ -99,33 +111,44 @@ class BookDetails extends Component {
           </ul>
         </section> */}
         <div>*************</div>
-        <p>
-          If you would like to add this book to your personal library, 
-          first select which collection type.
-        </p>
-        {searchResult.volumeInfo?.title /*  */ && (
-          <BookForm
-            book={searchResult}
-            userProfile={this.props.userProfile}
-            handleAddBook={this.props.handleAddBook}
-          />
-        )}
-        
+        <section>
+          <p>
+            If you would like to add this book to your personal library, first
+            select which collection type.
+          </p>
+          {searchResult.volumeInfo?.title /*  */ && (
+            <BookForm
+              book={searchResult}
+              userProfile={this.props.userProfile}
+              handleAddBook={this.props.handleAddBook}
+            />
+          )}
+        </section>
 
         <div>*************</div>
-        {reviews?.length > 0 && (
-          <div>
-            <h3>Reviews:</h3>
-            {reviews?.map((review) => (
-              <ReviewCard
-                userProfile={this.props.userProfile}
-                review={review}
-                handleDeleteReview={this.handleDeleteReview}
+        <section>
+          {/* Put reviews form here */}
+          <h2>What did you think of this book? Leave a review!</h2>
+          {!reviews ? (
+            
+            <ReviewForm
+              userProfile={this.props.userProfile}
+              // review={review}
+              handleAddReview={this.handleAddReview}
+              handleDeleteReview={this.handleDeleteReview}
               />
-            ))}
-          </div>
-        )}
-        {/* Put reviews form here */}
+          ) : (
+            <h3>Reviews:</h3>
+          )}
+          <h3>Reviews:</h3>
+          {/* {reviews?.map(review =>
+            <ReviewCard
+              userProfile={this.props.userProfile}
+              review={review}
+              handleDeleteReview={this.handleDeleteReview}
+              />
+              )}  */}
+        </section>
       </>
     );
   }

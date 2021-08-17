@@ -5,7 +5,7 @@ class ReviewForm extends Component {
     invalidForm: true,
     formData: {
       content: '',
-      rating: 5,
+      rating: "5",
       book_api_id: this.props.api_id,
       author: this.props.userProfile._id,
       book: this.props.book_id
@@ -34,6 +34,7 @@ class ReviewForm extends Component {
         ref={this.formRef}
         onSubmit={this.handleSubmit}
       >
+
         <textarea
           type="text"
           name="content"
@@ -42,6 +43,7 @@ class ReviewForm extends Component {
           onChange={this.handleChange}
           required
         />
+          <br/>
         <input 
           id="rating"
           type="range"
@@ -49,14 +51,16 @@ class ReviewForm extends Component {
           max="10"
           name="rating"
           value={this.state.formData.rating}
+          placeholder="5"
           onChange={this.handleChange}
           required
         />
         <label htmlFor="rating">{this.state.formData.rating}</label>
+        <br/>
         <button
           type="submit"
     			disabled={this.state.invalidForm}
-        >
+          >
 				  Add Review
         </button>         
       </form>
