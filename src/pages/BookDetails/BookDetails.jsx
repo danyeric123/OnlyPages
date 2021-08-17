@@ -4,10 +4,10 @@ import ReviewForm from "../../components/ReviewForm/ReviewForm";
 import BookForm from "../../components/BookForm/BookForm";
 import * as reviewsAPI from "../../services/reviewService";
 import ReviewCard from "../../components/ReviewCard/ReviewCard";
-import BookCard from "../../components/BookCard/BookCard";
 import { FaBook } from "react-icons/fa";
+import moment from "moment";
 
-//this is for when a user clicks on a book card details button
+
 class BookDetails extends Component {
   state = {
     searchResult: {},
@@ -65,6 +65,7 @@ class BookDetails extends Component {
           {searchResult.volumeInfo?.subtitle && (
             <p>Subtitle: {searchResult.volumeInfo?.subtitle}</p>
           )}
+          {/* {searchResult.volumeInfo?.subtitle ? <p>Subtitle: {searchResult.volumeInfo?.subtitle}</p> : <p></p> } */}
           <h3>Author(s): {searchResult.volumeInfo?.authors ? searchResult.volumeInfo?.authors.join(" ,") : "N/A"}</h3>
         </section>
         <section>
@@ -79,13 +80,13 @@ class BookDetails extends Component {
           <p>Publisher: {searchResult.volumeInfo?.publisher}</p>
           )}
           {searchResult.volumeInfo?.publishedDate && (
-          <p>PublishedDate: {searchResult.volumeInfo?.publishedDate}</p>
+          <p>PublishedDate: {moment(searchResult.volumeInfo?.publishedDate).format("MMMM Do, YYYY")}</p>
           )}
           {searchResult.volumeInfo?.maturityRating && (
           <p>Maturity Rating: {searchResult.volumeInfo?.maturityRating}</p>
           )}
           {searchResult.volumeInfo?.pageCount && (
-          <p>PageCount: {searchResult.volumeInfo?.pageCount}</p>
+          <p>PageCount: {searchResult.volumeInfo?.pageCount} pages</p>
           )}
         </section>
        {/*  <section>
@@ -99,7 +100,7 @@ class BookDetails extends Component {
         </section> */}
         <div>*************</div>
         <p>
-          If you would like to add this book to your personal library, please
+          If you would like to add this book to your personal library, 
           first select which collection type.
         </p>
         {searchResult.volumeInfo?.title /*  */ && (
