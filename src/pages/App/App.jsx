@@ -10,6 +10,10 @@ import ProfileDetails from '../ProfileDetails/ProfileDetails'
 import * as profileAPI from '../../services/profileService'
 import BookSearch from "../BookSearch/BookSearch";
 import BookDetails from '../BookDetails/BookDetails'
+import AddPost from '../AddPost/AddPost'
+import PostDetails from '../PostDetails/PostDetails'
+import PostLanding from '../PostLanding/PostLanding'
+import PostUpdate from '../PostUpdate/PostUpdate'
 // import * as bookAPI from '../../services/bookService'
 
 class App extends Component {
@@ -106,6 +110,18 @@ class App extends Component {
 							handleSelect={this.handleSelect}
             /> : <Redirect to='/login' />
         }/>
+				<Route exact path='/posts'>
+					<PostLanding />
+				</Route>
+				<Route exact path='/add'>
+					<AddPost />
+				</Route>
+				<Route exact path='/posts/:id'>
+					<PostDetails/>
+				</Route>
+        <Route exact path='/edit'>
+					<PostUpdate/>
+				</Route>
 			</>
 		)
 	}

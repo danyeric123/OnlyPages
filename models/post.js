@@ -8,7 +8,8 @@ export {
 const Schema = mongoose.Schema
 
 const postSchema = new Schema({
-  text: String,
+  title: String,
+  body: String,
   author: {
     type: Schema.Types.ObjectId,
     ref: 'Profile'

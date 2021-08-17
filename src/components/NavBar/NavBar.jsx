@@ -27,7 +27,15 @@ const NavBar = ({ user, userProfile, handleLogout, history }) => {
 							<li>
                 <Link to="/boards">Message Board</Link>
               </li>
-							<li><Link to='' onClick={handleLogout}>LOG OUT</Link></li>
+							<li>
+								<Link to='' onClick={handleLogout}>LOG OUT</Link>
+								</li>
+							<li>
+								<Link to='/posts'>Post</Link>
+							</li>
+							<li>
+								<Link to='/add'>Add Post</Link>
+							</li>
 						</ul>
 					</div>
 				</nav>
