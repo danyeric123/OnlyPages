@@ -33,9 +33,9 @@ const BookForm = ({book,userProfile,handleAddBook}) => {
   return (
     <>
       <select onChange={handleSelect}>
-        {collections.map(collection=>{
+        {collections.map((collection,idx)=>{
             return (
-              <option value={collection}>{collection.replace(/([A-Z])/g, ' $1').replace(/^./, function(str){ return str.toUpperCase(); })}</option>
+              <option key={idx} value={collection}>{collection.replace(/([A-Z])/g, ' $1').replace(/^./, function(str){ return str.toUpperCase(); })}</option>
             )
         })}
         </select>
