@@ -13,7 +13,7 @@ const ProfileDetails = ({location}) => {
       setProfile(profileFetched)
     };
     fetchProfile()
-  }, [])
+  }, [id])
   
   return (
     profile &&
