@@ -11,9 +11,39 @@ export function addReview(review){
     { mode: "cors" }
   ).then(res => res.json()); 
 }
+/* export function createReview(review){
+  return fetch (BASE_URL,
+    {
+      method:'POST',
+      headers: {'content-type':'application/json', Authorization: "Bearer " + tokenService.getToken() },
+      body:JSON.stringify(review)
+    },
+    { mode: "cors" }
+  ).then(res => res.json()); 
+} */
+
+export function update(id,review) {
+  return fetch(
+    `${BASE_URL}/${id}`,
+    {
+      method: 'PUT',
+      headers: {'content-type': 'application/json', 'Authorization': 'Bearer ' + tokenService.getToken()},
+      body: JSON.stringify(review)
+    },
+    { mode: "cors" }
+    ).then((res) => res.json())
+}
 
 export function deleteReview(){
-
+  return fetch(
+    BASE_URL,
+    {
+      method: 'DELETE',
+      headers: {'content-type':'application/json', Authorization: "Bearer " + tokenService.getToken() },
+      body:JSON.stringify(review)
+    },
+    { mode: "cors" }
+    ).then((res) => res.json())
 }
 
 export function getReviews(id){
