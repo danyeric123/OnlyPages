@@ -1,5 +1,6 @@
 import React from "react";
 import { FaUserCircle } from "react-icons/fa"
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
 const ProfileDetails = ({ location, userProfile }) => {
   const { profile } = location.state;
@@ -19,9 +20,17 @@ const ProfileDetails = ({ location, userProfile }) => {
         <FaUserCircle size={70} />
       }
       <h2>Friends List</h2>
-      {profile.friends.map((profile) => (
+      {profile.friends.map((friend) => (
         <>
-          <h3 key={profile._id}>{profile.name}</h3>
+          <Link 
+            key={profile._id}
+            to={{
+              pathname: '/profile',
+              state: {profile:friend}
+            }}
+          >
+            {friend.name}
+          </Link>
         </>
       ))}
      
