@@ -14,13 +14,13 @@ const BookCard = ({
   let id = book.id
   book = book.volumeInfo
   book.id = id
-  // console.log(book)
+
   return (
     <>
       <a href={`/books/${id}`}>
         {book.imageLinks?
         <img
-          src={`http://books.google.com/books/content?id=${id}&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api`}
+          src={`${book.imageLinks?.thumbnail}`}
           alt={`${book.title} front cover`}
         />:
         <FaBook size={70} />
