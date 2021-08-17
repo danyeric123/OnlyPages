@@ -12,19 +12,26 @@ export {
   likeAndUnlike,
 }
 
-function index(res,req){
-  Review.find({book:req.params.bookId})
-        .then(reviews=>{
-          reviews.populate("author")
-                  .populate("likes")
-                  .populate("replies")
-                  .execPopulate()
-          res.json(reviews)
-        })
-        .catch(err=>{
-          console.log(err)
-          return res.status(400).json(err)
-        })
+function index(req,res){
+  Book.findOne({api_id:req.params.bookId})
+  .then(book=>{
+    if(book){
+      Review.find({book:book._id})
+    .then(reviews=>{
+      if(reviews.length!=0){
+        reviews.populate("author")
+              .populate("likes")
+              .populate("replies")
+              .execPopulate()
+        res.json(reviews)
+      }
+    })
+    }
+  })
+  .catch(err=>{
+    console.log(err)
+    return res.status(400).json(err)
+  })
 }
 
 function create(req, res) {
@@ -35,7 +42,7 @@ function create(req, res) {
                   profile.reviews.push(review._id)
                   profile.save()
                 })
-        Book.findById(req.body.book)
+        Book.findOne({api_id:req.body.book})
             .then(book=>{
               book.reviews.push(review._id)
             })
