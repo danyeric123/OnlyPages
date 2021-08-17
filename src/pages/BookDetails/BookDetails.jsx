@@ -129,25 +129,18 @@ class BookDetails extends Component {
         <section>
           {/* Put reviews form here */}
           <h2>What did you think of this book? Leave a review!</h2>
-          {!reviews ? (
-            
-            <ReviewForm
+          <ReviewForm
               userProfile={this.props.userProfile}
-              // review={review}
               handleAddReview={this.handleAddReview}
-              handleDeleteReview={this.handleDeleteReview}
               />
-          ) : (
-            <h3>Reviews:</h3>
-          )}
           <h3>Reviews:</h3>
-          {/* {reviews?.map(review =>
+          {reviews?.map(review =>
             <ReviewCard
               userProfile={this.props.userProfile}
               review={review}
               handleDeleteReview={this.handleDeleteReview}
               />
-              )}  */}
+              )} 
         </section>
       </>
     );
