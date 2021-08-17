@@ -10,7 +10,7 @@ import ProfileDetails from '../ProfileDetails/ProfileDetails'
 import * as profileAPI from '../../services/profileService'
 import BookSearch from "../BookSearch/BookSearch";
 import BookDetails from '../BookDetails/BookDetails'
-import AddPost from '../AddPost/AddPost'
+import AddPost from '../AddPost/addPost'
 import PostDetails from '../PostDetails/PostDetails'
 import PostLanding from '../PostLanding/PostLanding'
 import PostUpdate from '../PostUpdate/PostUpdate'

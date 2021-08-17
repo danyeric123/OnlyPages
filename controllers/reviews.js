@@ -27,6 +27,7 @@ function index(req,res){
       }
     })
     }
+    res.json({message:"No Reviews yet"})
   })
   .catch(err=>{
     console.log(err)

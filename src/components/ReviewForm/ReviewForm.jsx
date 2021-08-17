@@ -6,8 +6,6 @@ class ReviewForm extends Component {
     formData: {
       content: '',
       rating: 5,
-      book_api_id: this.props.api_id,
-      author: this.props.userProfile._id,
       book: this.props.book_id
     }
   }
