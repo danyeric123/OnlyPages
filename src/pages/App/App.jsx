@@ -15,6 +15,7 @@ import PostDetails from '../PostDetails/PostDetails'
 import AddPost from '../AddPost/AddPost'
 import PostList from "../PostList/PostList"
 import PostLanding from "../PostLanding/PostLanding"
+import PostUpdate from "../PostUpdate/PostUpdate"
 
 
 class App extends Component {
@@ -118,6 +119,9 @@ class App extends Component {
 				</Route>
 				<Route exact path='/posts/:id'>
 					<PostDetails/>
+				</Route>
+        <Route exact path='/edit'>
+					<PostUpdate/>
 				</Route>
 			</>
 		)

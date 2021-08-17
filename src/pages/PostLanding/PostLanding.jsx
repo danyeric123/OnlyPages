@@ -18,6 +18,7 @@ const PostLanding = () => {
     setPosts(posts)
     setIsLoading(false)
   }
+  
   getPosts()
  }, []);
 
