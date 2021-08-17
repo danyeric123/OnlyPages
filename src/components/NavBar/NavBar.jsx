@@ -3,8 +3,9 @@ import { Link } from "react-router-dom";
 import SearchForm from "../SearchForm/SearchForm";
 import { FaBook } from "react-icons/fa";
 import { FaUserCircle } from "react-icons/fa";
-import { } from "react-icons/fa";
+import {FaAddressCard } from "react-icons/fa";
 import { FaComments } from "react-icons/fa";
+import { FaBars } from "react-icons/fa"; /* for mobil menu */
 
 // import { BiSearch } from "react-icons/fa";
 
@@ -17,7 +18,7 @@ const NavBar = ({ user, userProfile, profile, handleLogout, history }) => {
           <div>
             <ul>
               <li>
-                <Link to="/"><FaBook size={30} style={{ color: "blue" }} />LOGO PLACEHOLDER</Link>
+                <Link to="/"><FaBook size={30} style={{ color: "blue" }} />OnlyPages</Link>
               </li>
              
               <SearchForm history={history} />
@@ -58,12 +59,14 @@ const NavBar = ({ user, userProfile, profile, handleLogout, history }) => {
           <div>
             <ul>
               <li>
+              <FaUserCircle size={30} style={{ color: "blue" }} />
                 <Link to="/login">Log In</Link>
               </li>
               <li>
                 <Link to="/users">Users</Link>
               </li>
               <li>
+              <FaAddressCard size={30} style={{ color: "blue" }} />
                 <Link to="/signup">Sign Up</Link>
               </li>
             </ul>

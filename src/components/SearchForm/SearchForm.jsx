@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { FaSistrix } from "react-icons/fa";
 
 class Search extends Component {
   state = {
@@ -41,7 +42,8 @@ class Search extends Component {
           type="submit"
     			disabled={this.state.invalidForm}
         >
-				  Search
+        <FaSistrix size={15} />
+				 {/*  Search */}
         </button>         
       </form>
       </>
