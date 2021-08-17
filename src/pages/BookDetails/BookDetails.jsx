@@ -79,7 +79,9 @@ class BookDetails extends Component {
               )}
         </>
         }
-        {/* Put reviews form here */}
+        {this.props.userProfile?.read.some(book=>book.api_id==searchResult.id)&&
+          <ReviewForm book={searchResult} handleAddReview={this.handleAddReview} />
+        }
       </>
     );
   }
