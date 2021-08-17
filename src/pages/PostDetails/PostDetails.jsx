@@ -19,7 +19,7 @@ const PostDetails = () => {
               <p> { post.body }</p> 
         </article>
       )} 
-     <Link to="/edit">
+     <Link to={{pathname:'/edit',state:post}}>
        <button>Edit post</button>
      </Link>
      <Link to="/posts">

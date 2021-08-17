@@ -30,8 +30,9 @@ export function deleteOne(id) {
 export function update(post) {
   return fetch(`${BASE_URL}/${post._id}`,
    {
-    method: 'PUT',
-    headers: { Authorization: "Bearer " + tokenService.getToken() }
+    method: 'PATCH',
+    headers: { Authorization: "Bearer " + tokenService.getToken(),'content-type':'application/json' },
+    body:JSON.stringify(post)
     },
     { mode: "cors" }
   ).then(res => res.json());
