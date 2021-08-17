@@ -39,7 +39,6 @@ const BookCard = ({
         book={book}
         userProfile={userProfile}
         handleAddBook={handleAddBook}
-        handleRemoveBook={handleRemoveBook}
       />
       <br />
       <br />

@@ -24,20 +24,13 @@ class App extends Component {
       this.setState({userProfile})
     }
   }
-
+	
 	handleLogout = () => {
     authService.logout();
     this.setState({ user: null, userProfile: null });
 		console.log(this.state)
     this.props.history.push("/");
   };
-
-	async componentDidMount() {
-    if (!this.state.userProfile) {
-      const userProfile = await profileAPI.getUserProfile()
-      this.setState({userProfile})
-    }
-  }
 
   handleSignupOrLogin = async () => {
     this.setState({ user: await authService.getUser(), userProfile: await profileAPI.getUserProfile()});

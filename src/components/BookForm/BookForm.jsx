@@ -1,50 +1,51 @@
-import React, { Component } from "react";
-//import MenuButton from '../MenuButton/MenuButton'
-//this is for what will be rendered on the book card to be pushed to a reading collection-WHERE?
-class BookForm extends Component {
-  state = {
-    formData: {
-      api_id: this.props.book.id,
-      title: this.props.book.title,
-      coverImage: this.props.book.imageLinks?.thumbnail, //will need to be sized consistently
-      authors: this.props.book.authors,
-      publish: this.props.book.publishedDate,
-      categories: this.props.book.categories,
-    },
-    collection: ''
-  };
+import React, { useEffect,useState } from "react";
 
-  handleSelect=(e)=>{
+const BookForm = ({book,userProfile,handleAddBook}) => {
+  const [formData, setFormData] = useState({
+    api_id: book.id,
+    title: book.title,
+    coverImage: book.imageLinks?.thumbnail, //will need to be sized consistently
+    authors: book.authors,
+    publish: book.publishedDate,
+    categories: book.categories,
+  })
+  let initialCollection = ["read","currentlyReading","wantToRead"]
+  const [collections, setCollections] = useState(initialCollection)
+  const [selectedCollection, setSelectedCollection] = useState('')
+
+  useEffect(() => {
+    const collections = ["read","currentlyReading","wantToRead"]
+    const updatedList = collections.filter(collection=>userProfile[collection].every(book=>book?.api_id !== formData.api_id))
+    setCollections(updatedList)
+    setSelectedCollection(updatedList[0])
+  }, [userProfile])
+  
+  const handleSelect=(e)=>{
     e.preventDefault();
-    console.log(e.target.value)
-    this.setState({collection: e.target.value})
+    setSelectedCollection(e.target.value)
   }
 
-  handleAddBook = (e) => {
+  const handleClick = (e) => {
     e.preventDefault();
-    this.props.handleAddBook(this.state.formData, this.state.collection);
+    handleAddBook(formData, selectedCollection);
   };
 
-
-
-  render() {
-    return (
-      <>
-      <select onChange={this.handleSelect}>
-          {this.props.userProfile?.read.every(book=>book?.api_id !== this.state.formData.api_id)&&<option value="read">READ</option>}
-          {this.props.userProfile?.wantToRead.every(book=>book?.api_id !== this.state.formData.api_id)&&<option value="wantToRead">WANT TO READ</option>}
-          {this.props.userProfile?.currentlyReading.every(book=>book?.api_id !== this.state.formData.api_id)&&<option value="currentlyReading">
-            CURRENTLY READING
-          </option>}
+  return (
+    <>
+      <select onChange={handleSelect}>
+        {collections.map(collection=>{
+            return (
+              <option value={collection}>{collection.replace(/([A-Z])/g, ' $1').replace(/^./, function(str){ return str.toUpperCase(); })}</option>
+            )
+        })}
         </select>
       
-        <button onClick={this.handleAddBook}>ADD BOOK TO COLLECTION</button>
+        <button onClick={handleClick}>ADD BOOK TO COLLECTION</button>
          <br />
         <br />
         
       </>
-    );
-  }
+  )
 }
 
-export default BookForm;
+export default BookForm
