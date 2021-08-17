@@ -48,23 +48,60 @@ class BookDetails extends Component {
       <>
         <div>*************</div>
         <h1>Book Details</h1>
-        {searchResult.volumeInfo?.imageLinks ? (
-          <img
-            src={searchResult.volumeInfo?.imageLinks?.thumbnail}
-            alt={searchResult?.volumeInfo?.title}
-          />
-        ) : (
-          <FaBook size={70} />
-        )}
-        <h2>{searchResult.volumeInfo?.title}</h2>
-        <h3>Author(s): {searchResult.volumeInfo?.authors?.join(" ,")}</h3>
-        <div
-          dangerouslySetInnerHTML={{
-            __html: searchResult?.volumeInfo?.description,
-          }}
-        />
-        <br />
         <div>*************</div>
+        <section>
+          {searchResult.volumeInfo?.imageLinks ? (
+            <img
+              src={searchResult.volumeInfo?.imageLinks?.thumbnail}
+              alt={searchResult?.volumeInfo?.title}
+            />
+          ) : (
+            <FaBook size={70} />
+          )}
+          <br />
+        </section>
+        <section>
+          <h3>{searchResult.volumeInfo?.title}</h3>
+          {searchResult.volumeInfo?.subtitle && (
+            <p>Subtitle: {searchResult.volumeInfo?.subtitle}</p>
+          )}
+          <h3>Author(s): {searchResult.volumeInfo?.authors ? searchResult.volumeInfo?.authors.join(" ,") : "N/A"}</h3>
+        </section>
+        <section>
+          <span>Description: </span>
+          {searchResult.volumeInfo?.description ? 
+          <div
+            dangerouslySetInnerHTML={{
+              __html: searchResult?.volumeInfo?.description
+            }}
+           /> : "N/A"}
+          {searchResult.volumeInfo?.publisher && (
+          <p>Publisher: {searchResult.volumeInfo?.publisher}</p>
+          )}
+          {searchResult.volumeInfo?.publishedDate && (
+          <p>PublishedDate: {searchResult.volumeInfo?.publishedDate}</p>
+          )}
+          {searchResult.volumeInfo?.maturityRating && (
+          <p>Maturity Rating: {searchResult.volumeInfo?.maturityRating}</p>
+          )}
+          {searchResult.volumeInfo?.pageCount && (
+          <p>PageCount: {searchResult.volumeInfo?.pageCount}</p>
+          )}
+        </section>
+       {/*  <section>
+          *************
+          <p>Categories To Search For Similar Books</p>
+          <ul>
+            {searchResult.volumeInfo?.categories?.map((category) => (
+              <li key={category}>{category}</li>
+            ))}
+          </ul>
+        </section> */}
+        <div>*************</div>
+        <p>
+          If you would like to add this book to your personal library, please
+          first select which collection type.
+        </p>
         {searchResult.volumeInfo?.title /*  */ && (
           <BookForm
             book={searchResult}
@@ -72,15 +109,7 @@ class BookDetails extends Component {
             handleAddBook={this.props.handleAddBook}
           />
         )}
-        <div>
-          *************
-          <h3>Categories To Search For Similar Books</h3>
-          <ul>
-            {searchResult.volumeInfo?.categories?.map((category) => (
-              <li key={category}>{category}</li>
-            ))}
-          </ul>
-        </div>
+        
 
         <div>*************</div>
         {reviews?.length > 0 && (

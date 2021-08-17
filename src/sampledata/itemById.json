@@ -4,87 +4,87 @@
   "etag": "vsutEAY8HgE",
   "selfLink": "https://www.googleapis.com/books/v1/volumes/haFFCgAAQBAJ",
   "volumeInfo": {
-  "title": "The Sherlock Holmes Book",
-  "subtitle": "Big Ideas Simply Explained",
-  "authors": [
-  "DK"
-  ],
-  "publisher": "Penguin",
-  "publishedDate": "2015-10-20",
-  "description": "<p><i><b>The Sherlock Holmes Book</b></i>, the latest in <b>DK</b>'s award-winning <b><i>Big Ideas Simply Explained</i></b> series, tackles the most \"elementary\" of subjects--the world of Sherlock Holmes, as told by Sir Arthur Conan Doyle.</p><p><i><b>The Sherlock Holmes Book</b></i> is packed with witty illustrations, clear graphics, and memorable quotes that make it the perfect Sherlock Holmes guide, covering every case of the world's greatest detective, from <i>A Study in Scarlet</i> to <i>The Adventure of Shoscombe Old Place</i>, placing the sorties in a wider context. Stories include at-a-glance flowcharts that show how Holmes reaches his conclusions through deductive reasoning, and character guides provide handy reference for readers and an invaluable resource for fans of the Sherlock Holmes films and TV series.</p><p><i><b>The Sherlock Holmes Book</b></i> holds a magnifying glass to the world of Sir Arthur Conan Doyle's legendary detective.</p>",
-  "industryIdentifiers": [
-  {
-  "type": "ISBN_10",
-  "identifier": "1465449973"
-  },
-  {
-  "type": "ISBN_13",
-  "identifier": "9781465449979"
-  }
-  ],
-  "readingModes": {
-  "text": true,
-  "image": true
-  },
-  "pageCount": 352,
-  "printedPageCount": 891,
-  "printType": "BOOK",
-  "categories": [
-  "Literary Criticism / Mystery & Detective",
-  "Literary Criticism / European / English, Irish, Scottish, Welsh",
-  "Literary Criticism / Modern / 19th Century"
-  ],
-  "averageRating": 4,
-  "ratingsCount": 3,
-  "maturityRating": "NOT_MATURE",
-  "allowAnonLogging": true,
-  "contentVersion": "1.2.3.0.preview.3",
-  "panelizationSummary": {
-  "containsEpubBubbles": false,
-  "containsImageBubbles": false
-  },
-  "imageLinks": {
-  "smallThumbnail": "http://books.google.com/books/publisher/content?id=haFFCgAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&imgtk=AFLRE72xEPXANKVGhPv4Oj4ju1RXAw2AKq0rQj13iXqQl0Xqm4_vg6REoQOxcnFVX_-Yv0KIxJD38GOCNOk_oVTCPGQ9U15kU75oUMt3ZwviGZAnA-dVysRrRPwuWmjlca3eW5dN09Nk&source=gbs_api",
-  "thumbnail": "http://books.google.com/books/publisher/content?id=haFFCgAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&imgtk=AFLRE72di9MQLDsx-QRGyUPivu1oM2oU6DuDHpGog79ogD1T4iU0ikVKUnHukDMUkfWmiQcTl2gMn5B_ydABr6rRXOqPE3wxyBY4SQ4Q451s6mEfz5Zqagnan58eZK3S07h8mX3YPoCE&source=gbs_api",
-  "small": "http://books.google.com/books/publisher/content?id=haFFCgAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&imgtk=AFLRE72w9GEcCsheIgrMFC5IAFfoHo1oYxMrC-aZQpd0YcM46Z_XicfCL9Nntj1V2hfQ2-58C4-vX3csvrkON5gXJlAIZcEejJmAvGDn3jRWGpYf6HQSJr40LurN15P7rmTI41hLXDZS&source=gbs_api",
-  "medium": "http://books.google.com/books/publisher/content?id=haFFCgAAQBAJ&printsec=frontcover&img=1&zoom=3&edge=curl&imgtk=AFLRE70tJtawDopC-m4KtdsbyBEm-gn_CqRLzzmfB7n7w4YKbWxybwkVr006OV1Izqvk7UM8fmsvW2zb5eM0P2BcRBZ1zkJQitbtVprYF0l9Yz8a9zyM6HT5JQXN5hU0vT-GHS3AFO6Z&source=gbs_api",
-  "large": "http://books.google.com/books/publisher/content?id=haFFCgAAQBAJ&printsec=frontcover&img=1&zoom=4&edge=curl&imgtk=AFLRE72DiXwTBL0q2fJ09yBgdaoV2-h_x598MJTH6jL-SCPoQh1tAbCaF4Brq4UE0n_EppmtyPfeRKGaVDJpGy9aIGOpzfSygCMv8nIxtep1Dk3WRYg4qbQ1z2lG-GCWn-PYmiffMp2W&source=gbs_api",
-  "extraLarge": "http://books.google.com/books/publisher/content?id=haFFCgAAQBAJ&printsec=frontcover&img=1&zoom=6&edge=curl&imgtk=AFLRE73xU4YU9prxWiNcdy9Y525Kl2jPJTYABvjbVa2qYxYyHISewgE8-jhfkByqbmnuUwI13_0aZAAvPAu9pAo8NZGpOFyekBRvlIZLLR6bFoSTHxynRNo-DW1RCiARmzvAb3BlScwF&source=gbs_api"
-  },
-  "language": "en",
-  "previewLink": "http://books.google.com/books?id=haFFCgAAQBAJ&hl=&source=gbs_api",
-  "infoLink": "https://play.google.com/store/books/details?id=haFFCgAAQBAJ&source=gbs_api",
-  "canonicalVolumeLink": "https://play.google.com/store/books/details?id=haFFCgAAQBAJ"
+    "title": "The Sherlock Holmes Book",
+    "subtitle": "Big Ideas Simply Explained",
+    "authors": [
+      "DK"
+    ],
+    "publisher": "Penguin",
+    "publishedDate": "2015-10-20",
+    "description": "<p><i><b>The Sherlock Holmes Book</b></i>, the latest in <b>DK</b>'s award-winning <b><i>Big Ideas Simply Explained</i></b> series, tackles the most \"elementary\" of subjects--the world of Sherlock Holmes, as told by Sir Arthur Conan Doyle.</p><p><i><b>The Sherlock Holmes Book</b></i> is packed with witty illustrations, clear graphics, and memorable quotes that make it the perfect Sherlock Holmes guide, covering every case of the world's greatest detective, from <i>A Study in Scarlet</i> to <i>The Adventure of Shoscombe Old Place</i>, placing the sorties in a wider context. Stories include at-a-glance flowcharts that show how Holmes reaches his conclusions through deductive reasoning, and character guides provide handy reference for readers and an invaluable resource for fans of the Sherlock Holmes films and TV series.</p><p><i><b>The Sherlock Holmes Book</b></i> holds a magnifying glass to the world of Sir Arthur Conan Doyle's legendary detective.</p>",
+    "industryIdentifiers": [
+      {
+        "type": "ISBN_10",
+        "identifier": "1465449973"
+      },
+      {
+        "type": "ISBN_13",
+        "identifier": "9781465449979"
+      }
+    ],
+    "readingModes": {
+      "text": true,
+      "image": true
+    },
+    "pageCount": 352,
+    "printedPageCount": 891,
+    "printType": "BOOK",
+    "categories": [
+      "Literary Criticism / Mystery & Detective",
+      "Literary Criticism / European / English, Irish, Scottish, Welsh",
+      "Literary Criticism / Modern / 19th Century"
+    ],
+    "averageRating": 4,
+    "ratingsCount": 3,
+    "maturityRating": "NOT_MATURE",
+    "allowAnonLogging": true,
+    "contentVersion": "1.2.3.0.preview.3",
+    "panelizationSummary": {
+      "containsEpubBubbles": false,
+      "containsImageBubbles": false
+    },
+    "imageLinks": {
+      "smallThumbnail": "http://books.google.com/books/publisher/content?id=haFFCgAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&imgtk=AFLRE72xEPXANKVGhPv4Oj4ju1RXAw2AKq0rQj13iXqQl0Xqm4_vg6REoQOxcnFVX_-Yv0KIxJD38GOCNOk_oVTCPGQ9U15kU75oUMt3ZwviGZAnA-dVysRrRPwuWmjlca3eW5dN09Nk&source=gbs_api",
+      "thumbnail": "http://books.google.com/books/publisher/content?id=haFFCgAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&imgtk=AFLRE72di9MQLDsx-QRGyUPivu1oM2oU6DuDHpGog79ogD1T4iU0ikVKUnHukDMUkfWmiQcTl2gMn5B_ydABr6rRXOqPE3wxyBY4SQ4Q451s6mEfz5Zqagnan58eZK3S07h8mX3YPoCE&source=gbs_api",
+      "small": "http://books.google.com/books/publisher/content?id=haFFCgAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&imgtk=AFLRE72w9GEcCsheIgrMFC5IAFfoHo1oYxMrC-aZQpd0YcM46Z_XicfCL9Nntj1V2hfQ2-58C4-vX3csvrkON5gXJlAIZcEejJmAvGDn3jRWGpYf6HQSJr40LurN15P7rmTI41hLXDZS&source=gbs_api",
+      "medium": "http://books.google.com/books/publisher/content?id=haFFCgAAQBAJ&printsec=frontcover&img=1&zoom=3&edge=curl&imgtk=AFLRE70tJtawDopC-m4KtdsbyBEm-gn_CqRLzzmfB7n7w4YKbWxybwkVr006OV1Izqvk7UM8fmsvW2zb5eM0P2BcRBZ1zkJQitbtVprYF0l9Yz8a9zyM6HT5JQXN5hU0vT-GHS3AFO6Z&source=gbs_api",
+      "large": "http://books.google.com/books/publisher/content?id=haFFCgAAQBAJ&printsec=frontcover&img=1&zoom=4&edge=curl&imgtk=AFLRE72DiXwTBL0q2fJ09yBgdaoV2-h_x598MJTH6jL-SCPoQh1tAbCaF4Brq4UE0n_EppmtyPfeRKGaVDJpGy9aIGOpzfSygCMv8nIxtep1Dk3WRYg4qbQ1z2lG-GCWn-PYmiffMp2W&source=gbs_api",
+      "extraLarge": "http://books.google.com/books/publisher/content?id=haFFCgAAQBAJ&printsec=frontcover&img=1&zoom=6&edge=curl&imgtk=AFLRE73xU4YU9prxWiNcdy9Y525Kl2jPJTYABvjbVa2qYxYyHISewgE8-jhfkByqbmnuUwI13_0aZAAvPAu9pAo8NZGpOFyekBRvlIZLLR6bFoSTHxynRNo-DW1RCiARmzvAb3BlScwF&source=gbs_api"
+    },
+    "language": "en",
+    "previewLink": "http://books.google.com/books?id=haFFCgAAQBAJ&hl=&source=gbs_api",
+    "infoLink": "https://play.google.com/store/books/details?id=haFFCgAAQBAJ&source=gbs_api",
+    "canonicalVolumeLink": "https://play.google.com/store/books/details?id=haFFCgAAQBAJ"
   },
   "layerInfo": {
-  "layers": [
-  {
-  "layerId": "geo",
-  "volumeAnnotationsVersion": "2"
-  }
-  ]
+    "layers": [
+      {
+        "layerId": "geo",
+        "volumeAnnotationsVersion": "2"
+      }
+    ]
   },
   "saleInfo": {
-  "country": "US",
-  "saleability": "NOT_FOR_SALE",
-  "isEbook": false
+    "country": "US",
+    "saleability": "NOT_FOR_SALE",
+    "isEbook": false
   },
   "accessInfo": {
-  "country": "US",
-  "viewability": "PARTIAL",
-  "embeddable": true,
-  "publicDomain": false,
-  "textToSpeechPermission": "ALLOWED_FOR_ACCESSIBILITY",
-  "epub": {
-  "isAvailable": true,
-  "acsTokenLink": "http://books.google.com/books/download/The_Sherlock_Holmes_Book-sample-epub.acsm?id=haFFCgAAQBAJ&format=epub&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
-  },
-  "pdf": {
-  "isAvailable": true,
-  "acsTokenLink": "http://books.google.com/books/download/The_Sherlock_Holmes_Book-sample-pdf.acsm?id=haFFCgAAQBAJ&format=pdf&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
-  },
-  "webReaderLink": "http://play.google.com/books/reader?id=haFFCgAAQBAJ&hl=&printsec=frontcover&source=gbs_api",
-  "accessViewStatus": "SAMPLE",
-  "quoteSharingAllowed": false
+    "country": "US",
+    "viewability": "PARTIAL",
+    "embeddable": true,
+    "publicDomain": false,
+    "textToSpeechPermission": "ALLOWED_FOR_ACCESSIBILITY",
+    "epub": {
+      "isAvailable": true,
+      "acsTokenLink": "http://books.google.com/books/download/The_Sherlock_Holmes_Book-sample-epub.acsm?id=haFFCgAAQBAJ&format=epub&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+    },
+    "pdf": {
+      "isAvailable": true,
+      "acsTokenLink": "http://books.google.com/books/download/The_Sherlock_Holmes_Book-sample-pdf.acsm?id=haFFCgAAQBAJ&format=pdf&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+    },
+    "webReaderLink": "http://play.google.com/books/reader?id=haFFCgAAQBAJ&hl=&printsec=frontcover&source=gbs_api",
+    "accessViewStatus": "SAMPLE",
+    "quoteSharingAllowed": false
   }
-  }
+}
