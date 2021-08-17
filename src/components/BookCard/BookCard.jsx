@@ -43,7 +43,7 @@ const BookCard = ({ book, userProfile, handleAddBook, handleRemoveBook }) => {
         {/*  <p>
         Subtitle: {book.subtitle ? <p>Subtitle: {book.subtitle}</p> : "N/A"}
       </p> */}
-        <p>Subtitle: {book.subtitle && <p>Subtitle: {book.subtitle}</p>}</p>
+        <p>{book.subtitle && <p>Subtitle: {book.subtitle}</p>}</p>
         <p>Author(s): {book.authors ? book.authors.join(", ") : "N/A"}</p>
         <p>
           Published Date: {moment(book.publishedDate).format("MMMM Do, YYYY")}
