@@ -12,7 +12,7 @@ const BookCard = ({ book, userProfile, handleAddBook, handleRemoveBook }) => {
   return (
     <>
       <section>
-        <a href={`/books/${id}`}>
+   {/*      <a href={`/books/${id}`}>
           {book.imageLinks ? (
             <img
               src={`${book.imageLinks?.thumbnail}`}
@@ -21,12 +21,25 @@ const BookCard = ({ book, userProfile, handleAddBook, handleRemoveBook }) => {
           ) : (
             <FaBook size={70} />
           )}
-        </a>
+        </a> */}
+        
+          {book.imageLinks ? (
+            <img
+              src={`${book.imageLinks?.thumbnail}`}
+              alt={`${book.title} front cover`}
+            />
+          ) : (
+            <FaBook size={70} />
+          )}
+      
       </section>
       <section>
-        <a href={`/books/${id}`}>
+       {/*  <a href={`/books/${id}`}>
           <h1>{book.title}</h1>
-        </a>
+        </a> */}
+        
+          <h1>{book.title}</h1>
+
         {/*  <p>
         Subtitle: {book.subtitle ? <p>Subtitle: {book.subtitle}</p> : "N/A"}
       </p> */}
@@ -39,6 +52,11 @@ const BookCard = ({ book, userProfile, handleAddBook, handleRemoveBook }) => {
         <p>Description: {book.description ? book.description : "N/A"}</p>
       </section>
       <section>
+      <a href={`/books/${id}`}>
+          <button>More Info</button>
+        </a>
+        <br />
+        <br />
         <BookForm
           book={book}
           userProfile={userProfile}
