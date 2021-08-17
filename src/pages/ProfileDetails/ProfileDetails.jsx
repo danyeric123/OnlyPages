@@ -32,10 +32,16 @@ const ProfileDetails = ({location}) => {
           <Link 
             key={profile._id}
             to={{
-              pathname: '/profiles/',
-              state: {profile:friend}
+              pathname: `/profiles/${friend._id}`
             }}
           >
+            {friend.avatar?
+              <img
+                src={friend.avatar}
+                alt={friend.name} avatar
+              />:
+              <FaUserCircle size={70} />
+            }
             {friend.name}
           </Link>
         </>
