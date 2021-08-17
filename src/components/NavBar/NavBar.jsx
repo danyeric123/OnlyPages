@@ -9,8 +9,9 @@ import { FaBars } from "react-icons/fa"; /* for mobil menu */
 
 // import { BiSearch } from "react-icons/fa";
 
-const NavBar = ({ user, userProfile, profile, handleLogout, history }) => {
-  console.log(userProfile)
+const NavBar = ({ user, userProfile, handleLogout, history }) => {
+  console.log("userProfile:", userProfile)
+  // console.log("userProfile.avatar:", userProfile.avatar)
   return (
     <>
       {user ? (

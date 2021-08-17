@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import * as bookAPI from "../../services/bookService";
-import ReviewForm from "../../components/ReviewForm/ReviewForm";
+// import ReviewForm from "../../components/ReviewForm/ReviewForm";
+import Review from "../../components/Review/Review";
 import BookForm from "../../components/BookForm/BookForm";
 import * as reviewsAPI from "../../services/reviewService";
 import ReviewCard from "../../components/ReviewCard/ReviewCard";
@@ -132,9 +133,13 @@ class BookDetails extends Component {
         <section>
           {/* Put reviews form here */}
           <h2>What did you think of this book? Leave a review!</h2>
-          <ReviewForm
+          {/* <ReviewForm
               userProfile={this.props.userProfile}
               handleAddReview={this.handleAddReview}
+              /> */}
+              <Review
+              userProfile={this.props.userProfile}
+            
               />
           <h3>Reviews:</h3>
           {reviews?.map(review =>
