@@ -7,7 +7,7 @@ const ProfileCard = ({ profile, userProfile, handleFriend }) => {
     <>
       <Link
         to={{
-          pathname: '/profile',
+          pathname: `/profiles/${profile._id}`,
           state: {profile}
         }} 
       >

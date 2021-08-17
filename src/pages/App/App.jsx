@@ -73,7 +73,7 @@ class App extends Component {
 						handleFriend={this.handleFriend}
 					/> : <Redirect to="/login" />
 				}/>
-				<Route exact path="/profile" render={({ location }) =>
+				<Route exact path="/profiles/:id" render={({ location }) =>
 					authService.getUser() ?
 					<ProfileDetails 
 						userProfile={userProfile}

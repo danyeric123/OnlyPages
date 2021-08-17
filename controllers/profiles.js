@@ -13,7 +13,7 @@ export {
 }
 
 function show(req, res) {
-  Profile.findById(req.user.profile)
+  Profile.findById(req.params.id)
   .then(profile => {
     populateAll(profile)
     .then(profile=>res.json(profile))

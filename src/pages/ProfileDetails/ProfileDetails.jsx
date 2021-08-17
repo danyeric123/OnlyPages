@@ -1,17 +1,24 @@
-import React from "react";
+import React, {useEffect,useState} from "react";
 import { FaUserCircle } from "react-icons/fa"
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
+import { getProfile } from "../../services/profileService";
 
-const ProfileDetails = ({ location, userProfile }) => {
-  const { profile } = location.state;
-
+const ProfileDetails = ({location}) => {
+  const id = location.pathname.split('/').reverse()[0]
+  const [profile, setProfile] = useState(null)
+  
+  useEffect(() => {
+    const fetchProfile = async () => {
+      const profileFetched = await getProfile(id)
+      setProfile(profileFetched)
+    };
+    fetchProfile()
+  }, [])
+  
   return (
+    profile &&
     <>
-      <h1>{profile.name}'s Profile</h1>
-      {/* <img
-        src={profile.avatar}
-        alt="avatar"
-      /> */}
+    <h1>{profile.name}'s Profile</h1>
       {profile.avatar?
         <img
           src={profile.avatar}
@@ -25,7 +32,7 @@ const ProfileDetails = ({ location, userProfile }) => {
           <Link 
             key={profile._id}
             to={{
-              pathname: '/profile',
+              pathname: '/profiles/',
               state: {profile:friend}
             }}
           >
@@ -68,6 +75,7 @@ const ProfileDetails = ({ location, userProfile }) => {
           </a>
         ))}
       </div>
+ 
     </>
   );
 };
