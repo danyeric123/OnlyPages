@@ -1,10 +1,11 @@
 // import { useLocation, useHistory } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 
-const Review = () => {
+const ReviewForm2 = ({api_id}) => {
 
   const [content, setContent] = useState('')
   const [rating, setRating] = useState('')
+  
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -48,7 +49,7 @@ const Review = () => {
 );
 };
   
-export default Review;
+export default ReviewForm2;
 
 
   /* // const { book } = this.props;

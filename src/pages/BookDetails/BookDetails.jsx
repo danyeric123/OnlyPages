@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import * as bookAPI from "../../services/bookService";
 // import ReviewForm from "../../components/ReviewForm/ReviewForm";
-import Review from "../../components/Review/Review";
+import ReviewForm2 from "../../components/ReviewForm2/ReviewForm2";
 import BookForm from "../../components/BookForm/BookForm";
 import * as reviewsAPI from "../../services/reviewService";
 import ReviewCard from "../../components/ReviewCard/ReviewCard";
@@ -9,7 +9,6 @@ import { FaBook } from "react-icons/fa";
 import { FaAngleLeft } from "react-icons/fa";
 import { FaAngleRight } from "react-icons/fa";
 import moment from "moment";
-
 
 class BookDetails extends Component {
   state = {
@@ -137,18 +136,18 @@ class BookDetails extends Component {
               userProfile={this.props.userProfile}
               handleAddReview={this.handleAddReview}
               /> */}
-              <Review
-              userProfile={this.props.userProfile}
-            
-              />
+          {this.props.userProfile?.read.some(
+            (book) => book.api_id == searchResult.id
+          ) && 
+          <ReviewForm2 book={searchResult} />}
           <h3>Reviews:</h3>
-          {reviews?.map(review =>
+          {reviews?.map((review) => (
             <ReviewCard
               userProfile={this.props.userProfile}
               review={review}
               handleDeleteReview={this.handleDeleteReview}
-              />
-              )} 
+            />
+          ))}
         </section>
       </>
     );

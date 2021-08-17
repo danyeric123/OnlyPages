@@ -23,3 +23,4 @@ export function getReviews(id){
     { mode: "cors" }
     ).then((res) => res.json())
 }
+
