@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom'
 import PostForm from '../../components/PostForm/PostForm'
 import * as postAPI from '../../services/postService.js'
 
@@ -46,6 +47,9 @@ const AddPost = () => {
         onChange={(e) => setBody(e.target.value)}
         ></textarea>
       <button>submit post</button>
+      <Link to="/">
+       <button>cancel</button>
+     </Link>
       </form>
     </div>
   );

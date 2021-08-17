@@ -1,10 +1,14 @@
 import { useParams, useLocation } from "react-router";
-import { Link } from "react-router-dom";
-
+import { Link, } from "react-router-dom";
+import React,{ useState } from 'react';
 const PostDetails = () => {
+
+  const[count, setCount]= useState(0)
   
+
   const { id } = useParams();
   const {post} = useLocation().state
+  
   return (
     <div className="postlanding">
       {/* { isLoading && <div>...loading</div>} */}
@@ -18,6 +22,10 @@ const PostDetails = () => {
      <Link to="/edit">
        <button>Edit post</button>
      </Link>
+     <Link to="/posts">
+       <button>cancel</button>
+     </Link>
+      <button onClick={() => setCount(count + 1)}>Like:{count}</button>
      </div>
   );
 }
