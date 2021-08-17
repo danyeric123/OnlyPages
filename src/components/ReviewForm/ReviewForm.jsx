@@ -52,6 +52,7 @@ class ReviewForm extends Component {
           onChange={this.handleChange}
           required
         />
+        
         <label htmlFor="rating">{this.state.formData.rating}</label>
         <button
           type="submit"
