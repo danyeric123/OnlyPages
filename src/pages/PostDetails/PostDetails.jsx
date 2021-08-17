@@ -1,6 +1,8 @@
 import { useParams, useLocation } from "react-router";
 import { Link, } from "react-router-dom";
 import React,{ useState } from 'react';
+import * as postService from "../../services/postService"
+
 const PostDetails = () => {
 
   const[count, setCount]= useState(0)
@@ -8,8 +10,15 @@ const PostDetails = () => {
 
   const { id } = useParams();
   const {post} = useLocation().state
-  
+  const [updatePost, setPost]= useState(post)
+
+  const handleLike = async () => {
+   const updatedPost = await postService.likeAndUnlike(id)
+    post=updatedPost
+  }
+
   return (
+   
     <div className="postlanding">
       {/* { isLoading && <div>...loading</div>} */}
       {post && (
@@ -25,7 +34,7 @@ const PostDetails = () => {
      <Link to="/posts">
        <button>cancel</button>
      </Link>
-      <button onClick={() => setCount(count + 1)}>Like:{count}</button>
+      <button onClick={handleLike}>Like:{post.likes.length}</button>
      </div>
   );
 }

@@ -37,3 +37,13 @@ export function update(post) {
     { mode: "cors" }
   ).then(res => res.json());
 }
+
+export function likeAndUnlike(post) {
+  return fetch(`${BASE_URL}/${post._id}/like`,
+   {
+    method: 'PATCH',
+    headers: { Authorization: "Bearer " + tokenService.getToken(),'content-type':'application/json' },
+    },
+    { mode: "cors" }
+  ).then(res => res.json());
+}
