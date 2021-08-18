@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { FaSistrix } from "react-icons/fa";
+import { Button } from "../Button/Button";
 
 class Search extends Component {
   state = {
@@ -26,7 +27,7 @@ class Search extends Component {
   
   render() {
     return (
-      <>
+      <div className="nav-links">
       <form
         ref={this.formRef}
         onSubmit={this.handleSubmit}
@@ -38,15 +39,12 @@ class Search extends Component {
           onChange={this.handleChange}
           required
         />
-        <button
-          type="submit"
-    			disabled={this.state.invalidForm}
-        >
-        <FaSistrix size={15} />
-				 {/*  Search */}
-        </button>         
+           <Button type="submit"
+    			disabled={this.state.invalidForm}>
+        Search
+          </Button>
       </form>
-      </>
+      </div>
     )
   }
 }
