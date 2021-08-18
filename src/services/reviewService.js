@@ -36,7 +36,7 @@ export function update(id,review) {
 
 export function deleteReview(id){
   return fetch(
-    BASE_URL,
+    `${BASE_URL}/${id}`,
     {
       method: 'DELETE',
       headers: {'content-type':'application/json', Authorization: "Bearer " + tokenService.getToken() },

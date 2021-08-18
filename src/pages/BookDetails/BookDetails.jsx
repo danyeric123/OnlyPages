@@ -32,10 +32,9 @@ class BookDetails extends Component {
   }
 
   handleDeleteReview = async id => {
-    const deletedReview = await reviewsAPI.deleteReview(id)
-    const reviewIdx = this.state.reviews.findIndex(review => review._id === deletedReview._id)
-    const reviews = [...this.state.reviews]
-    reviews.splice(reviewIdx, 1)
+    console.log(this.state.reviews.filter(review => review._id != id))
+    const reviews = this.state.reviews.filter(review => review._id != id)
+    await reviewsAPI.deleteReview(id)
     this.setState({ reviews })
   }
 

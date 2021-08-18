@@ -80,17 +80,17 @@ function reply(req, res) {
 }
 
 function deleteReview(req,res){
-  Profile.findById(req.params.profileId)
+  console.log(req.params.id)
+  Profile.findById(req.user.profile)
         .then((profile) => {
-          profile.reviews.remove({_id: req.params.reviewId})
+          profile.reviews.remove(req.params.id)
           profile.save()
-          Review.findOneAndDelete({_id: req.params.reviewId})
+          Review.findOneAndDelete(req.params.id)
           .then(() => {
             res.status(200)
           })
         })
         .catch(err=>{
-          console.log(err)
           return res.status(400).json(err)
         })
 }
