@@ -36,17 +36,11 @@ const NavBar = ({ user, userProfile, handleLogout, history }) => {
                   <FaUserCircle size={30} style={{ color: "blue" }} />
                 <Link
                   to={{
-                    pathname: "/profile",
-                    state: { profile: userProfile },
+                    pathname: `/profiles/${userProfile?._id}`
                   }}
                 >
                   My Profile
                 </Link>
-              </li>
-							<li>
-							<Link to={{
-									pathname: `/profiles/${userProfile?._id}`
-								}} >My Profile</Link>
               </li>
 							<li>
 								<Link to='/posts'>All Posts</Link>

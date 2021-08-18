@@ -10,8 +10,10 @@ const BookCard = ({ book, userProfile, handleAddBook, handleRemoveBook }) => {
   book.id = id;
 
   return (
-    <>
-      <section>
+    <div className="max-w-sm rounded overflow-hidden shadow-lg my-4
+    border-red-50">
+      
+      <section className="border-red-50">
    {/*      <a href={`/books/${id}`}>
           {book.imageLinks ? (
             <img
@@ -63,7 +65,7 @@ const BookCard = ({ book, userProfile, handleAddBook, handleRemoveBook }) => {
         handleAddBook={handleAddBook}
       />
      </section>
-    </>
+    </div>
   );
 };
 

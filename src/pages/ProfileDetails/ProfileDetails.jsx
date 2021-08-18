@@ -3,7 +3,7 @@ import { FaUserCircle } from "react-icons/fa"
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import { getProfile } from "../../services/profileService";
 
-const ProfileDetails = ({location}) => {
+const ProfileDetails = ({location, userProfile}) => {
   const id = location.pathname.split('/').reverse()[0]
   const [profile, setProfile] = useState(null)
   
@@ -26,7 +26,10 @@ const ProfileDetails = ({location}) => {
         />:
         <FaUserCircle size={70} />
       }
-      <Link to="/profile/edit">EDIT BUTTON</Link>
+      {/*!!!!!!!!!!!!!!!! should only show if its my profile */}
+      {/* { !(userProfile?._id === profile._id) &&  */}
+      <Link to="/profile/edit">EDIT BUTTON</Link>}
+      {/*!!!!!!!!!!!!!!!! should only show if its my profile */}
       <h2>Friends List</h2>
       {profile.friends.map((friend) => (
         <>
