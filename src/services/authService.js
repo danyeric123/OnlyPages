@@ -23,6 +23,7 @@ function signup(user) {
 }
 
 function getUser() {
+  console.log(tokenService.getUserFromToken())
   return tokenService.getUserFromToken()
 }
 
