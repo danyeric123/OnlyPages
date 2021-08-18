@@ -120,18 +120,27 @@ function update(req, res) {
 
 function likeAndUnlike(req,res){
   Review.findById(req.params.id)
+        .populate('author')
+        .populate({
+          path: 'replies',
+          populate: {
+            path: 'author'
+          }
+        })
       .then(review=>{
-        if(!review.likes.includes(req.user.profile._id)){
+        if(!review.likes.includes(req.user.profile)){
           review.likes.push(req.user.profile)
           review.save()
         }else{
-          review.likes.remove({_id:req.user.profile._id})
+          review.likes.remove(req.user.profile)
           review.save()
         }
-        res.json(review)
+        review.populate('likes').execPopulate()
+        .then(review=>res.json(review))
       })
       .catch(err=>{
         console.log(err)
         return res.status(400).json(err)
       })
 }
+

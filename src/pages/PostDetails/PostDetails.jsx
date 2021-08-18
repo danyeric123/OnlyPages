@@ -5,6 +5,7 @@ import * as postService from "../../services/postService"
 import ReplyForm from "../../components/ReplyForm/ReplyForm";
 import ReplyCard from "../../components/ReplyCard/ReplyCard";
 import moment from "moment";
+import LikeButton from "../../components/LikeButton/LikeButton";
 
 const PostDetails = ({userProfile}) => {
   
@@ -53,7 +54,7 @@ const PostDetails = ({userProfile}) => {
      {/* <Link to="/posts">
        <button>cancel</button>
      </Link> */}
-      <button onClick={handleLike}>Like:{post.likes.length}</button>
+      <LikeButton handleLike={handleLike} post={post} />
       <ReplyForm addReply={addReply} />
       <h2>Replies</h2>
       {post.replies.map(reply=><ReplyCard reply={reply} deleteReply={deleteReply} userProfile={userProfile} />)}

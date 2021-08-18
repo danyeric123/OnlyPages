@@ -73,7 +73,7 @@ class BookDetails extends Component {
           {reviews?.map(review =>
             <ReviewCard
               userProfile={this.props.userProfile}
-              review={review}
+              fetchedReview={review}
               handleDeleteReview={this.handleDeleteReview}
               />
               )}

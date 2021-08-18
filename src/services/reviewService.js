@@ -53,3 +53,13 @@ export function getReviews(id){
     { mode: "cors" }
     ).then((res) => res.json())
 }
+
+export function likeAndUnlike(id) {
+  return fetch(`${BASE_URL}/${id}/like`,
+   {
+    method: 'PATCH',
+    headers: { Authorization: "Bearer " + tokenService.getToken(),'content-type':'application/json' },
+    },
+    { mode: "cors" }
+  ).then(res => res.json());
+}
