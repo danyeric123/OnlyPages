@@ -6,6 +6,7 @@ const ReplyForm = ({addReply}) => {
 
   const handleSubmit = (e) =>{
     e.preventDefault();
+    setContent('')
     addReply({content})
   }
 
