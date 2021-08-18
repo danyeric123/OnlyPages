@@ -25,17 +25,11 @@ const NavBar = ({ user, userProfile, handleLogout, history }) => {
 								}} >My Profile</Link>
               </li>
 							<li>
-                <Link to="/boards">Message Board</Link>
-              </li>
+								<Link to='/posts'>All Posts</Link>
+							</li>
 							<li>
 								<Link to='' onClick={handleLogout}>LOG OUT</Link>
 								</li>
-							<li>
-								<Link to='/posts'>Post</Link>
-							</li>
-							<li>
-								<Link to='/add'>Add Post</Link>
-							</li>
 						</ul>
 					</div>
 				</nav>

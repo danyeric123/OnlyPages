@@ -8,6 +8,7 @@ export {
   reply,
   categoryShow,
   deletePost as delete,
+  deleteReply,
   edit,
   update,
   likeAndUnlike,
@@ -26,6 +27,23 @@ function index(req, res) {
           console.log(err)
           return res.status(400).json(err)
         })
+}
+
+function deleteReply(req,res){
+  Post.findById(req.params.postId)
+      .populate('author')
+      .populate('likes')
+      .populate({
+        path: 'replies',
+        populate: {
+          path: 'author'
+        }
+      })
+      .then(post=>{
+        post.replies.remove(req.params.replyId)
+        post.save()
+        res.json(post)
+      })
 }
 
 function create(req, res) {
@@ -136,15 +154,23 @@ function update(req, res) {
 
 function likeAndUnlike(req,res){
   Post.findById(req.params.id)
+      .populate('author')
+      .populate({
+        path: 'replies',
+        populate: {
+          path: 'author'
+        }
+      })
       .then(post=>{
         if(!post.likes.includes(req.user.profile)){
           post.likes.push(req.user.profile)
           post.save()
         }else{
-          post.likes.remove({_id:req.user.profile})
+          post.likes.remove(req.user.profile)
           post.save()
         }
-        res.json(post)
+        post.populate('likes').execPopulate()
+        .then(post=>res.json(post))
       })
       .catch(err=>{
         console.log(err)

@@ -54,3 +54,24 @@ export function likeAndUnlike(id) {
     { mode: "cors" }
   ).then(res => res.json());
 }
+
+export function reply(id,reply) {
+  return fetch(`${BASE_URL}/${id}`,
+   {
+    method: 'POST',
+    headers: { Authorization: "Bearer " + tokenService.getToken(),'content-type':'application/json' },
+    body:JSON.stringify(reply)
+    },
+    { mode: "cors" }
+  ).then(res => res.json());
+}
+
+export function deleteReply(postId,replyId) {
+  return fetch(`${BASE_URL}/${postId}/${replyId}`,
+   {
+    method: 'DELETE',
+    headers: { Authorization: "Bearer " + tokenService.getToken(),'content-type':'application/json' },
+    },
+    { mode: "cors" }
+  ).then(res => res.json());
+}

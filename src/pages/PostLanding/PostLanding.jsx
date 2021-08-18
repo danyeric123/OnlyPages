@@ -1,13 +1,14 @@
 import { useState, useEffect } from "react";
 import PostList from "../PostList/PostList";
 import * as postAPI from '../../services/postService.js'
+import AddPost from "../AddPost/AddPost";
 
 
 
 const PostLanding = () => {
   
   
-  const [posts, setPosts] = useState("")
+  const [posts, setPosts] = useState([])
   const [isLoading, setIsLoading] =useState(true);
   
 
@@ -27,8 +28,14 @@ const PostLanding = () => {
   setPosts(posts)
  }
 
+ async function addPost(post){
+  const newPost = await postAPI.create(post)
+  setPosts([...posts,newPost])
+ }
+
   return (
     <div className="postlanding">
+      <AddPost addPost={addPost}/>
       { isLoading && <div>...loading</div>}
       {posts && <PostList posts={posts} title="Recent Posts" handleDelete={handleDeletePost} /> } 
      </div>
