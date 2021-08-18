@@ -1,13 +1,15 @@
 import React, { Component } from 'react'
+import { FaStar, FaRegStar } from "react-icons/fa";
 
 class ReviewForm extends Component {
   state = {
     invalidForm: true,
     formData: {
       content: '',
-      rating: 5,
+      rating: 1,
       book: this.props.book.id
-    }
+    },
+    stars: [true,false,false,false]
   }
 
   formRef = React.createRef();
@@ -27,13 +29,24 @@ class ReviewForm extends Component {
       invalidForm: true,
     formData: {
       content: '',
-      rating: 5,
+      rating: 1,
       book: this.props.book.id
-    }
+    },
+    stars:[true,false,false,false]
     })
   };
+
+  changeRating = (idx) =>{
+    console.log("clicked")
+    let newRating = Array(5).fill(false)
+    for(let i = 0; i<=idx;i++){
+      newRating[i] = true
+    }
+    this.setState({stars:newRating,formData:{...this.state.formData,rating:idx+1}})
+  }
   
-  render() { 
+  render() {
+    const {stars} = this.state
     return (
       <>
         <form
@@ -48,17 +61,11 @@ class ReviewForm extends Component {
           onChange={this.handleChange}
           required
         />
-        <input 
-          id="rating"
-          type="range"
-          min="1"
-          max="10"
-          name="rating"
-          value={this.state.formData.rating}
-          onChange={this.handleChange}
-          required
-        />
-        <label htmlFor="rating">{this.state.formData.rating}</label>
+        <label htmlFor="rating">Rating</label>
+        {stars.map((star,idx)=>star?
+          <FaStar onClick={()=>this.changeRating(idx)}/>:
+          <FaRegStar onClick={()=>this.changeRating(idx)}/>
+        )}
         <button
           type="submit"
     			disabled={this.state.invalidForm}
