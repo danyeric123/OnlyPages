@@ -24,10 +24,10 @@ app.use('/reviews', reviewsRouter)
 app.use('/boards', boardsRouter)
 app.use('/auth', authRouter)
 
-app.get('/*', function (req, res) {
-  res.sendFile(
-    path.dirname(fileURLToPath(import.meta.url), 'build', 'index.html')
-  )
+app.get("/*", function (req, res) {
+	res.sendFile(
+		path.join(path.dirname(fileURLToPath(import.meta.url)), "build", "index.html")
+	)
 })
 
 const port = process.env.PORT || 3001
