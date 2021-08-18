@@ -13,6 +13,7 @@ import('./config/database.js')
 
 const app = express()
 
+app.use(express.static(path.join(path.dirname(fileURLToPath(import.meta.url)),'build')))
 app.use(cors())
 app.use(logger('dev'))
 app.use(express.json())
