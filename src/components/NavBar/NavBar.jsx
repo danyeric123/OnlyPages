@@ -1,23 +1,47 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import SearchForm from '../SearchForm/SearchForm'
+import React from "react";
+import { Link } from "react-router-dom";
+import SearchForm from "../SearchForm/SearchForm";
+import { FaBook } from "react-icons/fa";
+import { FaUserCircle } from "react-icons/fa";
+import {FaAddressCard } from "react-icons/fa";
+import { FaComments } from "react-icons/fa";
+import { FaBars } from "react-icons/fa"; /* for mobil menu */
+
+// import { BiSearch } from "react-icons/fa";
 
 const NavBar = ({ user, userProfile, handleLogout, history }) => {
-	return (
-		<>
-			{user ? (
-				<nav>
-					<div>
-						<ul>
-							<li>
-                <Link to="/">LOGO PLACEHOLDER</Link>
+  console.log("userProfile:", userProfile)
+  // console.log("userProfile.avatar:", userProfile.avatar)
+  return (
+    <>
+      {user ? (
+        <nav>
+          <div>
+            <ul>
+              <li>
+                <Link to="/"><FaBook size={30} style={{ color: "blue" }} />OnlyPages</Link>
               </li>
-							<li>Welcome, {user.name}</li>
-							<SearchForm 
-                history={history}
-              />
-							<li>
-                <Link to="/users">Users</Link>
+             
+              <SearchForm history={history} />
+              <li>
+                <Link to="/users">
+               Users</Link>
+              </li>
+              <li>
+            {/*   {userProfile.avatar ? (
+                    <img src={userProfile.avatar} alt={userProfile.name} avatar />
+                  ) : (
+                    <FaUserCircle size={70} style={{ color: "blue" }} />
+                  )} */}
+                  <FaUserCircle size={30} style={{ color: "blue" }} />
+                <Link
+                  to={{
+                    pathname: "/profile",
+                    state: { profile: userProfile },
+                  }}
+                >
+                  My Profile
+                </Link>
               </li>
 							<li>
 							<Link to={{
@@ -43,15 +67,16 @@ const NavBar = ({ user, userProfile, handleLogout, history }) => {
 							<li>
                 <Link to="/users">Users</Link>
               </li>
-							<li>
-								<Link to="/signup">Sign Up</Link>
-							</li>
-						</ul>
-					</div>
-				</nav>
-			)}
-		</>
-	)
-}
+              <li>
+              <FaAddressCard size={30} style={{ color: "blue" }} />
+                <Link to="/signup">Sign Up</Link>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      )}
+    </>
+  );
+};
 
-export default NavBar
+export default NavBar;

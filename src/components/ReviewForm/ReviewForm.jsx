@@ -53,6 +53,7 @@ class ReviewForm extends Component {
         ref={this.formRef}
         onSubmit={this.handleSubmit}
       >
+
         <textarea
           type="text"
           name="content"
@@ -69,7 +70,7 @@ class ReviewForm extends Component {
         <button
           type="submit"
     			disabled={this.state.invalidForm}
-        >
+          >
 				  Add Review
         </button>         
       </form>

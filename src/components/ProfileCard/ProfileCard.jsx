@@ -23,10 +23,10 @@ const ProfileCard = ({ profile, userProfile, handleFriend }) => {
       <br/> 
       </Link>
       { !(userProfile?._id === profile._id) && !(userProfile?.friends?.some(eachProfile => eachProfile._id === profile._id)) &&
-      <button onClick={() => handleFriend(profile._id)}>Friend {profile.name}</button> 
+      <button onClick={() => handleFriend(profile._id)}>Friend</button> 
       }
       { !(userProfile?._id === profile._id) && (userProfile?.friends?.some(eachProfile => eachProfile._id === profile._id)) &&
-      <button onClick={() => handleFriend(profile._id)}>UnFriend {profile.name}</button> 
+      <button onClick={() => handleFriend(profile._id)}>Unfriend</button> 
       }   
     </>
   );

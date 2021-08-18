@@ -1,50 +1,50 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import styles from './SignupForm.module.css'
-import * as authService from '../../services/authService'
+// import styles from './EditProfileForm.module.css'
+import * as profileService from '../../services/profileService'
 
 class EditProfileForm extends Component {
   state = {
     name: '',
     email: '',
     avatar: '',
-    password: '',
-    passwordConf: '',
   }
 
   handleChange = e => {
-    this.props.updateMessage('')
     this.setState({
       [e.target.name]: e.target.value,
     })
   }
 
+
   handleSubmit = async e => {
-    const { history, updateMessage } = this.props
     e.preventDefault()
     try {
-      await authService.signup(this.state)
-      history.push('/')
+      const updatedProfile = await profileService.update(this.props.userProfile._id, this.state)
+      this.props.updateUserProfile(updatedProfile)
+      this.props.history.push({
+        pathname: '/profile',
+        state: {profile: updatedProfile}
+      })
     } catch (err) {
-      updateMessage(err.message)
+      console.log(err)
     }
   }
 
   isFormInvalid() {
-    const { name, email, password, passwordConf } = this.state
-    return !(name && email && password === passwordConf)
+    const { name, email } = this.state
+    return !(name && email )
   }
 
   render() {
-    const { name, email, avatar, password, passwordConf } = this.state
+    const { name, email, avatar} = this.state
     return (
       <form
         autoComplete="off"
         onSubmit={this.handleSubmit}
-        className={styles.container}
       >
-        <div className={styles.inputContainer}>
-          <label htmlFor="name" className={styles.label}>
+        <div >
+          <label htmlFor="name" >
             Name
           </label>
           <input
@@ -56,8 +56,8 @@ class EditProfileForm extends Component {
             onChange={this.handleChange}
           />
         </div>
-        <div className={styles.inputContainer}>
-          <label htmlFor="avatar" className={styles.label}>
+        <div >
+          <label htmlFor="avatar" >
             Avatar Image
           </label>
           <input
@@ -69,8 +69,8 @@ class EditProfileForm extends Component {
             onChange={this.handleChange}
           />
         </div>
-        <div className={styles.inputContainer}>
-          <label htmlFor="email" className={styles.label}>Email</label>
+        <div >
+          <label htmlFor="email" >Email</label>
           <input
             type="text"
             autoComplete="off"
@@ -80,30 +80,8 @@ class EditProfileForm extends Component {
             onChange={this.handleChange}
           />
         </div>
-        <div className={styles.inputContainer}>
-          <label htmlFor="password" className={styles.label}>Password</label>
-          <input
-            type="password"
-            autoComplete="off"
-            id="password"
-            value={password}
-            name="password"
-            onChange={this.handleChange}
-          />
-        </div>
-        <div className={styles.inputContainer}>
-          <label htmlFor="confirm" className={styles.label}>Confirm Password</label>
-          <input
-            type="password"
-            autoComplete="off"
-            id="confirm"
-            value={passwordConf}
-            name="passwordConf"
-            onChange={this.handleChange}
-          />
-        </div>
-        <div className={styles.inputContainer}>
-          <button disabled={this.isFormInvalid()} className={styles.button}>Sign Up</button>
+        <div >
+            <button disabled={this.isFormInvalid()} >SUBMIT</button>
           <Link to="/">
             <button>Cancel</button>
           </Link>

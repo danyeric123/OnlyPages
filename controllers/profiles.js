@@ -1,5 +1,6 @@
 import { Book } from "../models/book.js"
 import { Profile } from "../models/profile.js"
+import { User } from "../models/user.js"
 
 export {
   userProfile,
@@ -79,9 +80,10 @@ function edit(req, res) {
 
 //Update the profile given an id
 function update(req, res) {
-  if(req.user.profile.equals(req.params.id)){
     Profile.findByIdAndUpdate(req.params.id, req.body, {new: true})
         .then((profile) => {
+          User.findOneAndUpdate({profile:profile._id},req.body,{new: true})
+              .then(()=>{})
           populateAll(profile)
           .then(profile=>{
             res.json(profile)
@@ -91,11 +93,6 @@ function update(req, res) {
           console.log(err)
           return res.status(400).json(err)
         })
-  }else{
-    let err = {error:"User not Aurthorized"}
-    console.log(err)
-    return res.status(400).json(err)
-  }
 }
 
 //Fix this functionality to do unfriending too

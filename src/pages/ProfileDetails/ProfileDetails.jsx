@@ -26,6 +26,7 @@ const ProfileDetails = ({location}) => {
         />:
         <FaUserCircle size={70} />
       }
+      <Link to="/profile/edit">EDIT BUTTON</Link>
       <h2>Friends List</h2>
       {profile.friends.map((friend) => (
         <>
