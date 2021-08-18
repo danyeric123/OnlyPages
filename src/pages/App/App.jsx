@@ -14,6 +14,8 @@ import PostDetails from '../PostDetails/PostDetails'
 import PostLanding from '../PostLanding/PostLanding'
 import PostUpdate from '../PostUpdate/PostUpdate'
 import EditProfileForm from '../../components/EditProfileForm/EditProfileForm'
+import PostList from '../../components/PostList/PostList'
+import PostCategory from '../../components/PostCategory/PostCategory'
 // import * as bookAPI from '../../services/bookService'
 
 class App extends Component {
@@ -23,7 +25,7 @@ class App extends Component {
   }
 
   async componentDidMount() {
-    if (!this.state.userProfile) {
+    if (!this.state.userProfile&&this.state.user) {
       const userProfile = await profileAPI.getUserProfile()
       this.setState({userProfile})
     }
@@ -120,6 +122,9 @@ class App extends Component {
         }/>
 				<Route exact path='/posts'>
 					<PostLanding userProfile={userProfile} />
+				</Route>
+				<Route exact path='/posts/category/:categoryName'>
+					<PostCategory userProfile={userProfile} />
 				</Route>
 				<Route exact path='/posts/:id'>
 					<PostDetails userProfile={userProfile}/>
