@@ -2,6 +2,7 @@ import React from "react";
 import moment from "moment";
 import BookForm from "../BookForm/BookForm";
 import { FaBook } from "react-icons/fa";
+import { Button } from "../Button/Button";
 
 //this is what will be rendered to the book search page as a card component
 const BookCard = ({ book, userProfile, handleAddBook, handleRemoveBook }) => {
@@ -55,7 +56,7 @@ const BookCard = ({ book, userProfile, handleAddBook, handleRemoveBook }) => {
       </section>
       <section>
       <a href={`/books/${id}`}>
-          <button>More Info</button>
+          <Button>More Info</Button>
         </a>
         <br />
         <br />
