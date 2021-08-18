@@ -6,7 +6,7 @@ class ReviewForm extends Component {
     formData: {
       content: '',
       rating: 5,
-      book: this.props.book_id
+      book: this.props.book.id
     }
   }
 
@@ -23,6 +23,14 @@ class ReviewForm extends Component {
   handleSubmit = e => {
 		e.preventDefault();
     this.props.handleAddReview(this.state.formData)
+    this.setState({
+      invalidForm: true,
+    formData: {
+      content: '',
+      rating: 5,
+      book: this.props.book.id
+    }
+    })
   };
   
   render() { 

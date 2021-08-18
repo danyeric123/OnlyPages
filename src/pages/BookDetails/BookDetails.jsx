@@ -17,7 +17,8 @@ class BookDetails extends Component {
   async componentDidMount() {
     const searchResult = await bookAPI.searchOneBook(this.props.match.params.id)
     console.log(searchResult)
-    const reviews = await reviewsAPI.getReviews(this.props.match.params.id)
+    let reviews = await reviewsAPI.getReviews(this.props.match.params.id)
+    // reviews = reviews.message?reviews:reviews.reviews
     this.setState({searchResult,reviews})
   }
 
@@ -67,6 +68,7 @@ class BookDetails extends Component {
             <p>{category}</p>
           </a>
         )}
+        <strong>{reviews.length==0&&"No Reviews"}</strong>
         {(reviews?.length > 0) &&
         <>
           <h3>Reviews:</h3>

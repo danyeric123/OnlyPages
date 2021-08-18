@@ -17,17 +17,17 @@ function index(req,res){
   .then(book=>{
     if(book){
       Review.find({book:book._id})
-    .then(reviews=>{
-      if(reviews.length!=0){
-        reviews.populate("author")
-              .populate("likes")
-              .populate("replies")
-              .execPopulate()
-        res.json(reviews)
-      }
-    })
+            .populate("author")
+            .populate("likes")
+            .populate("replies")
+            .then(reviews=>{
+              if(reviews.length!==0){
+                res.json(reviews)
+              }else{
+                res.json([])
+              }
+      })
     }
-    res.json({message:"No Reviews yet"})
   })
   .catch(err=>{
     console.log(err)
@@ -36,18 +36,24 @@ function index(req,res){
 }
 
 function create(req, res) {
-  Review.create(req.body)
-      .then((review)=> {
-        Profile.findById(req.user.profile)
-                .then(profile=>{
-                  profile.reviews.push(review._id)
-                  profile.save()
-                })
-        Book.findOne({api_id:req.body.book})
-            .then(book=>{
-              book.reviews.push(review._id)
-            })
-        res.json(review)
+  req.body.author = req.user.profile
+  Book.findOne({api_id:req.body.book})
+      .then(book=>{
+        req.body.book = book._id
+        console.log(req.body)
+        Review.create(req.body)
+        .then((review)=> {
+          Profile.findById(req.user.profile)
+                  .then(profile=>{
+                    profile.reviews.push(review._id)
+                    profile.save()
+                  })
+          book.reviews.push(review._id)
+          review.populate("author")
+          .populate("likes")
+          .populate("replies").execPopulate()
+          .then(review=>res.json(review))
+        })
       })
       .catch(err=>{
         console.log(err)
