@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-const PostList = ({ posts, title, handleDelete }) => {
+const PostList = ({ posts, title, handleDelete, userProfile }) => {
  
   
  return (
@@ -18,7 +18,7 @@ const PostList = ({ posts, title, handleDelete }) => {
 {/*\/shows name of the creator of the post/*/} 
           <p>Posted by { post.author.name }</p>
             </Link>
-            <button onClick={()=>handleDelete(post._id)}>Delete</button>
+            {post.author._id===userProfile._id&&<button onClick={()=>handleDelete(post._id)}>Delete</button>}
         </div>
       ))}
     </div>

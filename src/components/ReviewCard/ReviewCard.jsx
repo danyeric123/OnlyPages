@@ -1,6 +1,16 @@
-import React from 'react';
+import React,{useState} from 'react';
+import LikeButton from '../LikeButton/LikeButton';
+import * as reviewsAPI from '../../services/reviewService'
 
-const ReviewCard = ({ review, userProfile, handleDeleteReview }) => {
+const ReviewCard = ({ fetchedReview, userProfile, handleDeleteReview }) => {
+  
+  const [review, setReview] = useState(fetchedReview)
+  console.log(review)
+  const handleLike = async () => {
+    const updatedReview = await reviewsAPI.likeAndUnlike(review._id)
+    setReview(updatedReview)
+   }
+  
   return (
     <>
       <h5>{review.content}</h5>
@@ -10,6 +20,7 @@ const ReviewCard = ({ review, userProfile, handleDeleteReview }) => {
         <button onClick={()=> handleDeleteReview(review._id)}>X</button><br></br>
       </>
       }
+      <LikeButton handleLike={handleLike} post={review}/>
     </>
   );
 }

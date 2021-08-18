@@ -1,9 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom'
-import PostForm from '../../components/PostForm/PostForm'
-import * as postAPI from '../../services/postService.js'
 
-const AddPost = () => {
+const AddPost = ({addPost,setPressed}) => {
   const [title, setTitle] = useState(''); 
   const [body, setBody] = useState(''); 
   const [categories, setCategories] = useState([])
@@ -11,8 +9,10 @@ const AddPost = () => {
  const handleSubmit = (e) =>{
    e.preventDefault();
    const post ={ title, body,categories};
-   postAPI.create(post)
-   console.log(post);
+   setBody('')
+   setTitle('')
+   setCategories([])
+   addPost(post)
  }
 
 
@@ -20,7 +20,7 @@ const AddPost = () => {
 
   return (
     <div className="addpost">
-      <h2>add a post</h2>
+      <h2>Write a post</h2>
       <form onSubmit={handleSubmit}>
         <label htmlFor="title">Post title</label>
         <input type=
@@ -47,9 +47,7 @@ const AddPost = () => {
         onChange={(e) => setBody(e.target.value)}
         ></textarea>
       <button>submit post</button>
-      <Link to="/">
-       <button>cancel</button>
-     </Link>
+       <button onClick={()=>setPressed(false)}> cancel</button>
       </form>
     </div>
   );

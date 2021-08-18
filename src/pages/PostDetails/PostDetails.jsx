@@ -2,13 +2,16 @@ import { useParams, useLocation } from "react-router";
 import { Link, } from "react-router-dom";
 import React,{ useState, useEffect } from 'react';
 import * as postService from "../../services/postService"
+import ReplyForm from "../../components/ReplyForm/ReplyForm";
+import ReplyCard from "../../components/ReplyCard/ReplyCard";
+import moment from "moment";
+import LikeButton from "../../components/LikeButton/LikeButton";
 
-const PostDetails = () => {
+const PostDetails = ({userProfile}) => {
   
 
   const { id } = useParams();
   const [post, setPost]= useState(null)
-  console.log(id)
 
   useEffect(() => {
     const fetchPost = async () => {
@@ -23,24 +26,38 @@ const PostDetails = () => {
    setPost(updatedPost)
   }
 
+  const addReply = async (reply)=>{
+    const updatedPost = await postService.reply(id,reply)
+    setPost(updatedPost)
+  }
+
+  const deleteReply = async (replyId)=>{
+    const updatedPost = await postService.deleteReply(id,replyId)
+    setPost(updatedPost)
+  }
+
   return (
    post&&
     <div className="postlanding">
       {/* { isLoading && <div>...loading</div>} */}
       {post && (
         <article>
-          <h2>{ post.title }</h2>
-            <h2>posted by { post.author.name }</h2>
+          <h1>{ post.title }</h1>
+            <h3>By: { post.author.name }</h3>
+            <small>Posted on {moment(post.createdAt).fromNow()}</small>
               <p> { post.body }</p> 
         </article>
       )} 
-     <Link to={{pathname:'/edit',state:post}}>
+     {post.author._id===userProfile._id&&<Link to={{pathname:'/edit',state:post}}>
        <button>Edit post</button>
-     </Link>
-     <Link to="/posts">
+     </Link>}
+     {/* <Link to="/posts">
        <button>cancel</button>
-     </Link>
-      <button onClick={handleLike}>Like:{post.likes.length}</button>
+     </Link> */}
+      <LikeButton handleLike={handleLike} post={post} />
+      <ReplyForm addReply={addReply} />
+      <h2>Replies</h2>
+      {post.replies.map(reply=><ReplyCard reply={reply} deleteReply={deleteReply} userProfile={userProfile} />)}
      </div>
   );
 }

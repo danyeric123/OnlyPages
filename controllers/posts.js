@@ -8,6 +8,7 @@ export {
   reply,
   categoryShow,
   deletePost as delete,
+  deleteReply,
   edit,
   update,
   likeAndUnlike,
@@ -28,6 +29,23 @@ function index(req, res) {
         })
 }
 
+function deleteReply(req,res){
+  Post.findById(req.params.postId)
+      .populate('author')
+      .populate('likes')
+      .populate({
+        path: 'replies',
+        populate: {
+          path: 'author'
+        }
+      })
+      .then(post=>{
+        post.replies.remove(req.params.replyId)
+        post.save()
+        res.json(post)
+      })
+}
+
 function create(req, res) {
   req.body.author = req.user.profile
   Post.create(req.body)
@@ -36,7 +54,8 @@ function create(req, res) {
                 .then(profile=>{
                   profile.posts.push(post._id)
                   profile.save()
-                  res.json(post)
+                  post.populate('author').execPopulate()
+                  .then(post=>res.json(post))
                 })
       })
       .catch(err=>{
@@ -83,7 +102,15 @@ function reply(req, res) {
         req.body.author = req.user.profile
         post.replies.push(req.body)
         post.save()
-        .then(()=> {
+        post.populate('author')
+            .populate('likes')
+            .populate({
+              path: 'replies',
+              populate: {
+                path: 'author'
+              }
+            }).execPopulate()
+        .then(post=> {
           res.json(post)
         })
       })
@@ -136,15 +163,23 @@ function update(req, res) {
 
 function likeAndUnlike(req,res){
   Post.findById(req.params.id)
+      .populate('author')
+      .populate({
+        path: 'replies',
+        populate: {
+          path: 'author'
+        }
+      })
       .then(post=>{
         if(!post.likes.includes(req.user.profile)){
           post.likes.push(req.user.profile)
           post.save()
         }else{
-          post.likes.remove({_id:req.user.profile})
+          post.likes.remove(req.user.profile)
           post.save()
         }
-        res.json(post)
+        post.populate('likes').execPopulate()
+        .then(post=>res.json(post))
       })
       .catch(err=>{
         console.log(err)

@@ -43,27 +43,28 @@ const NavBar = ({ user, userProfile, handleLogout, history }) => {
                   My Profile
                 </Link>
               </li>
-              <li>
-                <Link to="/boards">
-                <FaComments size={30} style={{ color: "blue" }} />Message Board</Link>
+							<li>
+							<Link to={{
+									pathname: `/profiles/${userProfile?._id}`
+								}} >My Profile</Link>
               </li>
-              <li>
-                <Link to="" onClick={handleLogout}>
-                  LOG OUT
-                </Link>
-              </li>
-            </ul>
-          </div>
-        </nav>
-      ) : (
-        <nav>
-          <div>
-            <ul>
-              <li>
-              <FaUserCircle size={30} style={{ color: "blue" }} />
-                <Link to="/login">Log In</Link>
-              </li>
-              <li>
+							<li>
+								<Link to='/posts'>All Posts</Link>
+							</li>
+							<li>
+								<Link to='' onClick={handleLogout}>LOG OUT</Link>
+								</li>
+						</ul>
+					</div>
+				</nav>
+			) : (
+				<nav>
+					<div>
+						<ul>
+							<li>
+								<Link to="/login">Log In</Link>
+							</li>
+							<li>
                 <Link to="/users">Users</Link>
               </li>
               <li>

@@ -1,14 +1,16 @@
 import { useState, useEffect } from "react";
-import PostList from "../PostList/PostList";
+import PostList from "../../components/PostList/PostList";
 import * as postAPI from '../../services/postService.js'
+import AddPost from "../../components/AddPost/AddPost";
 
 
 
-const PostLanding = () => {
+const PostLanding = ({userProfile}) => {
   
   
-  const [posts, setPosts] = useState("")
+  const [posts, setPosts] = useState([])
   const [isLoading, setIsLoading] =useState(true);
+  const [pressed, setPressed] = useState(false)
   
 
  useEffect(() => {
@@ -27,10 +29,19 @@ const PostLanding = () => {
   setPosts(posts)
  }
 
+ async function addPost(post){
+  const newPost = await postAPI.create(post)
+  setPosts([newPost,...posts])
+ }
+
   return (
     <div className="postlanding">
+      {!pressed&&
+        <button onClick={()=>setPressed(true)}>Add Post</button>
+      }
+      {pressed&&<AddPost setPressed={setPressed} addPost={addPost}/>}
       { isLoading && <div>...loading</div>}
-      {posts && <PostList posts={posts} title="Recent Posts" handleDelete={handleDeletePost} /> } 
+      {posts && <PostList posts={posts} title="Recent Posts" handleDelete={handleDeletePost} userProfile={userProfile} /> } 
      </div>
   );
 }
