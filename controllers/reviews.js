@@ -86,8 +86,8 @@ function deleteReview(req,res){
           profile.reviews.remove(req.params.id)
           profile.save()
           Review.findOneAndDelete(req.params.id)
-          .then(() => {
-            res.status(200)
+          .then((review) => {
+            res.status(200).json(review)
           })
         })
         .catch(err=>{

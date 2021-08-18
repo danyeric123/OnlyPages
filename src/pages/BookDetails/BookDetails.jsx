@@ -32,9 +32,8 @@ class BookDetails extends Component {
   }
 
   handleDeleteReview = async id => {
-    console.log(this.state.reviews.filter(review => review._id != id))
-    const reviews = this.state.reviews.filter(review => review._id != id)
-    await reviewsAPI.deleteReview(id)
+    let deletedReview = await reviewsAPI.deleteReview(id)
+    const reviews = this.state.reviews.filter(review => review._id != deletedReview._id)
     this.setState({ reviews })
   }
 
