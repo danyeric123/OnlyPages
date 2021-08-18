@@ -57,13 +57,12 @@ const BookCard = ({ book, userProfile, handleAddBook, handleRemoveBook }) => {
         </a>
         <br />
         <br />
-        <BookForm
-          book={book}
-          userProfile={userProfile}
-          handleAddBook={handleAddBook}
-          handleRemoveBook={handleRemoveBook}
-        />
-      </section>
+      <BookForm
+        book={book}
+        userProfile={userProfile}
+        handleAddBook={handleAddBook}
+      />
+     </section>
     </>
   );
 };

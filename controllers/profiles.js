@@ -14,7 +14,7 @@ export {
 }
 
 function show(req, res) {
-  Profile.findById(req.user.profile)
+  Profile.findById(req.params.id)
   .then(profile => {
     populateAll(profile)
     .then(profile=>res.json(profile))
@@ -101,8 +101,18 @@ function friendAndUnfriend(req, res) {
   .then(profile=> {
     if(profile.friends.includes(req.params.id)){
       profile.friends.remove(req.params.id)
+      Profile.findById(req.params.id)
+              .then(friend=>{
+                friend.friends.remove(req.user.profile)
+                friend.save()
+              })
     }else{
       profile.friends.push(req.params.id)
+      Profile.findById(req.params.id)
+              .then(friend=>{
+                friend.friends.push(req.user.profile)
+                friend.save()
+              })
     }
     profile.populate("friends").execPopulate()
     profile.save()

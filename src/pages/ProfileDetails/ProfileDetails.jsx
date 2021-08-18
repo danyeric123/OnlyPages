@@ -1,13 +1,24 @@
-import React from "react";
+import React, {useEffect,useState} from "react";
 import { FaUserCircle } from "react-icons/fa"
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
+import { getProfile } from "../../services/profileService";
 
-const ProfileDetails = ({ location, userProfile }) => {
-  const { profile } = location.state;
-
+const ProfileDetails = ({location}) => {
+  const id = location.pathname.split('/').reverse()[0]
+  const [profile, setProfile] = useState(null)
+  
+  useEffect(() => {
+    const fetchProfile = async () => {
+      const profileFetched = await getProfile(id)
+      setProfile(profileFetched)
+    };
+    fetchProfile()
+  }, [id])
+  
   return (
+    profile &&
     <>
-      <h1>{profile.name}'s Profile</h1>
+    <h1>{profile.name}'s Profile</h1>
       {profile.avatar?
         <img
           src={profile.avatar}
@@ -17,9 +28,23 @@ const ProfileDetails = ({ location, userProfile }) => {
       }
       <Link to="/profile/edit">EDIT BUTTON</Link>
       <h2>Friends List</h2>
-      {profile.friends.map((profile) => (
+      {profile.friends.map((friend) => (
         <>
-          <h3 key={profile._id}>{profile.name}</h3>
+          <Link 
+            key={profile._id}
+            to={{
+              pathname: `/profiles/${friend._id}`
+            }}
+          >
+            {friend.avatar?
+              <img
+                src={friend.avatar}
+                alt={friend.name} avatar
+              />:
+              <FaUserCircle size={70} />
+            }
+            {friend.name}
+          </Link>
         </>
       ))}
      
@@ -57,6 +82,7 @@ const ProfileDetails = ({ location, userProfile }) => {
           </a>
         ))}
       </div>
+ 
     </>
   );
 };

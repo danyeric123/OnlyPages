@@ -14,17 +14,14 @@ export {
 }
 
 function index(req, res) {
-  Profile.findById(req.user.profile._id)
-        .then(profile=>{
-          //I need to deal with which posts will be displayed. For now, everything is displayed
           Post.find({})
             .populate('author')
             .populate('likes')
             .sort({createdAt: "desc"})
             .then((posts) => {
+              console.log(posts)
               res.json(posts)
             })
-        })
         .catch(err=>{
           console.log(err)
           return res.status(400).json(err)
@@ -33,7 +30,6 @@ function index(req, res) {
 
 function create(req, res) {
   req.body.author = req.user.profile
-  req.body.categories=req.body.categories.split("; ")
   Post.create(req.body)
       .then((post)=> {
         Profile.findById(req.user.profile)
@@ -98,13 +94,15 @@ function reply(req, res) {
 }
 
 function deletePost(req,res){
-  Profile.findById(req.params.profileId)
+  Profile.findById(req.user.profile)
         .then((profile) => {
           profile.posts.remove({_id: req.params.postId})
           profile.save()
           Post.findOneAndDelete({_id: req.params.postId})
           .then(() => {
-            res.status(200)
+            Post.find({})
+            .populate("author")
+            .then(posts=>res.json(posts))
           })
         })
         .catch(err=>{
@@ -125,7 +123,7 @@ function edit(req, res) {
 }
 
 function update(req, res) {
-  req.body.categories=req.body.categories.split("; ")
+  
   Post.findByIdAndUpdate(req.params.id, req.body, {new: true})
       .then((post) => {
         res.json(post)
@@ -139,11 +137,11 @@ function update(req, res) {
 function likeAndUnlike(req,res){
   Post.findById(req.params.id)
       .then(post=>{
-        if(!post.likes.includes(req.user.profile._id)){
+        if(!post.likes.includes(req.user.profile)){
           post.likes.push(req.user.profile)
           post.save()
         }else{
-          post.likes.remove({_id:req.user.profile._id})
+          post.likes.remove({_id:req.user.profile})
           post.save()
         }
         res.json(post)

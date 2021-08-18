@@ -34,13 +34,13 @@ export function update(id,review) {
     ).then((res) => res.json())
 }
 
-export function deleteReview(){
+export function deleteReview(id){
   return fetch(
-    BASE_URL,
+    `${BASE_URL}/${id}`,
     {
       method: 'DELETE',
       headers: {'content-type':'application/json', Authorization: "Bearer " + tokenService.getToken() },
-      body:JSON.stringify(review)
+      /* body:JSON.stringify(review) */
     },
     { mode: "cors" }
     ).then((res) => res.json())
@@ -53,4 +53,3 @@ export function getReviews(id){
     { mode: "cors" }
     ).then((res) => res.json())
 }
-

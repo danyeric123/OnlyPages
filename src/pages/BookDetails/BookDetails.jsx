@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import * as bookAPI from "../../services/bookService";
-// import ReviewForm from "../../components/ReviewForm/ReviewForm";
+import ReviewForm from "../../components/ReviewForm/ReviewForm";
 import ReviewForm2 from "../../components/ReviewForm2/ReviewForm2";
 import BookForm from "../../components/BookForm/BookForm";
 import * as reviewsAPI from "../../services/reviewService";
 import ReviewCard from "../../components/ReviewCard/ReviewCard";
 import { FaBook } from "react-icons/fa";
-import { FaAngleLeft } from "react-icons/fa";
-import { FaAngleRight } from "react-icons/fa";
+// import { FaAngleLeft } from "react-icons/fa";
+// import { FaAngleRight } from "react-icons/fa";
 import moment from "moment";
 
 class BookDetails extends Component {
@@ -17,12 +17,11 @@ class BookDetails extends Component {
   };
 
   async componentDidMount() {
-    const searchResult = await bookAPI.searchOneBook(
-      this.props.match.params.id
-    );
-    console.log(searchResult);
-    const reviews = await reviewsAPI.getReviews(this.props.match.params.id);
-    this.setState({ searchResult, reviews });
+    const searchResult = await bookAPI.searchOneBook(this.props.match.params.id)
+    console.log(searchResult)
+    let reviews = await reviewsAPI.getReviews(this.props.match.params.id)
+    // reviews = reviews.message?reviews:reviews.reviews
+    this.setState({searchResult,reviews})
   }
 
   /*
@@ -34,15 +33,12 @@ class BookDetails extends Component {
     this.setState({ reviews });
   };
 
-  handleDeleteReview = async (id) => {
-    const deletedReview = await reviewsAPI.deleteReview(id);
-    const reviewIdx = this.state.reviews.findIndex(
-      (review) => review._id === deletedReview._id
-    );
-    const reviews = [...this.state.reviews];
-    reviews.splice(reviewIdx, 1);
-    this.setState({ reviews });
-  };
+  handleDeleteReview = async id => {
+    console.log(this.state.reviews.filter(review => review._id != id))
+    const reviews = this.state.reviews.filter(review => review._id != id)
+    await reviewsAPI.deleteReview(id)
+    this.setState({ reviews })
+  }
 
   render() {
     const { searchResult, reviews } = this.state;
@@ -136,19 +132,24 @@ class BookDetails extends Component {
               userProfile={this.props.userProfile}
               handleAddReview={this.handleAddReview}
               /> */}
-          {this.props.userProfile?.read.some(
-            (book) => book.api_id == searchResult.id
-          ) && 
-          <ReviewForm2 book={searchResult} />}
+          {this.props.userProfile?.read.some(book=>book.api_id==searchResult.id)&&
+          <ReviewForm book={searchResult} handleAddReview={this.handleAddReview} />
+        }
+      </section>
+        <strong>{reviews.length==0&&"No Reviews"}</strong>
+        {(reviews?.length > 0) &&
+        <section>
           <h3>Reviews:</h3>
           {reviews?.map((review) => (
             <ReviewCard
               userProfile={this.props.userProfile}
               review={review}
               handleDeleteReview={this.handleDeleteReview}
-            />
-          ))}
+              />
+              ))}
         </section>
+        }
+       
       </>
     );
   }

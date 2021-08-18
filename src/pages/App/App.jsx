@@ -10,6 +10,10 @@ import ProfileDetails from '../ProfileDetails/ProfileDetails'
 import * as profileAPI from '../../services/profileService'
 import BookSearch from "../BookSearch/BookSearch";
 import BookDetails from '../BookDetails/BookDetails'
+import AddPost from '../AddPost/AddPost'
+import PostDetails from '../PostDetails/PostDetails'
+import PostLanding from '../PostLanding/PostLanding'
+import PostUpdate from '../PostUpdate/PostUpdate'
 import EditProfileForm from '../../components/EditProfileForm/EditProfileForm'
 // import * as bookAPI from '../../services/bookService'
 
@@ -25,24 +29,13 @@ class App extends Component {
       this.setState({userProfile})
     }
   }
-
-  updateUserProfile = (updatedProfile) =>{
-    this.setState({userProfile:updatedProfile})
-  }
-
+	
 	handleLogout = () => {
     authService.logout();
     this.setState({ user: null, userProfile: null });
 		console.log(this.state)
     this.props.history.push("/");
   };
-
-	async componentDidMount() {
-    if (!this.state.userProfile) {
-      const userProfile = await profileAPI.getUserProfile()
-      this.setState({userProfile})
-    }
-  }
 
   handleSignupOrLogin = async () => {
     this.setState({ user: await authService.getUser(), userProfile: await profileAPI.getUserProfile()});
@@ -66,6 +59,7 @@ class App extends Component {
 	render() {
 		const { user, userProfile } = this.state
 		return (
+			userProfile&&
 			<>
 				<NavBar user={user} userProfile={userProfile} history={this.props.history} handleLogout={this.handleLogout} />
 				<Route exact path='/'>
@@ -85,7 +79,7 @@ class App extends Component {
 						handleFriend={this.handleFriend}
 					/> : <Redirect to="/login" />
 				}/>
-				<Route exact path="/profile" render={({ location }) =>
+				<Route exact path="/profiles/:id" render={({ location }) =>
 					authService.getUser() ?
 					<ProfileDetails 
 						userProfile={userProfile}
@@ -126,6 +120,18 @@ class App extends Component {
 							handleSelect={this.handleSelect}
             /> : <Redirect to='/login' />
         }/>
+				<Route exact path='/posts'>
+					<PostLanding />
+				</Route>
+				<Route exact path='/add'>
+					<AddPost />
+				</Route>
+				<Route exact path='/posts/:id'>
+					<PostDetails/>
+				</Route>
+        <Route exact path='/edit'>
+					<PostUpdate/>
+				</Route>
 			</>
 		)
 	}

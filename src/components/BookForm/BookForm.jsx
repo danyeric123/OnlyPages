@@ -4,7 +4,7 @@ const BookForm = ({book,userProfile,handleAddBook}) => {
   const [formData, setFormData] = useState({
     api_id: book.id,
     title: book.title,
-    coverImage: book.imageLinks?.thumbnail, 
+    coverImage: book.imageLinks?.thumbnail, //will need to be sized consistently
     authors: book.authors,
     publish: book.publishedDate,
     categories: book.categories,
