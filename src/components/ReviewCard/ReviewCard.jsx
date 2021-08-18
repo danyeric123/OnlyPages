@@ -29,7 +29,7 @@ const ReviewCard = ({ fetchedReview, userProfile, handleDeleteReview }) => {
         <button onClick={()=> handleDeleteReview(review._id)}>X</button><br></br>
       </>
       }
-      <LikeButton handleLike={handleLike} post={review}/>
+      <LikeButton userProfile={userProfile} handleLike={handleLike} likes={review.likes}/>
     </>
   );
 }
