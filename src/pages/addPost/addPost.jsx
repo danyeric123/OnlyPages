@@ -1,7 +1,5 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom'
-import PostForm from '../../components/PostForm/PostForm'
-import * as postAPI from '../../services/postService.js'
 
 const AddPost = ({addPost}) => {
   const [title, setTitle] = useState(''); 
@@ -11,6 +9,9 @@ const AddPost = ({addPost}) => {
  const handleSubmit = (e) =>{
    e.preventDefault();
    const post ={ title, body,categories};
+   setBody('')
+   setTitle('')
+   setCategories([])
    addPost(post)
  }
 

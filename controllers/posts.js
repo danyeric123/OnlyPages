@@ -54,7 +54,8 @@ function create(req, res) {
                 .then(profile=>{
                   profile.posts.push(post._id)
                   profile.save()
-                  res.json(post)
+                  post.populate('author').execPopulate()
+                  .then(post=>res.json(post))
                 })
       })
       .catch(err=>{

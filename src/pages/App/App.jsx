@@ -110,7 +110,7 @@ class App extends Component {
             /> : <Redirect to='/login' />
         }/>
 				<Route exact path='/posts'>
-					<PostLanding />
+					<PostLanding userProfile={userProfile} />
 				</Route>
 				<Route exact path='/posts/:id'>
 					<PostDetails userProfile={userProfile}/>

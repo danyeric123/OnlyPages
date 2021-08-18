@@ -5,7 +5,7 @@ import AddPost from "../AddPost/AddPost";
 
 
 
-const PostLanding = () => {
+const PostLanding = ({userProfile}) => {
   
   
   const [posts, setPosts] = useState([])
@@ -30,14 +30,14 @@ const PostLanding = () => {
 
  async function addPost(post){
   const newPost = await postAPI.create(post)
-  setPosts([...posts,newPost])
+  setPosts([newPost,...posts])
  }
 
   return (
     <div className="postlanding">
       <AddPost addPost={addPost}/>
       { isLoading && <div>...loading</div>}
-      {posts && <PostList posts={posts} title="Recent Posts" handleDelete={handleDeletePost} /> } 
+      {posts && <PostList posts={posts} title="Recent Posts" handleDelete={handleDeletePost} userProfile={userProfile} /> } 
      </div>
   );
 }
