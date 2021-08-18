@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom'
 
-const AddPost = ({addPost}) => {
+const AddPost = ({addPost,setPressed}) => {
   const [title, setTitle] = useState(''); 
   const [body, setBody] = useState(''); 
   const [categories, setCategories] = useState([])
@@ -47,9 +47,7 @@ const AddPost = ({addPost}) => {
         onChange={(e) => setBody(e.target.value)}
         ></textarea>
       <button>submit post</button>
-      <Link to="/">
-       <button>cancel</button>
-     </Link>
+       <button onClick={()=>setPressed(false)}> cancel</button>
       </form>
     </div>
   );
