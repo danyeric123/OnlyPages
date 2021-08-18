@@ -101,7 +101,15 @@ function reply(req, res) {
         req.body.author = req.user.profile
         post.replies.push(req.body)
         post.save()
-        .then(()=> {
+        post.populate('author')
+            .populate('likes')
+            .populate({
+              path: 'replies',
+              populate: {
+                path: 'author'
+              }
+            }).execPopulate()
+        .then(post=> {
           res.json(post)
         })
       })

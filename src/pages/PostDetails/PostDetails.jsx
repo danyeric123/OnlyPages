@@ -4,6 +4,7 @@ import React,{ useState, useEffect } from 'react';
 import * as postService from "../../services/postService"
 import ReplyForm from "../../components/ReplyForm/ReplyForm";
 import ReplyCard from "../../components/ReplyCard/ReplyCard";
+import moment from "moment";
 
 const PostDetails = ({userProfile}) => {
   
@@ -40,8 +41,9 @@ const PostDetails = ({userProfile}) => {
       {/* { isLoading && <div>...loading</div>} */}
       {post && (
         <article>
-          <h2>{ post.title }</h2>
-            <h2>posted by { post.author.name }</h2>
+          <h1>{ post.title }</h1>
+            <h3>By: { post.author.name }</h3>
+            <small>Posted on {moment(post.createdAt).fromNow()}</small>
               <p> { post.body }</p> 
         </article>
       )} 

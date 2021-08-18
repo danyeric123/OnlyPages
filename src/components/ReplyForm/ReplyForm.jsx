@@ -6,8 +6,18 @@ const ReplyForm = ({addReply}) => {
 
   const handleSubmit = (e) =>{
     e.preventDefault();
+    submitReply()
+  }
+
+  const submitReply = ()=>{
     setContent('')
     addReply({content})
+  }
+
+  const handleEnter = (e)=>{
+    if(e.key === 'Enter'){
+      submitReply()
+    }
   }
 
   return (
@@ -15,6 +25,7 @@ const ReplyForm = ({addReply}) => {
       <h2>Write a reply</h2>
       <form onSubmit={handleSubmit}>
           <textarea
+          onKeyDown={handleEnter}
           required
           id="body"
           value={content}
