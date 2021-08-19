@@ -1,43 +1,29 @@
-import React, { Component } from 'react'
+import React, { useState,useRef } from 'react'
 import { Link } from 'react-router-dom'
 // import styles from './EditProfileForm.module.css'
-import * as profileService from '../../services/profileService'
 
-class EditProfileForm extends Component {
-  state = {
-    name: this.props.userProfile.name,
-    email: this.props.user.email,
-    avatar: this.props.userProfile.avatar,
-  }
+const EditProfileForm = ({userProfile,user,updateUserProfile,history}) => {
+  const [name, setName] = useState(userProfile.name)
+  const [email, setEmail] = useState(user.email)
+  const [avatar, setAvatar] = useState(userProfile.avatar)
+  const [validForm, setValidForm] = useState(true)
 
-  handleChange = e => {
-    this.setState({
-      [e.target.name]: e.target.value,
-    })
-  }
-
-
-  handleSubmit = async e => {
+  const handleSubmit = async e => {
     e.preventDefault()
     try {
-      this.props.updateUserProfile(this.state)
-      this.props.history.push(`/profiles/${this.props.userProfile._id}`)
+      updateUserProfile({name,email,avatar})
+      history.push(`/profiles/${userProfile._id}`)
     } catch (err) {
       console.log(err)
     }
   }
-
-  isFormInvalid() {
-    const { name, email } = this.state
-    return !(name && email )
-  }
-
-  render() {
-    const { name, email, avatar} = this.state
-    return (
+  
+  return (
+    <>
       <form
         autoComplete="off"
-        onSubmit={this.handleSubmit}
+        onSubmit={handleSubmit}
+        // onChange={()=>setValidForm(!(name&&email))}
       >
         <div >
           <label htmlFor="name" >
@@ -49,7 +35,7 @@ class EditProfileForm extends Component {
             id="name"
             value={name}
             name="name"
-            onChange={this.handleChange}
+            onChange={({target})=>setName(target.value)}
           />
         </div>
         <div >
@@ -62,7 +48,7 @@ class EditProfileForm extends Component {
             id="avatar"
             value={avatar}
             name="avatar"
-            onChange={this.handleChange}
+            onChange={({target})=>setAvatar(target.value)}
           />
         </div>
         <div >
@@ -73,18 +59,18 @@ class EditProfileForm extends Component {
             id="email"
             value={email}
             name="email"
-            onChange={this.handleChange}
+            onChange={({target})=>setEmail(target.value)}
           />
         </div>
         <div >
-            <button disabled={this.isFormInvalid()} >SUBMIT</button>
-          <Link to={`/profiles/${this.props.userProfile._id}`}>
+            <button disabled={validForm} >SUBMIT</button>
+          <Link to={`/profiles/${userProfile._id}`}>
             <button>Cancel</button>
           </Link>
         </div>
       </form>
-    )
-  }
+    </>
+  )
 }
 
 export default EditProfileForm
