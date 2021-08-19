@@ -99,15 +99,6 @@ class BookDetails extends Component {
             <p>PageCount: {searchResult.volumeInfo?.pageCount} pages</p>
           )}
         </section>
-        {/*  <section>
-          *************
-          <p>Categories To Search For Similar Books</p>
-          <ul>
-            {searchResult.volumeInfo?.categories?.map((category) => (
-              <li key={category}>{category}</li>
-            ))}
-          </ul>
-        </section> */}
         <div>*************</div>
         <section>
           <p>
@@ -125,12 +116,6 @@ class BookDetails extends Component {
 
         <div>*************</div>
         <section>
-          {/* Put reviews form here */}
-          <h2>What did you think of this book? Leave a review!</h2>
-          {/* <ReviewForm
-              userProfile={this.props.userProfile}
-              handleAddReview={this.handleAddReview}
-              /> */}
           {this.props.userProfile?.read.some(book=>book.api_id==searchResult.id)&&
           <ReviewForm book={searchResult} handleAddReview={this.handleAddReview} />
         }

@@ -1,82 +1,69 @@
-import React, { Component } from 'react'
+// import { useLocation, useHistory } from "react-router-dom";
+import React, { useState, useEffect, useRef } from "react";
 import { FaStar, FaRegStar } from "react-icons/fa";
 
-class ReviewForm extends Component {
-  state = {
-    invalidForm: true,
-    formData: {
-      content: '',
-      rating: 1,
-      book: this.props.book.id
-    },
-    stars: [true,false,false,false]
+const ReviewForm = ({book,handleAddReview}) => {
+
+  const [content, setContent] = useState('')
+  const [rating, setRating] = useState(1)
+  const [invalidForm, setInvalidForm] = useState(true)
+  const [stars, setStars] = useState([true,false,false,false,false])
+  const formRef = useRef()
+
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const formData = {
+      content,
+      rating,
+      book: book.id
+    }
+    handleAddReview(formData)
+    setContent('');
+    setRating(1)
+    setStars([true,false,false,false])
+    setInvalidForm(true)
   }
 
-  formRef = React.createRef();
-
-	handleChange = e => {
-		const formData = {...this.state.formData, [e.target.name]: e.target.value};
-		this.setState({
-		formData,
-		invalidForm: !this.formRef.current.checkValidity()
-		});
-	};
-
-  handleSubmit = e => {
-		e.preventDefault();
-    this.props.handleAddReview(this.state.formData)
-    this.setState({
-      invalidForm: true,
-    formData: {
-      content: '',
-      rating: 1,
-      book: this.props.book.id
-    },
-    stars:[true,false,false,false]
-    })
-  };
-
-  changeRating = (idx) =>{
-    console.log("clicked")
+  const changeRating = (idx) =>{
     let newRating = Array(5).fill(false)
     for(let i = 0; i<=idx;i++){
       newRating[i] = true
     }
-    this.setState({stars:newRating,formData:{...this.state.formData,rating:idx+1}})
+    setRating(idx+1)
+    setStars(newRating)
   }
-  
-  render() {
-    const {stars} = this.state
-    return (
-      <>
-        <form
-        ref={this.formRef}
-        onSubmit={this.handleSubmit}
-      >
 
-        <textarea
-          type="text"
-          name="content"
-          rows="4"
-          value={this.state.formData.content}
-          onChange={this.handleChange}
-          required
-        />
-        <label htmlFor="rating">Rating</label>
+  return (
+    <>
+    <h2>What did you think of this book? Leave a review!</h2>
+        <form
+        ref={formRef}
+        onChange={()=>setInvalidForm(!formRef)}
+        onSubmit={handleSubmit}
+      >
+      <textarea
+        type="text"
+        name="content"
+        rows="4"
+        value={content}
+        onChange={({target}) => setContent(target.value)}
+        required
+      />
+      <label htmlFor="rating">Rating</label>
         {stars.map((star,idx)=>star?
-          <FaStar onClick={()=>this.changeRating(idx)}/>:
-          <FaRegStar onClick={()=>this.changeRating(idx)}/>
+          <FaStar onClick={()=>changeRating(idx)}/>:
+          <FaRegStar onClick={()=>changeRating(idx)}/>
         )}
         <button
           type="submit"
-    			disabled={this.state.invalidForm}
+    			disabled={invalidForm}
           >
 				  Add Review
         </button>         
       </form>
-      </>
-    );
-  }
-}
- 
+  </>
+);
+};
+  
 export default ReviewForm;
