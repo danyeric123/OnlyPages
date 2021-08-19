@@ -12,20 +12,20 @@ const BookCard = ({ book, userProfile, handleAddBook, handleRemoveBook }) => {
   book.id = id;
 
   return (
-    <div className="md:p-8 p-2 rounded-lg bg-white border border-green-500 mx-2 my-2 md:w-full">
-      <section className="border border-purple-500 p-2">
+    <div className="md:p-8 p-2 rounded-lg bg-white border  mx-2 my-2 md:w-full">
+      <section className="border  p-2">
         {book.imageLinks ? (
           <img
             src={`${book.imageLinks?.thumbnail}`}
             alt={`${book.title} front cover`}
-            className=" border border-indigo-500  w-screen md:w-full lg:w-full"
+            className=" border   w-screen md:w-full lg:w-full"
           />
         ) : (
           <FaBook size={70} />
         )}
       </section>
 
-      <section className="border border-purple-500 p-2">
+      <section className="border  p-2">
         {/*  <a href={`/books/${id}`}>
           <h1>{book.title}</h1>
         </a> */}
@@ -46,7 +46,8 @@ const BookCard = ({ book, userProfile, handleAddBook, handleRemoveBook }) => {
           <button className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-300 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">More Details</button>
         </Link>
       </section>
-      <section className="border border-red-500 my-1">
+
+      <section className="border my-1">
         <BookForm
           book={book}
           userProfile={userProfile}
