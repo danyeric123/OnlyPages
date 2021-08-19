@@ -1,22 +1,23 @@
 import React, { useEffect, useState } from "react";
 import { FaUserCircle } from "react-icons/fa";
-import { Link } from "react-router-dom/cjs/react-router-dom.min";
+import { Link, useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { getProfile } from "../../services/profileService";
 
 const ProfileDetails = ({location,userProfile}) => {
-  const id = location.pathname.split('/').reverse()[0]
+  const {id} = useParams()
   const [profile, setProfile] = useState(null)
   
   useEffect(() => {
     const fetchProfile = async () => {
       const profileFetched = await getProfile(id);
       setProfile(profileFetched);
+      console.log("ehy")
     };
     fetchProfile();
   }, [id]);
 
   return (
-    profile &&
+    profile && userProfile&&
     <>
     <h1>{profile.name}'s Profile</h1>
       {profile.avatar?
