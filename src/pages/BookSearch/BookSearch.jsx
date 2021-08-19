@@ -29,7 +29,7 @@ class BookSearch extends Component {
   render() {
     return (
       <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-        <h1>Book Search Results</h1>
+        <h1 className="font-bold text-black-500 text-xl text-center">Book Search Results</h1>
         {this.state.searchResults?.map((book) => (
           <>
             <BookCard
