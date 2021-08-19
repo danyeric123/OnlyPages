@@ -12,20 +12,20 @@ const BookCard = ({ book, userProfile, handleAddBook, handleRemoveBook }) => {
   book.id = id;
 
   return (
-    <div className="md:p-8 p-2 rounded-lg bg-white border mx-2 my-2 md:w-full">
+    <div className="md:p-8 p-2 h-90 bg-white border border-blue-100 mx-2 my-2 md:w-full">
       {/* <section className="border border border-red-500 p-2"> */}
         {book.imageLinks ? (
           <img
             src={`${book.imageLinks?.thumbnail}`}
             alt={`${book.title} front cover`}
-            className="my-2 w-screen md:w-full lg:w-full"
+            className="flex justify-center card__media  w-screen md:w-full object-contain h-60 w-full"
           />
         ) : (
-          <FaBook size={70} />
+          <FaBook size={70} className="flex justify-center card__media  w-screen md:w-full object-contain h-60 w-full" />
         )}
       {/* </section> */}
 
-      <section className="p-2 text-black-500 text-center">
+      <section className="p-1 text-black-500 text-center">
         {/*  <a href={`/books/${id}`}>
           <h1>{book.title}</h1>
         </a> */}
@@ -36,18 +36,18 @@ const BookCard = ({ book, userProfile, handleAddBook, handleRemoveBook }) => {
         Subtitle: {book.subtitle ? <p>Subtitle: {book.subtitle}</p> : "N/A"}
       </p> */}
         <p className="p-2">{book.subtitle && <p className="p-2">Subtitle: {book.subtitle}</p>}</p>
-        <p className="p-2">Author(s): {book.authors ? book.authors.join(", ") : "N/A"}</p>
-        <p className="p-2">
+        <p className="p-1">Author(s): {book.authors ? book.authors.join(", ") : "N/A"}</p>
+        <p className="p-1">
           Published Date: {moment(book.publishedDate).format("MMMM Do, YYYY")}
         </p>
         {/* {book.description} */}
-        <p className="p-4 my-2 object-contain overflow-auto h-48 border border-red-600">Description: {book.description ? book.description : "N/A"}</p>
+        <p className="p-2 my-2 object-contain overflow-auto h-48 border border-black-600">Description: {book.description ? book.description : "N/A"}</p>
         <Link to={`/books/${id}`}>
-          <button className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-300 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">READ MORE</button>
+          <button className="group relative w-full flex justify-center py-1 border border-transparent text-sm font-medium rounded-md text-white bg-blue-700 hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">READ MORE</button>
         </Link>
       </section>
 
-      <section className="my-1 p-2">
+      <section className="my-1 px-2 h-20">
         <BookForm
           book={book}
           userProfile={userProfile}

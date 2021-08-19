@@ -33,14 +33,14 @@ const BookForm = ({book,userProfile,handleAddBook}) => {
 
   return (
     <>
-      <select onChange={handleSelect} className="border border-red-500 my-1">
+      <select onChange={handleSelect} className="border border-blue-500 my-1 group relative w-full flex justify-center py-1 border border-transparent text-sm font-medium rounded-md">
         {collections.map((collection,idx)=>{
             return (
               <option key={idx} value={collection}>{collection.replace(/([A-Z])/g, ' $1').replace(/^./, function(str){ return str.toUpperCase(); })}</option>
             )
         })}
         </select>
-        <button onClick={handleClick} className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-300 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" >ADD BOOK TO COLLECTION</button>
+        <button onClick={handleClick} className="group relative w-full flex justify-center py-1 border border-transparent text-sm font-medium rounded-md text-white bg-blue-700 hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" >ADD BOOK TO COLLECTION</button>
          <br />
         <br />
         
