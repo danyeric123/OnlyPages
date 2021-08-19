@@ -5,7 +5,6 @@ const PostList = ({ posts, title, handleDelete, userProfile }) => {
  return (
     <div className="postlist">
       <h2>{title} Posts</h2>
-  {/* \/ this render all post on by\/*/}
       {posts.map((post) => (
         <div className="PL" key={post._id}>
           <Link 
@@ -15,8 +14,7 @@ const PostList = ({ posts, title, handleDelete, userProfile }) => {
             }
           }>
           <h2>{ post.title }</h2>
-          <p>Posted by 
-            <Link to={`/profiles/${post.author._id}`}>
+          <p>Posted by <Link to={`/profiles/${post.author._id}`}>
             { post.author.name }
             </Link>
           </p>
