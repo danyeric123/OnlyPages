@@ -1,3 +1,18 @@
+ /* "build:css": "postcss src/assets/tailwind.css -o src/assets/main.css",
+    "watch:css": "postcss src/assets/tailwind.css -o src/assets/main.css" */
+
+"devDependencies": {
+    "autoprefixer": "^10.3.1",
+    "postcss": "^8.3.6",
+    "tailwindcss": "^2.2.7"
+  }
+
+
+
+
+
+
+  
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import SearchForm from "../SearchForm/SearchForm";

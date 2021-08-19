@@ -1,4 +1,5 @@
 import React, { useEffect,useState } from "react";
+import { Button } from "../Button/Button";
 
 const BookForm = ({book,userProfile,handleAddBook}) => {
   const [formData, setFormData] = useState({
@@ -40,7 +41,7 @@ const BookForm = ({book,userProfile,handleAddBook}) => {
         })}
         </select>
       
-        <button onClick={handleClick}>ADD BOOK TO COLLECTION</button>
+        <Button onClick={handleClick}>ADD BOOK TO COLLECTION</Button>
          <br />
         <br />
         

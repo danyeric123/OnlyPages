@@ -10,6 +10,7 @@ import { router as postsRouter } from './routes/posts.js'
 import { router as boardsRouter } from './routes/boards.js'
 import { router as reviewsRouter } from './routes/reviews.js'
 import('./config/database.js')
+//import('postcss.config.cjs')
 
 const app = express()
 

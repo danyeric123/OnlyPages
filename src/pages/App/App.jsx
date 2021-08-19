@@ -14,7 +14,8 @@ import PostDetails from '../PostDetails/PostDetails'
 import PostLanding from '../PostLanding/PostLanding'
 import PostUpdate from '../PostUpdate/PostUpdate'
 import EditProfileForm from '../../components/EditProfileForm/EditProfileForm'
-// import * as bookAPI from '../../services/bookService'
+//import "tailwindcss/tailwind.css"
+import { FillButton } from 'tailwind-react-ui'/* this is to test if tailwind-react-ui works without installing craco etc */
 
 class App extends Component {
 	state = {
@@ -56,9 +57,11 @@ class App extends Component {
   }
 
 	render() {
-		const { user, userProfile } = this.state
+		const { user, userProfile } = this.state;
 		return (
-			<>
+      <>
+      <FillButton brand="primary">tailwind react-ui render test</FillButton>{/* /* this is to test if tailwind-react-ui works without installing craco etc */ }
+
 				<NavBar user={user} userProfile={userProfile} history={this.props.history} handleLogout={this.handleLogout} />
 				<Route exact path='/'>
           <Landing user={userProfile} />
