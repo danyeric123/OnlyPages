@@ -1,5 +1,4 @@
-this is katia's test!
-this is zigg's test!
+
 # OnlyPages
 
 ## Table of Contents
@@ -24,6 +23,7 @@ this is zigg's test!
 I'm a fan of your works
 
  OUR PURPOSE:
+ Is to create a community of readers to discuss their favorite books and celebrate their favorite authors
 
 
 
@@ -44,7 +44,15 @@ https://trello.com/b/psQLIPk4/project-3
 https://lucid.app/lucidchart/4b528971-dbfd-46b1-be0a-a62d272b06cc/edit?shared=true&page=0_0#
 # **SCREENSHOTS:**
 
+![Screen Shot 2021-08-16 at 10 05 03 AM](https://user-images.githubusercontent.com/86076993/130143411-02b56ba3-f2ab-4bba-932a-03b59663845a.png)
+![Screen Shot 2021-08-16 at 10 05 55 AM](https://user-images.githubusercontent.com/86076993/130143475-97b1c158-a937-453d-9c03-96c630d301c2.png)
+![Screen Shot 2021-08-16 at 10 05 44 AM](https://user-images.githubusercontent.com/86076993/130143515-f40f7740-892f-47fb-bbe5-c2021621911e.png)
+![Screen Shot 2021-08-16 at 10 04 51 AM](https://user-images.githubusercontent.com/86076993/130143527-6ddb2ac4-9133-4f2b-9007-9526b40f303e.png)
 
+![Screen Shot 2021-08-19 at 4 52 25 PM](https://user-images.githubusercontent.com/86076993/130143558-c093e9e4-de66-421c-ae8b-a7f428f627fc.png)
+![Screen Shot 2021-08-19 at 4 51 29 PM](https://user-images.githubusercontent.com/86076993/130143609-e0d3fb03-0c58-42cb-95b3-2e7c667a5279.png)
+![Screen Shot 2021-08-19 at 4 52 17 PM](https://user-images.githubusercontent.com/86076993/130143634-70dba556-11cd-43a6-b488-785669aa201b.png)
+![Screen Shot 2021-08-19 at 4 51 55 PM](https://user-images.githubusercontent.com/86076993/130143645-62fba9e6-4c0c-4042-8aec-7080b9c2027e.png)
 
 
 # **SAMPLECODE:**
@@ -105,6 +113,10 @@ POSTMAN:
 
 API:
 
+
+![download](https://user-images.githubusercontent.com/86076993/130146196-1bd415fd-c34a-4f17-bf6c-0a351067657e.png)
+ 
+
 BOOTSTRAP:
 
 
@@ -152,6 +164,9 @@ MONGODB:
 MORE
 
 # **RESOURCES**
+google
+css trick
+youtube
 
 
 # **CREDIT**
