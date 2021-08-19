@@ -9,11 +9,14 @@ import ProfileList from "../ProfileList/ProfileList";
 import ProfileDetails from "../ProfileDetails/ProfileDetails";
 import * as profileAPI from "../../services/profileService";
 import BookSearch from "../BookSearch/BookSearch";
-import BookDetails from "../BookDetails/BookDetails";
-import PostDetails from "../PostDetails/PostDetails";
-import PostLanding from "../PostLanding/PostLanding";
-import PostUpdate from "../PostUpdate/PostUpdate";
-import EditProfileForm from "../../components/EditProfileForm/EditProfileForm";
+import BookDetails from '../BookDetails/BookDetails'
+import PostDetails from '../PostDetails/PostDetails'
+import PostLanding from '../PostLanding/PostLanding'
+import PostUpdate from '../PostUpdate/PostUpdate'
+import EditProfileForm from '../EditProfileForm/EditProfileForm'
+import PostList from '../../components/PostList/PostList'
+import PostCategory from '../../components/PostCategory/PostCategory'
+// import * as bookAPI from '../../services/bookService
 import "tailwindcss/tailwind.css"
 
 class App extends Component {
@@ -23,9 +26,9 @@ class App extends Component {
   };
 
   async componentDidMount() {
-    if (!this.state.userProfile) {
-      const userProfile = await profileAPI.getUserProfile();
-      this.setState({ userProfile });
+    if (!this.state.userProfile&&this.state.user) {
+      const userProfile = await profileAPI.getUserProfile()
+      this.setState({userProfile})
     }
   }
 
@@ -43,10 +46,14 @@ class App extends Component {
     });
   };
 
-  handleFriend = async (friendId) => {
-    const updatedProfile = await profileAPI.friendAndUnfriend(friendId);
-    this.setState({ userProfile: updatedProfile });
-  };
+	updateUserProfile = async (update) =>{
+		this.setState({userProfile: await profileAPI.update(this.state.userProfile._id, update)})
+	}
+
+	handleFriend = async (friendId) => {
+    const updatedProfile = await profileAPI.friendAndUnfriend(friendId)
+    this.setState({userProfile: updatedProfile})
+  }
 
   handleAddBook = async (book, collection) => {
     const updatedProfile = await profileAPI.addBook(book, collection);
@@ -78,54 +85,35 @@ class App extends Component {
             handleSignupOrLogin={this.handleSignupOrLogin}
           />
         </Route>
-        <Route exact path="/login">
-          <Login
-            handleSignupOrLogin={this.handleSignupOrLogin}
-            history={this.props.history}
-          />
+				<Route exact path="/users" render={() =>
+					authService.getUser() ?
+					<ProfileList 
+						userProfile={userProfile}
+						// Pass the functions as props to this component
+						handleFriend={this.handleFriend}
+					/> : <Redirect to="/login" />
+				}/>
+				<Route exact path='/login'>
+          <Login handleSignupOrLogin={this.handleSignupOrLogin} history={this.props.history}/>
         </Route>
-        <Route
-          exact
-          path="/users"
-          render={() =>
-            authService.getUser() ? (
-              <ProfileList
-                userProfile={userProfile}
-                // Pass the functions as props to this component
-                handleFriend={this.handleFriend}
-              />
-            ) : (
+				<Route exact path="/profile/edit" render={({ location }) =>
+					authService.getUser() ?
+					<EditProfileForm
+						userProfile={userProfile}
+						user={user}
+            history={this.props.history}
+          />: (
               <Redirect to="/login" />
             )
-          }
-        />
-        <Route
-          exact
-          path="/profiles/:id"
-          render={({ location }) =>
-            authService.getUser() ? (
-              <ProfileDetails userProfile={userProfile} location={location} />
-            ) : (
-              <Redirect to="/login" />
-            )
-          }
-        />
-        <Route
-          exact
-          path="/profile/edit"
-          render={({ location }) =>
-            authService.getUser() ? (
-              <EditProfileForm
-                userProfile={userProfile}
-                location={location}
-                history={this.props.history}
-                updateUserProfile={this.updateUserProfile}
-              />
-            ) : (
-              <Redirect to="/profile" />
-            )
-          }
-        />
+          }/>
+
+			<Route exact path="/profiles/:id" render={({ location }) =>
+					authService.getUser() ?
+					<ProfileDetails 
+						userProfile={userProfile}
+						location={location}
+					/> : <Redirect to="/login" />
+				}/>
         <Route
           exact
           path="/search/:query"
@@ -141,36 +129,31 @@ class App extends Component {
             )
           }
         />
-        <Route
-          exact
-          path="/books/:id"
-          render={({ match }) =>
-            authService.getUser() ? (
-              <BookDetails
-                match={match}
-                userProfile={userProfile}
-                handleAddBook={this.handleAddBook}
-                handleRemoveBook={this.handleRemoveBook}
-                handleSelect={this.handleSelect}
-              />
-            ) : (
-              <Redirect to="/login" />
-            )
-          }
-        />
-        <Route exact path="/posts">
-          <PostLanding userProfile={userProfile} />
-        </Route>
-        <Route exact path="/posts/:id">
-          <PostDetails userProfile={userProfile} />
-        </Route>
-        <Route exact path="/edit">
-          <PostUpdate />
-        </Route>
-          
-      </>
-    );
-  }
+				<Route exact path='/books/:id' render={({ match }) => 
+          authService.getUser() ?
+            <BookDetails 
+              match={match}
+              userProfile={userProfile}
+							handleAddBook={this.handleAddBook}
+							handleRemoveBook={this.handleRemoveBook}
+							handleSelect={this.handleSelect}
+            /> : <Redirect to='/login' />
+        }/>
+				<Route exact path='/posts'>
+					<PostLanding userProfile={userProfile} />
+				</Route>
+				<Route exact path='/posts/category/:categoryName'>
+					<PostCategory userProfile={userProfile} />
+				</Route>
+				<Route exact path='/posts/:id'>
+					<PostDetails userProfile={userProfile}/>
+				</Route>
+        <Route exact path='/edit'>
+					<PostUpdate/>
+				</Route>
+			</>
+		)
+	}
 }
 
 export default App;

@@ -27,6 +27,14 @@ export function getPost(id) {
     { mode: "cors" })
   .then(res => res.json());
 }
+
+export function getCategory(category) {
+  return fetch(`${BASE_URL}/category/${category}`,
+    {headers: { Authorization: "Bearer " + tokenService.getToken() }},
+    { mode: "cors" })
+  .then(res => res.json());
+}
+
 export function deleteOne(id) {
   return fetch(`${BASE_URL}/${id}`,
     {headers: { Authorization: "Bearer " + tokenService.getToken() },

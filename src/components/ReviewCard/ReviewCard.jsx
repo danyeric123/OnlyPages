@@ -2,6 +2,7 @@ import React,{useState} from 'react';
 import LikeButton from '../LikeButton/LikeButton';
 import * as reviewsAPI from '../../services/reviewService'
 import { FaStar, FaRegStar } from "react-icons/fa";
+import moment from 'moment';
 
 const ReviewCard = ({ fetchedReview, userProfile, handleDeleteReview }) => {
   
@@ -24,6 +25,7 @@ const ReviewCard = ({ fetchedReview, userProfile, handleDeleteReview }) => {
       <h5>{review.content}</h5>
       {starRating()}
       <h5>by {review.author.name}</h5>
+      <small>Posted on {moment(review.createdAt).fromNow()}</small>
       {review.author._id === userProfile._id &&
       <>
         <button onClick={()=> handleDeleteReview(review._id)}>X</button><br></br>

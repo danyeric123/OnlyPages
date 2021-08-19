@@ -3,10 +3,10 @@ import { FaUserCircle } from "react-icons/fa";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import { getProfile } from "../../services/profileService";
 
-const ProfileDetails = ({ location, userProfile }) => {
-  const id = location.pathname.split("/").reverse()[0];
-  const [profile, setProfile] = useState(null);
-
+const ProfileDetails = ({location,userProfile}) => {
+  const id = location.pathname.split('/').reverse()[0]
+  const [profile, setProfile] = useState(null)
+  
   useEffect(() => {
     const fetchProfile = async () => {
       const profileFetched = await getProfile(id);
@@ -16,32 +16,22 @@ const ProfileDetails = ({ location, userProfile }) => {
   }, [id]);
 
   return (
-    profile && (
-      <>
-        <h1>{profile.name}'s Profile</h1>
-        {profile.avatar ? (
-          <img
-            src={profile.avatar}
-            alt={profile.name}
-            avatar
-            className="inline-block h-60 w-60 rounded-full ring-2 ring-white"
-          />
-        ) : (
-          <FaUserCircle size={70} />
-        )}
-        <br />
-        <br />
-        {/*!!!!!!!!!!!!!!!! should only show if its my profile */}
-        {/* { !(userProfile?._id === profile._id) &&  */}
-        <div>
-          <Link to="/profile/edit">
-            <button className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-300 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
-              EDIT BUTTON
-            </button>
-          </Link>
-        </div>
-        {/*!!!!!!!!!!!!!!!! should only show if its my profile */}
-        <br />
+    profile &&
+    <>
+    <h1>{profile.name}'s Profile</h1>
+      {profile.avatar?
+        <img
+        src={profile.avatar}
+        alt={profile.name}
+        avatar
+        className="inline-block h-60 w-60 rounded-full ring-2 ring-white"
+      />:
+        <FaUserCircle size={70} />
+      }
+      {userProfile._id===profile._id&&<Link to="/profile/edit">
+      <button className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-300 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+        EDIT BUTTON</button></Link>}
+  
         <h2>Friends List</h2>
         {profile.friends.map((friend) => (
           <>
@@ -52,7 +42,9 @@ const ProfileDetails = ({ location, userProfile }) => {
               }}
             >
               {friend.avatar ? (
-                <img src={friend.avatar} alt={friend.name} avatar />
+                <img 
+                className="inline-block h-60 w-60 rounded-full ring-2 ring-white"
+                src={friend.avatar} alt={friend.name} avatar />
               ) : (
                 <FaUserCircle size={70} />
               )}
@@ -100,7 +92,6 @@ const ProfileDetails = ({ location, userProfile }) => {
         </div>
       </>
     )
-  );
 };
 
 export default ProfileDetails;

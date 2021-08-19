@@ -14,6 +14,7 @@ import('./config/database.js')
 
 const app = express()
 
+app.use(express.static(path.join(path.dirname(fileURLToPath(import.meta.url)),'build')))
 app.use(cors())
 app.use(logger('dev'))
 app.use(express.json())
@@ -24,10 +25,10 @@ app.use('/reviews', reviewsRouter)
 app.use('/boards', boardsRouter)
 app.use('/auth', authRouter)
 
-app.get('/*', function (req, res) {
-  res.sendFile(
-    path.dirname(fileURLToPath(import.meta.url), 'build', 'index.html')
-  )
+app.get("/*", function (req, res) {
+	res.sendFile(
+		path.join(path.dirname(fileURLToPath(import.meta.url)), "build", "index.html")
+	)
 })
 
 const port = process.env.PORT || 3001

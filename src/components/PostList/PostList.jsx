@@ -4,7 +4,7 @@ const PostList = ({ posts, title, handleDelete, userProfile }) => {
   
  return (
     <div className="postlist">
-      <h2>{title}</h2>
+      <h2>{title} Posts</h2>
   {/* \/ this render all post on by\/*/}
       {posts.map((post) => (
         <div className="PL" key={post._id}>

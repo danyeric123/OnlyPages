@@ -6,7 +6,7 @@ import ReplyForm from "../../components/ReplyForm/ReplyForm";
 import ReplyCard from "../../components/ReplyCard/ReplyCard";
 import moment from "moment";
 import LikeButton from "../../components/LikeButton/LikeButton";
-
+import postDetailsCss from "./PostDetail.modules.css"
 const PostDetails = ({userProfile}) => {
   
 
@@ -37,25 +37,48 @@ const PostDetails = ({userProfile}) => {
   }
 
   return (
-   post&&
-    <div className="postlanding">
+      post&&
+      <div id="wrapper">
+      <div id="container">
+      <section id="openbook">
+      
       {/* { isLoading && <div>...loading</div>} */}
       {post && (
-        <article>
+     
+        <article >
           <h1>{ post.title }</h1>
             <h3>By: { post.author.name }</h3>
             <small>Posted on {moment(post.createdAt).fromNow()}</small>
-              <p> { post.body }</p> 
+              <p> { post.body }</p>
+              {post.categories.map(cat=>{
+                return (
+                  <Link
+                    to={{
+                      pathname: `/posts/category/${cat}`,
+                    }}
+                  >
+                  <small>
+                    {cat}
+                  </small>
+                  </Link>
+                )
+              })}
         </article>
-      )} 
+      )}
      {post.author._id===userProfile._id&&<Link to={{pathname:'/edit',state:post}}>
        <button>Edit post</button>
      </Link>}
       <LikeButton handleLike={handleLike} likes={post.likes} />
+      <div>
       <ReplyForm addReply={addReply} />
-      <h2>Replies</h2>
+      <h2 class="replies">Replies</h2>
       {post.replies.map(reply=><ReplyCard reply={reply} deleteReply={deleteReply} userProfile={userProfile} />)}
-     </div>
+      </div>
+      
+    </section>
+    </div>
+    </div>
+    
   );
 }
 
