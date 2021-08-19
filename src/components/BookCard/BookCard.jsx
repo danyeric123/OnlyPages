@@ -11,10 +11,9 @@ const BookCard = ({ book, userProfile, handleAddBook, handleRemoveBook }) => {
   book.id = id;
 
   return (
-    <div className="max-w-sm rounded overflow-hidden shadow-lg my-4
-    border-red-50">
+    <div className="md:p-8 p-2 bg-white border border-red-300 mx-2 my-2">
       
-      <section className="border-red-50">
+      <section className=" border border-red-300">
    {/*      <a href={`/books/${id}`}>
           {book.imageLinks ? (
             <img
@@ -29,7 +28,7 @@ const BookCard = ({ book, userProfile, handleAddBook, handleRemoveBook }) => {
           {book.imageLinks ? (
             <img
               src={`${book.imageLinks?.thumbnail}`}
-              alt={`${book.title} front cover`}
+              alt={`${book.title} front cover`} className=" border border-indigo-500 px-3 py-3"
             />
           ) : (
             <FaBook size={70} />
