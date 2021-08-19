@@ -49,7 +49,20 @@ const PostDetails = ({userProfile}) => {
           <h1>{ post.title }</h1>
             <h3>By: { post.author.name }</h3>
             <small>Posted on {moment(post.createdAt).fromNow()}</small>
-              <p> { post.body }</p> 
+              <p> { post.body }</p>
+              {post.categories.map(cat=>{
+                return (
+                  <Link
+                    to={{
+                      pathname: `/posts/category/${cat}`,
+                    }}
+                  >
+                  <small>
+                    {cat}
+                  </small>
+                  </Link>
+                )
+              })}
         </article>
       )}
      {post.author._id===userProfile._id&&<Link to={{pathname:'/edit',state:post}}>

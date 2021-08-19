@@ -41,7 +41,7 @@ const PostLanding = ({userProfile}) => {
       }
       {pressed&&<AddPost setPressed={setPressed} addPost={addPost}/>}
       { isLoading && <div>...loading</div>}
-      {posts && <PostList posts={posts} title="Recent Posts" handleDelete={handleDeletePost} userProfile={userProfile} /> } 
+      {posts && <PostList posts={posts} title="Recent" handleDelete={handleDeletePost} userProfile={userProfile} /> } 
      </div>
   );
 }

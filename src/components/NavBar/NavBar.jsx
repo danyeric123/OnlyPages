@@ -28,25 +28,14 @@ const NavBar = ({ user, userProfile, handleLogout, history }) => {
                Users</Link>
               </li>
               <li>
-            {/*   {userProfile.avatar ? (
-                    <img src={userProfile.avatar} alt={userProfile.name} avatar />
-                  ) : (
-                    <FaUserCircle size={70} style={{ color: "blue" }} />
-                  )} */}
                   <FaUserCircle size={30} style={{ color: "blue" }} />
                 <Link
                   to={{
-                    pathname: "/profile",
-                    state: { profile: userProfile },
+                    pathname: `/profiles/${userProfile?._id}`
                   }}
                 >
                   My Profile
                 </Link>
-              </li>
-							<li>
-							<Link to={{
-									pathname: `/profiles/${userProfile?._id}`
-								}} >My Profile</Link>
               </li>
 							<li>
 								<Link to='/posts'>All Posts</Link>
