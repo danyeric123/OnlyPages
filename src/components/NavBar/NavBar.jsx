@@ -8,7 +8,7 @@ import { FaComments } from "react-icons/fa";
 import { FaTimes } from "react-icons/fa"; /* for mobil menu */
 import { FaBars } from "react-icons/fa"; /* for mobil menu */
 import { Button } from "../Button/Button";
-import "./Navbar.css";
+// import "./Navbar.css";
 // import { BiSearch } from "react-icons/fa";
 
 const NavBar = ({ user, userProfile, handleLogout, history }) => {
@@ -64,7 +64,7 @@ const NavBar = ({ user, userProfile, handleLogout, history }) => {
                   pathname: `/profiles/${userProfile?._id}`,
                 }}
               >
-                <FaUserCircle size={30} style={{ color: "blue" }} />My Profile
+                <FaUserCircle size={30} style={{ color: "blue" }} className="nav-links"/>My Profile
               </Link>
             </li>
             <li className="nav-links">

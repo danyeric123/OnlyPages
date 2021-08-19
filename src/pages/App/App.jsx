@@ -14,7 +14,7 @@ import PostDetails from "../PostDetails/PostDetails";
 import PostLanding from "../PostLanding/PostLanding";
 import PostUpdate from "../PostUpdate/PostUpdate";
 import EditProfileForm from "../../components/EditProfileForm/EditProfileForm";
-//import "tailwindcss/tailwind.css"
+import "tailwindcss/tailwind.css"
 
 class App extends Component {
   state = {
