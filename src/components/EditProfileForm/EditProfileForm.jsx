@@ -82,7 +82,7 @@ class EditProfileForm extends Component {
         </div>
         <div >
             <button disabled={this.isFormInvalid()} >SUBMIT</button>
-          <Link to="/">
+          <Link to="/profile">
             <button>Cancel</button>
           </Link>
         </div>

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import * as bookAPI from "../../services/bookService";
 import ReviewForm from "../../components/ReviewForm/ReviewForm";
-import ReviewForm2 from "../../components/ReviewForm2/ReviewForm2";
+// import ReviewForm2 from "../../components/ReviewForm2/ReviewForm2";
 import BookForm from "../../components/BookForm/BookForm";
 import * as reviewsAPI from "../../services/reviewService";
 import ReviewCard from "../../components/ReviewCard/ReviewCard";
@@ -115,9 +115,10 @@ class BookDetails extends Component {
         </section>
 
         <div>*************</div>
-        <section>
+        <div className="w-full px-4">
           {/* Put reviews form here */}
-          <h2>What did you think of this book? Leave a review!</h2>
+          <h3 class="font-medium tracking-tight">Review this item</h3>
+          <p className="text-gray-700 text-sm py-1">Leave a review!</p>
           {/* <ReviewForm
               userProfile={this.props.userProfile}
               handleAddReview={this.handleAddReview}
@@ -125,10 +126,10 @@ class BookDetails extends Component {
           {this.props.userProfile?.read.some(book=>book.api_id==searchResult.id)&&
           <ReviewForm book={searchResult} handleAddReview={this.handleAddReview} />
         }
-      </section>
+      </div>
         <strong>{reviews.length == 0 && "No Reviews"}</strong>
         {(reviews?.length > 0) &&
-        <section>
+        <section className="flex items-center mt-1">
           <h3>Reviews:</h3>
           {reviews?.map((review) => (
             <ReviewCard

@@ -61,6 +61,8 @@ class ReviewForm extends Component {
           value={this.state.formData.content}
           onChange={this.handleChange}
           required
+          className="appearance-none rounded relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
+
         />
         <label htmlFor="rating">Rating</label>
         {stars.map((star,idx)=>star?
@@ -70,6 +72,7 @@ class ReviewForm extends Component {
         <button
           type="submit"
     			disabled={this.state.invalidForm}
+          className="border border-blue-400 text-black-500 bg-blue-300 block rounded-md font-bold py-2 px-6 my-2 flex items-center hover:bg-blue-600 hover:text-white"
           >
 				  Add Review
         </button>         
