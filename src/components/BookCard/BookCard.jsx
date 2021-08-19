@@ -41,7 +41,7 @@ const BookCard = ({ book, userProfile, handleAddBook, handleRemoveBook }) => {
           Published Date: {moment(book.publishedDate).format("MMMM Do, YYYY")}
         </p>
         {/* {book.description} */}
-        <p className="p-2">Description: {book.description ? book.description : "N/A"}</p>
+        <p className="p-4 my-2 object-contain overflow-auto h-48 border border-red-600">Description: {book.description ? book.description : "N/A"}</p>
         <Link to={`/books/${id}`}>
           <button className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-300 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">READ MORE</button>
         </Link>
