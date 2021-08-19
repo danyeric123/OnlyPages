@@ -78,7 +78,7 @@ class EditProfileForm extends Component {
         </div>
         <div >
             <button disabled={this.isFormInvalid()} >SUBMIT</button>
-          <Link to="/">
+          <Link to={`/profiles/${this.props.userProfile._id}`}>
             <button>Cancel</button>
           </Link>
         </div>

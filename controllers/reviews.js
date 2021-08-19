@@ -27,6 +27,8 @@ function index(req,res){
                 res.json([])
               }
       })
+    }else{
+      res.json([])
     }
   })
   .catch(err=>{

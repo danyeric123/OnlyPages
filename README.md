@@ -130,10 +130,7 @@ REACT:
 
 
 
-GOOGLE OAUTH:
-
-
-![download](https://user-images.githubusercontent.com/86076993/128651856-24cdb184-bb35-49a7-9749-6f87e80d7113.jpg)
+JWT:
 
 
 MONGOOSE:
@@ -158,4 +155,4 @@ MORE
 
 
 # **CREDIT**
-
+https://unsplash.com/photos/D4YrzSwyIEc?utm_source=unsplash&utm_medium=referral&utm_content=creditShareLink

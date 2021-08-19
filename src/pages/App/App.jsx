@@ -1,13 +1,13 @@
-import React, { Component } from 'react'
-import { Redirect, Route } from 'react-router-dom'
-import NavBar from '../../components/NavBar/NavBar'
-import Signup from '../Signup/Signup'
-import Login from '../Login/Login'
-import Landing from '../Landing/Landing'
-import * as authService from '../../services/authService'
-import ProfileList from '../ProfileList/ProfileList'
-import ProfileDetails from '../ProfileDetails/ProfileDetails'
-import * as profileAPI from '../../services/profileService'
+import React, { Component } from "react";
+import { Redirect, Route } from "react-router-dom";
+import NavBar from "../../components/NavBar/NavBar";
+import Signup from "../Signup/Signup";
+import Login from "../Login/Login";
+import Landing from "../Landing/Landing";
+import * as authService from "../../services/authService";
+import ProfileList from "../ProfileList/ProfileList";
+import ProfileDetails from "../ProfileDetails/ProfileDetails";
+import * as profileAPI from "../../services/profileService";
 import BookSearch from "../BookSearch/BookSearch";
 import BookDetails from '../BookDetails/BookDetails'
 import PostDetails from '../PostDetails/PostDetails'
@@ -16,13 +16,14 @@ import PostUpdate from '../PostUpdate/PostUpdate'
 import EditProfileForm from '../EditProfileForm/EditProfileForm'
 import PostList from '../../components/PostList/PostList'
 import PostCategory from '../../components/PostCategory/PostCategory'
-// import * as bookAPI from '../../services/bookService'
+// import * as bookAPI from '../../services/bookService
+import "tailwindcss/tailwind.css"
 
 class App extends Component {
-	state = {
+  state = {
     user: authService.getUser(),
-    userProfile: null
-  }
+    userProfile: null,
+  };
 
   async componentDidMount() {
     if (!this.state.userProfile&&this.state.user) {
@@ -30,16 +31,19 @@ class App extends Component {
       this.setState({userProfile})
     }
   }
-	
-	handleLogout = () => {
+
+  handleLogout = () => {
     authService.logout();
     this.setState({ user: null, userProfile: null });
-		console.log(this.state)
+    console.log(this.state);
     this.props.history.push("/");
   };
 
   handleSignupOrLogin = async () => {
-    this.setState({ user: await authService.getUser(), userProfile: await profileAPI.getUserProfile()});
+    this.setState({
+      user: await authService.getUser(),
+      userProfile: await profileAPI.getUserProfile(),
+    });
   };
 
 	updateUserProfile = async (update) =>{
@@ -51,29 +55,35 @@ class App extends Component {
     this.setState({userProfile: updatedProfile})
   }
 
-	handleAddBook = async (book,collection) => {
-    const updatedProfile = await profileAPI.addBook(book,collection)
-    this.setState({userProfile: updatedProfile})
-  }
+  handleAddBook = async (book, collection) => {
+    const updatedProfile = await profileAPI.addBook(book, collection);
+    this.setState({ userProfile: updatedProfile });
+  };
 
-  handleRemoveBook = async (api_id,collection)=> {
-    const updatedProfile = await profileAPI.removeBook(api_id,collection)
-    this.setState({userProfile: updatedProfile})
-  }
+  handleRemoveBook = async (api_id, collection) => {
+    const updatedProfile = await profileAPI.removeBook(api_id, collection);
+    this.setState({ userProfile: updatedProfile });
+  };
 
-	render() {
-		const { user, userProfile } = this.state
-		return (
-			<>
-				<NavBar user={user} userProfile={userProfile} history={this.props.history} handleLogout={this.handleLogout} />
-				<Route exact path='/'>
+  render() {
+    const { user, userProfile } = this.state;
+    return (
+      <>
+        <NavBar
+          user={user}
+          userProfile={userProfile}
+          history={this.props.history}
+          handleLogout={this.handleLogout}
+        />
+          
+        <Route exact path="/">
           <Landing user={userProfile} />
         </Route>
-				<Route exact path='/signup'>
-          <Signup history={this.props.history} handleSignupOrLogin={this.handleSignupOrLogin}/>
-        </Route>
-				<Route exact path='/login'>
-          <Login handleSignupOrLogin={this.handleSignupOrLogin} history={this.props.history}/>
+        <Route exact path="/signup">
+          <Signup
+            history={this.props.history}
+            handleSignupOrLogin={this.handleSignupOrLogin}
+          />
         </Route>
 				<Route exact path="/users" render={() =>
 					authService.getUser() ?
@@ -83,23 +93,28 @@ class App extends Component {
 						handleFriend={this.handleFriend}
 					/> : <Redirect to="/login" />
 				}/>
-				<Route exact path="/profiles/:id" render={({ location }) =>
-					authService.getUser() ?
-					<ProfileDetails 
-						userProfile={userProfile}
-						location={location}
-					/> : <Redirect to="/login" />
-				}/>
+				<Route exact path='/login'>
+          <Login handleSignupOrLogin={this.handleSignupOrLogin} history={this.props.history}/>
+        </Route>
 				<Route exact path="/profile/edit" render={({ location }) =>
 					authService.getUser() ?
 					<EditProfileForm
 						userProfile={userProfile}
 						user={user}
             history={this.props.history}
-            updateUserProfile={this.updateUserProfile}
-					/> : <Redirect to="/profile" />
+          />: (
+              <Redirect to="/login" />
+            )
+          }/>
+
+			<Route exact path="/profiles/:id" render={({ location }) =>
+					authService.getUser() ?
+					<ProfileDetails 
+						userProfile={userProfile}
+						location={location}
+					/> : <Redirect to="/login" />
 				}/>
-			 <Route
+        <Route
           exact
           path="/search/:query"
           render={({ match }) =>
@@ -141,4 +156,4 @@ class App extends Component {
 	}
 }
 
-export default App
+export default App;

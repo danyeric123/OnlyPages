@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import * as bookAPI from "../../services/bookService";
 import ReviewForm from "../../components/ReviewForm/ReviewForm";
-import ReviewForm2 from "../../components/ReviewForm2/ReviewForm2";
 import BookForm from "../../components/BookForm/BookForm";
 import * as reviewsAPI from "../../services/reviewService";
 import ReviewCard from "../../components/ReviewCard/ReviewCard";
@@ -20,7 +19,6 @@ class BookDetails extends Component {
     const searchResult = await bookAPI.searchOneBook(this.props.match.params.id)
     console.log(searchResult)
     let reviews = await reviewsAPI.getReviews(this.props.match.params.id)
-    // reviews = reviews.message?reviews:reviews.reviews
     this.setState({searchResult,reviews})
   }
 
@@ -120,7 +118,7 @@ class BookDetails extends Component {
           <ReviewForm book={searchResult} handleAddReview={this.handleAddReview} />
         }
       </section>
-        <strong>{reviews.length==0&&"No Reviews"}</strong>
+        <strong>{reviews.length == 0 && "No Reviews"}</strong>
         {(reviews?.length > 0) &&
         <section>
           <h3>Reviews:</h3>
