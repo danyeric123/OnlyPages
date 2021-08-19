@@ -49,7 +49,8 @@ const NavBar = ({ user, userProfile, handleLogout, history }) => {
           </div>
           <ul className="nav-menu active nav-menu">
             <li className="nav-links">
-              <Link to="/users">Users</Link>
+            
+              <Link to="/users"><FaUserCircle size={30} style={{ color: "blue" }} />Users</Link>
             </li>
             <li className="nav-links">
               {/*   {userProfile.avatar ? (
@@ -57,18 +58,18 @@ const NavBar = ({ user, userProfile, handleLogout, history }) => {
                   ) : (
                     <FaUserCircle size={70} style={{ color: "blue" }} />
                   )} */}
-              <FaUserCircle size={30} style={{ color: "blue" }} />
+              
               <Link
                 to={{
                   pathname: `/profiles/${userProfile?._id}`,
                 }}
               >
-                My Profile
+                <FaUserCircle size={30} style={{ color: "blue" }} />My Profile
               </Link>
             </li>
             <li className="nav-links">
-              <FaComments size={30} style={{ color: "blue" }} />
-              <Link to="/posts">All Posts</Link>
+              
+              <Link to="/posts"><FaComments size={30} style={{ color: "blue" }} />All Posts</Link>
             </li>
             <li className="nav-links">
               <Link to="" onClick={handleLogout}>

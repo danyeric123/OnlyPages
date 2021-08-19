@@ -15,18 +15,18 @@ const ProfileCard = ({ profile, userProfile, handleFriend }) => {
         <img
           src={profile.avatar}
           alt={profile.name} 
-          className="w-full"
+          className="md:flex bg-gray-100 rounded-xl p-8 md:p-0"
         />:
         <FaUserCircle size={70} style={{color: "blue"}} className="w-full"/>
       }
         <div className="px-6 py-4">
-        <div className=" font-bold text-purple-500 text-xl">{profile.name}</div>
+        <div className="font-bold text-black-500 text-xl text-center">{profile.name}</div>
         </div>
       </Link>
       <br/>
-      <div className="px-6 py-4">
+      <div className="px-6 py-4 ">
       { !(userProfile?._id === profile._id) && !(userProfile?.friends?.some(eachProfile => eachProfile._id === profile._id)) &&
-      <button onClick={() => handleFriend(profile._id)}>Friend</button> 
+      <button onClick={() => handleFriend(profile._id)} >Friend</button> 
       }
       { !(userProfile?._id === profile._id) && (userProfile?.friends?.some(eachProfile => eachProfile._id === profile._id)) &&
       <button onClick={() => handleFriend(profile._id)}>Unfriend</button> 
