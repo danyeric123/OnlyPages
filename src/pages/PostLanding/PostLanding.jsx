@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import PostList from "../../components/PostList/PostList";
 import * as postAPI from '../../services/postService.js'
 import AddPost from "../../components/AddPost/AddPost";
-import postLandCss from './postLanding.modules.css'
+import postLandingCss from './postLanding.modules.css'
 
 
 const PostLanding = ({userProfile}) => {
@@ -41,8 +41,11 @@ const PostLanding = ({userProfile}) => {
       }
       {pressed&&<AddPost setPressed={setPressed} addPost={addPost}/>}
       { isLoading && <div>...loading</div>}
+
+    <div  id="cover">
       {posts && <PostList posts={posts} title="Recent" handleDelete={handleDeletePost} userProfile={userProfile} /> } 
-     </div>
+      </div>    
+    </div>
   );
 }
  
