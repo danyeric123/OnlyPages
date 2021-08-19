@@ -29,7 +29,7 @@ class Search extends Component {
 
   render() {
     return (
-      <div className="mr-6 my-2 border border-red-500">
+      <div className="mr-6 my-2">
         <form ref={this.formRef} onSubmit={this.handleSubmit} className="">
           <input
             type="text"
@@ -40,10 +40,6 @@ class Search extends Component {
             placeholder="Search..."
             className="bg-purple-white shadow rounded border border-indigo-600  border-2 p-2 hover:text-white"
           />
-          {/*  <Button type="submit"
-    			disabled={this.state.invalidForm}>
-        Search
-          </Button> */}
           <button
             type="submit"
             disabled={this.state.invalidForm}

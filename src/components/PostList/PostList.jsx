@@ -15,8 +15,11 @@ const PostList = ({ posts, title, handleDelete, userProfile }) => {
             }
           }>
           <h2>{ post.title }</h2>
-{/*\/shows name of the creator of the post/*/} 
-          <p>Posted by { post.author.name }</p>
+          <p>Posted by 
+            <Link to={`/profiles/${post.author._id}`}>
+            { post.author.name }
+            </Link>
+          </p>
             </Link>
             {post.author._id===userProfile._id&&<button onClick={()=>handleDelete(post._id)}>Delete</button>}
         </div>
