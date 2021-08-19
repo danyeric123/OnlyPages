@@ -1,5 +1,5 @@
 import React, { useEffect,useState } from "react";
-import { Button } from "../Button/Button";
+
 
 const BookForm = ({book,userProfile,handleAddBook}) => {
   const [formData, setFormData] = useState({
@@ -40,8 +40,7 @@ const BookForm = ({book,userProfile,handleAddBook}) => {
             )
         })}
         </select>
-      
-        <Button onClick={handleClick}>ADD BOOK TO COLLECTION</Button>
+        <button onClick={handleClick} className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-300 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" >ADD BOOK TO COLLECTION</button>
          <br />
         <br />
         
