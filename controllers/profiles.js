@@ -82,12 +82,15 @@ function edit(req, res) {
 function update(req, res) {
     Profile.findByIdAndUpdate(req.params.id, req.body, {new: true})
         .then((profile) => {
-          User.findOneAndUpdate({profile:profile._id},req.body,{new: true})
-              .then(()=>{})
-          populateAll(profile)
-          .then(profile=>{
-            res.json(profile)
-          })
+          User.findOneAndUpdate({profile:req.params.id},req.body,{new: true})
+              .then((user)=>{
+                console.log(user)
+                populateAll(profile)
+                .then(profile=>{
+                  res.json({profile,user})
+                })
+              })
+          
         })
         .catch(err=>{
           console.log(err)

@@ -1,41 +1,26 @@
-import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
-// import styles from './EditProfileForm.module.css'
-import * as profileService from '../../services/profileService'
+import React, { useState, useRef } from "react";
+import { Link } from "react-router-dom";
 import { FaBook } from "react-icons/fa";
+// import styles from './EditProfileForm.module.css'
 
-class EditProfileForm extends Component {
-  state = {
-    name: this.props.userProfile.name,
-    email: this.props.user.email,
-    avatar: this.props.userProfile.avatar,
-  }
+const EditProfileForm = ({ userProfile, user, updateUserProfile, history }) => {
+  const [name, setName] = useState(userProfile.name);
+  const [email, setEmail] = useState(user.email);
+  const [avatar, setAvatar] = useState(userProfile.avatar);
+  const [validForm, setValidForm] = useState(true);
 
-  handleChange = e => {
-    this.setState({
-      [e.target.name]: e.target.value,
-    })
-  }
-
-
-  handleSubmit = async e => {
-    e.preventDefault()
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     try {
-      this.props.updateUserProfile(this.state)
-      this.props.history.push(`/profiles/${this.props.userProfile._id}`)
+      updateUserProfile({ name, email, avatar });
+      history.push(`/profiles/${userProfile._id}`);
     } catch (err) {
-      console.log(err)
+      console.log(err);
     }
-  }
+  };
 
-  isFormInvalid() {
-    const { name, email } = this.state
-    return !(name && email )
-  }
-
-  render() {
-    const { name, email, avatar } = this.state;
-    return (
+  return (
+    <>
       <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-md w-full space-y-8">
           <div>
@@ -50,7 +35,8 @@ class EditProfileForm extends Component {
             <p className="mt-2 text-center text-sm text-gray-600"></p>
             <form
               autoComplete="off"
-              onSubmit={this.handleSubmit}
+              onSubmit={handleSubmit}
+              // onChange={()=>setValidForm(!(name&&email))}
               className="mt-8 space-y-6"
             >
               <input type="hidden" name="remember" defaultValue="true" />
@@ -66,7 +52,7 @@ class EditProfileForm extends Component {
                     id="name"
                     value={name}
                     name="name"
-                    onChange={this.handleChange}
+                    onChange={({ target }) => setName(target.value)}
                     className="appearance-none rounded relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
                   />
                 </div>
@@ -83,7 +69,7 @@ class EditProfileForm extends Component {
                     id="avatar"
                     value={avatar}
                     name="avatar"
-                    onChange={this.handleChange}
+                    onChange={({ target }) => setAvatar(target.value)}
                     className="appearance-none rounded relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
                   />
                 </div>
@@ -100,19 +86,19 @@ class EditProfileForm extends Component {
                     id="email"
                     value={email}
                     name="email"
-                    onChange={this.handleChange}
+                    onChange={({ target }) => setEmail(target.value)}
                     className="appearance-none rounded relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
                   />
                 </div>
               </div>
               <div>
                 <button
-                  disabled={this.isFormInvalid()}
+                  disabled={validForm}
                   className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-300 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 my-2"
                 >
                   SUBMIT
                 </button>
-                <Link to={`/profiles/${this.props.userProfile._id}`}>
+                <Link to={`/profiles/${userProfile._id}`}>
                   <button className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-300 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
                     Cancel
                   </button>
@@ -122,8 +108,8 @@ class EditProfileForm extends Component {
           </div>
         </div>
       </div>
-    );
-  }
-}
+    </>
+  );
+};
 
-export default EditProfileForm
+export default EditProfileForm;

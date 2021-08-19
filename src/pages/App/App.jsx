@@ -47,9 +47,8 @@ class App extends Component {
   };
 
   updateUserProfile = async (update) => {
-    this.setState({
-      userProfile: await profileAPI.update(this.state.userProfile._id, update),
-    });
+    const newUser = await profileAPI.update(this.state.userProfile._id, update);
+    this.setState({ userProfile: newUser.profile, user: newUser.user });
   };
 
   handleFriend = async (friendId) => {
@@ -102,27 +101,13 @@ class App extends Component {
             )
           }
         />
+
         <Route exact path="/login">
           <Login
             handleSignupOrLogin={this.handleSignupOrLogin}
             history={this.props.history}
           />
         </Route>
-        <Route
-          exact
-          path="/profile/edit"
-          render={({ location }) =>
-            authService.getUser() ? (
-              <EditProfileForm
-                userProfile={userProfile}
-                user={user}
-                history={this.props.history}
-              />
-            ) : (
-              <Redirect to="/login" />
-            )
-          }
-        />
 
         <Route
           exact
