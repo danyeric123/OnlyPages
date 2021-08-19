@@ -2,13 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 import SearchForm from "../SearchForm/SearchForm";
 import { FaBook } from "react-icons/fa";
-import { FaUserCircle } from "react-icons/fa";
-import { FaAddressCard } from "react-icons/fa";
-import { FaComments } from "react-icons/fa";
 import { FaTimes } from "react-icons/fa"; /* for mobil menu */
 import { FaBars } from "react-icons/fa"; /* for mobil menu */
-import { Button } from "../Button/Button";
-// import "./Navbar.css";
+//import "./Navbar.css";
 // import { BiSearch } from "react-icons/fa";
 
 const NavBar = ({ user, userProfile, handleLogout, history }) => {
@@ -26,16 +22,16 @@ const NavBar = ({ user, userProfile, handleLogout, history }) => {
   return (
     <>
       {user ? (
-        <nav className="mx-2">
+        <nav className="relative px-4 py-4 flex justify-between items-center bg-white">
           <Link to="/">
             <FaBook
               size={30}
               style={{ color: "blue" }}
-              className="navbar-logo"
+              className="text-sm text-gray-400 hover:text-gray-500"
             />
           </Link>
           <SearchForm history={history} />
-          <div className="menu-icon">
+          {/* <div className="menu-icon">
             <FaTimes
               className="fas fa-times"
               size={30}
@@ -46,9 +42,9 @@ const NavBar = ({ user, userProfile, handleLogout, history }) => {
               size={30}
               style={{ color: "white" }}
             />
-          </div>
-          <ul className="nav-menu active nav-menu">
-            <li className="nav-links">
+          </div> */}
+          <ul className="relative px-4 py-4 flex justify-between items-center bg-white">
+            <li className="text-sm text-gray-400 hover:text-gray-500">
               <Link to="/users">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -66,6 +62,22 @@ const NavBar = ({ user, userProfile, handleLogout, history }) => {
                 </svg>
                 <span className="h-6 w-6 text-blue-600">Users</span>
               </Link>
+            </li>
+            <li class="text-gray-300">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                stroke="currentColor"
+                class="w-4 h-4 current-fill"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 5v0m0 7v0m0 7v0m0-13a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"
+                />
+              </svg>
             </li>
             <li className="nav-links">
               {/*   {userProfile.avatar ? (
@@ -96,6 +108,22 @@ const NavBar = ({ user, userProfile, handleLogout, history }) => {
                 <span className="h-6 w-6 text-blue-600">My Profile</span>
               </Link>
             </li>
+            <li class="text-gray-300">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                stroke="currentColor"
+                class="w-4 h-4 current-fill"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 5v0m0 7v0m0 7v0m0-13a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"
+                />
+              </svg>
+            </li>
             <li className="nav-links">
               <Link to="/posts">
                 <svg
@@ -117,21 +145,7 @@ const NavBar = ({ user, userProfile, handleLogout, history }) => {
             </li>
             <li className="nav-links">
               <Link to="" onClick={handleLogout}>
-                <button className="border border-blue-400 text-black-500 bg-blue-300 block rounded-md font-bold py-2 px-6 flex items-center hover:bg-blue-600 hover:text-white">
-                 {/*  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-6 w-6 text-blue-600"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
-                    />
-                  </svg> */}
+                <button className="border border-blue-400 text-black-500 bg-blue-300 block rounded-md font-bold py-2 px-6 my-2 flex items-center hover:bg-blue-600 hover:text-white">
                   Logout
                 </button>
               </Link>
@@ -148,30 +162,18 @@ const NavBar = ({ user, userProfile, handleLogout, history }) => {
             />
           </Link>
           <ul className="nav-menu active nav-menu">
-            <li className="nav-links">
+            <li className="text-sm text-gray-400 hover:text-gray-500">
               <Link to="/login">
-                <button className="border border-indigo-600 text-black-500 block rounded-md font-bold py-2 px-3 mr-2 flex items-center hover:bg-indigo-500 hover:text-white">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-6 w-6"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"
-                    />
-                  </svg>
+                <button className="border border-blue-300 text-black-500 bg-blue-300 block rounded-md font-bold py-2 px-6 my-2 flex items-center hover:bg-blue-600 hover:text-white">
                   Login
                 </button>
               </Link>
             </li>
-            <li className="nav-links">
+            <li className="text-sm text-gray-400 hover:text-gray-500">
               <Link to="/signup">
-                <Button>SignUp</Button>
+                <button className="border border-blue-300 text-black-500 bg-blue-300 block rounded-md font-bold py-2 px-6 my-2 flex items-center hover:bg-blue-600 hover:text-white">
+                  SignUp
+                </button>
               </Link>
             </li>
           </ul>
