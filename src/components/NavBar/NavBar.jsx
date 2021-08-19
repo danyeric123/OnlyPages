@@ -24,25 +24,12 @@ const NavBar = ({ user, userProfile, handleLogout, history }) => {
       {user ? (
         <nav className="relative px-4 py-4 flex justify-between items-center bg-white">
           <Link to="/">
-            <FaBook
-              size={30}
-              style={{ color: "blue" }}
-              className="text-sm text-gray-400 hover:text-gray-500"
+            <img
+              src="https://i.imgur.com/ZnXPhEq.jpg"
+              className="rounded-full h-20 w-20 ring-4 ring-blue"
             />
           </Link>
           <SearchForm history={history} />
-          {/* <div className="menu-icon">
-            <FaTimes
-              className="fas fa-times"
-              size={30}
-              style={{ color: "white" }}
-            />
-            <FaBars
-              className="fas fa-bars"
-              size={30}
-              style={{ color: "white" }}
-            />
-          </div> */}
           <ul className="relative px-4 py-4 flex justify-between items-center bg-white">
             <li className="text-sm text-gray-400 hover:text-gray-500">
               <Link to="/users">
