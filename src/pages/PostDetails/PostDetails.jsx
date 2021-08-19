@@ -45,7 +45,7 @@ const PostDetails = ({userProfile}) => {
       {/* { isLoading && <div>...loading</div>} */}
       {post && (
      
-        <article class="article">
+        <article >
           <h1>{ post.title }</h1>
             <h3>By: { post.author.name }</h3>
             <small>Posted on {moment(post.createdAt).fromNow()}</small>
@@ -56,7 +56,7 @@ const PostDetails = ({userProfile}) => {
        <button>Edit post</button>
      </Link>}
       <LikeButton handleLike={handleLike} likes={post.likes} />
-      <div id="replies">
+      <div>
       <ReplyForm addReply={addReply} />
       <h2 class="replies">Replies</h2>
       {post.replies.map(reply=><ReplyCard reply={reply} deleteReply={deleteReply} userProfile={userProfile} />)}
