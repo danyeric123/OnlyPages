@@ -26,7 +26,7 @@ const NavBar = ({ user, userProfile, handleLogout, history }) => {
   return (
     <>
       {user ? (
-        <nav className="NavbarItems">
+        <nav className="mx-2">
           <Link to="/">
             <FaBook
               size={30}
