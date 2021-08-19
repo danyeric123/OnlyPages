@@ -15,7 +15,7 @@ const ProfileCard = ({ profile, userProfile, handleFriend }) => {
         <img
           src={profile.avatar}
           alt={profile.name} 
-          className="md:flex bg-gray-100 rounded-xl p-8 md:p-0"
+          className="inline-block h-20 w-20 rounded-full ring-2 ring-white"
         />:
         <FaUserCircle size={70} style={{color: "blue"}} className="w-full"/>
       }
