@@ -29,7 +29,7 @@ class Search extends Component {
 
   render() {
     return (
-      <div className="mr-6 my-2 border border-red-500">
+      <div className="mr-6 my-2">
         <form ref={this.formRef} onSubmit={this.handleSubmit} className="">
           <input
             type="text"
