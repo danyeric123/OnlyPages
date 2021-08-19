@@ -49,8 +49,10 @@ const NavBar = ({ user, userProfile, handleLogout, history }) => {
           </div>
           <ul className="nav-menu active nav-menu">
             <li className="nav-links">
-            
-              <Link to="/users"><FaUserCircle size={30} style={{ color: "blue" }} />Users</Link>
+              <Link to="/users">
+                <FaUserCircle size={30} style={{ color: "blue" }} />
+                Users
+              </Link>
             </li>
             <li className="nav-links">
               {/*   {userProfile.avatar ? (
@@ -58,22 +60,62 @@ const NavBar = ({ user, userProfile, handleLogout, history }) => {
                   ) : (
                     <FaUserCircle size={70} style={{ color: "blue" }} />
                   )} */}
-              
+
               <Link
                 to={{
                   pathname: `/profiles/${userProfile?._id}`,
                 }}
               >
-                <FaUserCircle size={30} style={{ color: "blue" }} className="nav-links"/>My Profile
+                <FaUserCircle
+                  size={30}
+                  style={{ color: "blue" }}
+                  className="nav-links"
+                />
+                My Profile
               </Link>
             </li>
             <li className="nav-links">
-              
-              <Link to="/posts"><FaComments size={30} style={{ color: "blue" }} />All Posts</Link>
+              <Link to="/posts">
+                <FaComments size={30} style={{ color: "blue" }} />
+                All Posts
+              </Link>
             </li>
             <li className="nav-links">
               <Link to="" onClick={handleLogout}>
-                <Button>Logout</Button>
+                {/* <button className="absolute right-60 mt-3 mr-4">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-6 w-6"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
+                    />
+                  </svg>
+                  Logout
+                </button> */}
+                <button class="border border-indigo-600 text-black-500 block rounded-md font-bold py-2 px-3 mr-2 flex items-center hover:bg-indigo-500 hover:text-white">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-6 w-6"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
+                    />
+                  </svg>
+                  Logout
+                </button>
               </Link>
             </li>
           </ul>
