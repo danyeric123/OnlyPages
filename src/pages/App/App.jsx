@@ -13,7 +13,7 @@ import BookDetails from '../BookDetails/BookDetails'
 import PostDetails from '../PostDetails/PostDetails'
 import PostLanding from '../PostLanding/PostLanding'
 import PostUpdate from '../PostUpdate/PostUpdate'
-import EditProfileForm from '../../components/EditProfileForm/EditProfileForm'
+import EditProfileForm from '../EditProfileForm/EditProfileForm'
 import PostList from '../../components/PostList/PostList'
 import PostCategory from '../../components/PostCategory/PostCategory'
 // import * as bookAPI from '../../services/bookService'
@@ -41,6 +41,10 @@ class App extends Component {
   handleSignupOrLogin = async () => {
     this.setState({ user: await authService.getUser(), userProfile: await profileAPI.getUserProfile()});
   };
+
+	updateUserProfile = async (update) =>{
+		this.setState({userProfile: await profileAPI.update(this.state.userProfile._id, update)})
+	}
 
 	handleFriend = async (friendId) => {
     const updatedProfile = await profileAPI.friendAndUnfriend(friendId)
@@ -90,7 +94,7 @@ class App extends Component {
 					authService.getUser() ?
 					<EditProfileForm
 						userProfile={userProfile}
-						location={location}
+						user={user}
             history={this.props.history}
             updateUserProfile={this.updateUserProfile}
 					/> : <Redirect to="/profile" />

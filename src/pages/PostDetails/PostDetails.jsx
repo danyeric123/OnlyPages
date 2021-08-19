@@ -41,7 +41,7 @@ const PostDetails = ({userProfile}) => {
       <div id="wrapper">
       <div id="container">
       <section id="openbook">
-      <header/>
+      
       {/* { isLoading && <div>...loading</div>} */}
       {post && (
      

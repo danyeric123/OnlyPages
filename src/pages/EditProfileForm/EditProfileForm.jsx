@@ -5,9 +5,9 @@ import * as profileService from '../../services/profileService'
 
 class EditProfileForm extends Component {
   state = {
-    name: '',
-    email: '',
-    avatar: '',
+    name: this.props.userProfile.name,
+    email: this.props.user.email,
+    avatar: this.props.userProfile.avatar,
   }
 
   handleChange = e => {
@@ -20,12 +20,8 @@ class EditProfileForm extends Component {
   handleSubmit = async e => {
     e.preventDefault()
     try {
-      const updatedProfile = await profileService.update(this.props.userProfile._id, this.state)
-      this.props.updateUserProfile(updatedProfile)
-      this.props.history.push({
-        pathname: '/profile',
-        state: {profile: updatedProfile}
-      })
+      this.props.updateUserProfile(this.state)
+      this.props.history.push(`/profiles/${this.props.userProfile._id}`)
     } catch (err) {
       console.log(err)
     }
