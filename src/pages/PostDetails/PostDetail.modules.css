@@ -30,7 +30,7 @@
 }
 
 #openbook{
-  background: #fff;
+  background: rgb(246, 249, 237);
   box-shadow: rgba(0,0,0,0.5) 0 1em em;
   color: #000;
   padding: 1em;
@@ -41,12 +41,12 @@
 #openbook:before {
   background-color: #8B4513;
   border-radius: 0.25em;
-  bottom: -30em;
+  bottom: -60em;
   content: '';
   left: 10px;
   position: absolute;
   right: 10px;
-  top: 210px;
+  top: 310px;
   z-index: -1;
 }
 

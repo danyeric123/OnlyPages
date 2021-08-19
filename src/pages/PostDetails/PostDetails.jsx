@@ -70,7 +70,7 @@ const PostDetails = ({userProfile}) => {
               </article>
       )}
 
-      <div class='replies'>
+      <div class='replies'><br/>
       <ReplyForm addReply={addReply} />
       <h2>Replies</h2>
       {post.replies.map(reply=><ReplyCard reply={reply} deleteReply={deleteReply} userProfile={userProfile} />)}
