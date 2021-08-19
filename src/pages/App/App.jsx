@@ -102,6 +102,7 @@ class App extends Component {
 						userProfile={userProfile}
 						user={user}
             history={this.props.history}
+						updateUserProfile={this.updateUserProfile}
           />: (
               <Redirect to="/login" />
             )
