@@ -46,7 +46,8 @@ const AddPost = ({addPost,setPressed}) => {
         value={body}
         onChange={(e) => setBody(e.target.value)}
         ></textarea>
-      <button>submit post</button>
+      <button>submit post</button> <br/>
+      <br/>
        <button onClick={()=>setPressed(false)}> cancel</button>
       </form>
     </div>
