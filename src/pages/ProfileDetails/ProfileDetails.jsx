@@ -23,13 +23,17 @@ const ProfileDetails = ({location, userProfile}) => {
         <img
           src={profile.avatar}
           alt={profile.name} avatar
+          className="inline-block h-60 w-60 rounded-full ring-2 ring-white"
         />:
         <FaUserCircle size={70} />
       }
+      <br />
+      <br />
       {/*!!!!!!!!!!!!!!!! should only show if its my profile */}
       {/* { !(userProfile?._id === profile._id) &&  */}
-      <Link to="/profile/edit">EDIT BUTTON</Link>}
+      <Link to="/profile/edit">EDIT BUTTON</Link>
       {/*!!!!!!!!!!!!!!!! should only show if its my profile */}
+      <br />
       <h2>Friends List</h2>
       {profile.friends.map((friend) => (
         <>
@@ -41,8 +45,8 @@ const ProfileDetails = ({location, userProfile}) => {
           >
             {friend.avatar?
               <img
-                src={friend.avatar}
-                alt={friend.name} avatar
+              src={friend.avatar}
+              alt={friend.name} avatar
               />:
               <FaUserCircle size={70} />
             }
@@ -51,6 +55,7 @@ const ProfileDetails = ({location, userProfile}) => {
         </>
       ))}
      
+      <br />
       <div>
         <h3>Previously Read Collection</h3>
         {profile.read.map((book) => (
@@ -62,6 +67,7 @@ const ProfileDetails = ({location, userProfile}) => {
           </a>
         ))}
       </div>
+        <br />
       <div>
         <h3> Currently Reading Collection</h3>
         {profile.currentlyReading.map((book) => (
@@ -73,6 +79,7 @@ const ProfileDetails = ({location, userProfile}) => {
           </a>
         ))}
       </div>
+        <br />
 
       <div>
         <h3> Want to Read Collection</h3>
