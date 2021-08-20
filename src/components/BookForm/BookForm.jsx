@@ -46,12 +46,12 @@ const BookForm = ({book,userProfile,handleAddBook,handleRemove}) => {
         >
           ADD BOOK TO COLLECTION
           </button>
-         <button 
+         {collections.length<3&&<button 
             onClick={()=> handleRemove(book.id)}
             className="p-2 mb-12 w-full border border-transparent text-sm font-medium rounded-md text-white bg-red-700 hover:bg-red-500"
           >
           Remove Book
-          </button>
+          </button>}
         
       </>
   )
