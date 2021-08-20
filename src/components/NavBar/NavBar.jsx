@@ -101,7 +101,7 @@ const NavBar = ({ user, userProfile, handleLogout, history }) => {
                 />
               </svg>
             </li>
-            <li className="nav-links hover:opacity-50 ">
+            <li className="mr-8 nav-links hover:opacity-50 ">
               <Link to="/posts">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -120,15 +120,7 @@ const NavBar = ({ user, userProfile, handleLogout, history }) => {
                 <span className="h-6 w-6 text-blue-600">All Posts</span>
               </Link>
             </li>
-            <li className="nav-links">
-              <Link to="" onClick={handleLogout}>
-                <button className="group relative inline-block px-6 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-700 hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 my-2">
-                  Logout
-                </button>
-              </Link>
-            </li>
-						<SearchForm history={history} />
-            
+            <SearchForm history={history} />
           </ul>
         </nav>
       ) : (
