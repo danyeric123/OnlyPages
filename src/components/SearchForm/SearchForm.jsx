@@ -24,6 +24,10 @@ class Search extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
+    this.setState({invalidForm: true,
+      formData: {
+        query: "",
+      }})
     this.props.history.push(`/search/${this.state.formData.query}`);
   };
 
@@ -38,7 +42,7 @@ class Search extends Component {
             onChange={this.handleChange}
             required
             placeholder="Search..."
-            className="bg-purple-white shadow rounded border border-indigo-600  border-2 p-2 hover:text-white"
+            className=" shadow rounded border border-indigo-600  border-2 p-2"
           />
           <button
             type="submit"
