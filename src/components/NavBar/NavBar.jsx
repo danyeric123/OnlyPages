@@ -26,13 +26,13 @@ const NavBar = ({ user, userProfile, handleLogout, history }) => {
           <Link to="/">
             <img
               src="https://i.imgur.com/ZnXPhEq.jpg"
-							alt="logo"
+							alt="only pages open book logo"
               className="rounded-full h-20 w-20 ring-4 ring-blue hover:opacity-75"
             />
           </Link>
 
 					<Link to="" onClick={handleLogout}>
-                <button className="border border-blue-400 text-black-500 bg-blue-300 block rounded-md font-bold py-2 px-6 my-2 flex items-center hover:bg-blue-600 hover:text-white">
+                <button className="group relative inline-block px-6 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-700 hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 my-2">
                   Logout
                 </button>
               </Link>
@@ -135,7 +135,7 @@ const NavBar = ({ user, userProfile, handleLogout, history }) => {
             </li>
             <li className="nav-links">
               <Link to="" onClick={handleLogout}>
-                <button className="border border-blue-400 text-black-500 bg-blue-600 block rounded-md font-bold py-2 px-6 my-2 flex items-center hover:bg-white-600 hover:text-black">
+                <button className="group relative inline-block px-6 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-700 hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 my-2">
                   Logout
                 </button>
               </Link>
@@ -156,14 +156,14 @@ const NavBar = ({ user, userProfile, handleLogout, history }) => {
           <ul className="nav-menu active nav-menu">
             <li className="text-sm text-gray-400 hover:text-gray-500">
               <Link to="/login">
-                <button className="border border-blue-300 text-black-500 bg-blue-300 block rounded-md font-bold py-2 px-6 my-2 flex items-center hover:bg-blue-600 hover:text-white">
+                <button className="group relative inline-block px-6 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-700 hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 my-2">
                   Login
                 </button>
               </Link>
             </li>
             <li className="text-sm text-gray-400 hover:text-gray-500">
               <Link to="/signup">
-                <button className="border border-blue-300 text-black-500 bg-blue-300 block rounded-md font-bold py-2 px-6 my-2 flex items-center hover:bg-blue-600 hover:text-white">
+                <button className="group relative inline-block px-6 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-700 hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
                   SignUp
                 </button>
               </Link>

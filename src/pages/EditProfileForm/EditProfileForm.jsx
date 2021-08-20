@@ -23,12 +23,12 @@ const EditProfileForm = ({userProfile,user,updateUserProfile,history}) => {
     <>
       <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-md w-full space-y-8">
-          <div>
-            <FaBook
-              size={30}
-              style={{ color: "blue" }}
-              className="mx-auto h-12 w-auto"
+             <img
+              src="https://i.imgur.com/ZnXPhEq.jpg"
+							alt="only pages open book logo"
+              className="rounded-full h-20 w-20 mx-auto ring-4 ring-blue hover:opacity-75"
             />
+            
             <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
               Edit Your Profile
             </h2>
@@ -94,12 +94,12 @@ const EditProfileForm = ({userProfile,user,updateUserProfile,history}) => {
               <div>
                 <button
                   disabled={validForm}
-                  className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-300 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 my-2"
+                  className="group relative w-full flex justify-center py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-700 hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 my-2"
                 >
                   SUBMIT
                 </button>
                 <Link to={`/profiles/${userProfile._id}`}>
-                  <button className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-300 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                  <button className="group relative w-full flex justify-center py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-700 hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
                     Cancel
                   </button>
                 </Link>
@@ -107,7 +107,7 @@ const EditProfileForm = ({userProfile,user,updateUserProfile,history}) => {
             </form>
           </div>
         </div>
-      </div>
+      
     </>
   );
 };
