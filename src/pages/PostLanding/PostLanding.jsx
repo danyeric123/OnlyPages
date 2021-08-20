@@ -43,7 +43,7 @@ const PostLanding = ({userProfile}) => {
       { isLoading && <div>...loading</div>}
 
     <div>
-      {posts && <PostList id="cover" posts={posts} title="Recent" handleDelete={handleDeletePost} userProfile={userProfile} /> } 
+      {posts && <PostList posts={posts} title="Recent" handleDelete={handleDeletePost} userProfile={userProfile} /> } 
       </div>    
     </div>
   );
