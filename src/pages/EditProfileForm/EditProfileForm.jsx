@@ -8,6 +8,7 @@ const EditProfileForm = ({userProfile,user,updateUserProfile,history}) => {
   const [email, setEmail] = useState(user.email)
   const [avatar, setAvatar] = useState(userProfile.avatar)
   const [validForm, setValidForm] = useState(false)
+  console.log("this is rendering")
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -18,7 +19,6 @@ const EditProfileForm = ({userProfile,user,updateUserProfile,history}) => {
       console.log(err);
     }
   };
-
   return (
     <>
       <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
