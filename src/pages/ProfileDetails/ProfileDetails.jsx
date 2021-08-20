@@ -52,48 +52,48 @@ const ProfileDetails = ({userProfile}) => {
             </Link>
           </>
         ))}
-
-        <br />
         <div>
-          <h3 className="font-bold text-black-500 text-3xl text-center">Previously Read Collection</h3>
+          <h3 className="font-bold text-black-500 text-3xl text-center py-4 bg-gray-300 my-2">Previously Read Collection</h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-          {/* <div className="md:p-8 p-2 h-90 border-transparent bg-blue-100 shadow-xl mx-2 my-2 w-full "> */}
           {profile.read.map((book) => (
             <a href={`/books/${book.api_id}`}>
               <img
                 src={`http://books.google.com/books/content?id=${book.api_id}&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api`}
                 alt={`${book.title} front cover`}
-                className="flex justify-center card__media w-screen md:w-full object-contain h-60 w-full px-4 py-2"
+                className="flex justify-center card__media w-screen md:w-full object-contain h-60 bg-blue-100 w-full py-2"
               />
             </a>
           ))}
         {/* </div> */}
         </div>
         </div>
-        <br />
         <div>
-          <h3> Currently Reading Collection</h3>
+          <h3 className="font-bold text-black-500 text-3xl text-center py-4 bg-gray-300 my-2"> Currently Reading Collection</h3>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
           {profile.currentlyReading.map((book) => (
             <a href={`/books/${book.api_id}`}>
               <img
                 src={`http://books.google.com/books/content?id=${book.api_id}&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api`}
                 alt={`${book.title} front cover`}
+                className="flex justify-center card__media w-screen md:w-full object-contain h-60 w-full bg-blue-100 py-2"
               />
             </a>
           ))}
         </div>
-        <br />
-
+        </div>
         <div>
-          <h3> Want to Read Collection</h3>
+          <h3 className="font-bold text-black-500 text-3xl text-center py-4 bg-gray-300 my-2"> Want to Read Collection</h3>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
           {profile.wantToRead.map((book) => (
             <a href={`/books/${book.api_id}`}>
               <img
                 src={`http://books.google.com/books/content?id=${book.api_id}&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api`}
                 alt={`${book.title} front cover`}
+                className="flex justify-center card__media w-screen md:w-full object-contain h-60 w-full bg-blue-100 py-2"
               />
             </a>
           ))}
+         </div>
         </div>
       </>
     )

@@ -24,9 +24,6 @@ class BookDetails extends Component {
     this.setState({ searchResult, reviews });
   }
 
-  /*
-   * How might we deal with the reviews?
-   */
   handleAddReview = async (review) => {
     const newReview = await reviewsAPI.addReview(review);
     const reviews = [...this.state.reviews, newReview];

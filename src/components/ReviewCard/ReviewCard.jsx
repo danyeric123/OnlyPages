@@ -14,13 +14,14 @@ const ReviewCard = ({ fetchedReview, userProfile, handleDeleteReview }) => {
   const starRating = () => {
     const stars = Array(5).fill(<FaRegStar />);
     for (let i = 0; i < review.rating; i++) {
-      stars[i] = <FaStar />;
+      stars[i] = <FaStar key={i}/>;
     }
     return stars;
   };
 
   return (
-    <div className="md:p-8 p-2 h-90 border-transparent bg-blue-100 shadow-xl mx-2 my-2 w-full ">
+    /* border-transparent */
+    <div className="md:p-8 p-2 h-90 border bg-blue-100 border-red-600 shadow-xl mx-2 my-2 w-full ">
       <div className="flex items-start overflow-auto object-contain w-30 h-30 mx-2">
         <div className="flex-shrink-0">
           <div className="inline-block relative">
@@ -45,14 +46,14 @@ const ReviewCard = ({ fetchedReview, userProfile, handleDeleteReview }) => {
                 <small>Posted on {moment(review.createdAt).fromNow()}</small>
               </div>
             </div>
-            <div className="mt-3">
-              <p className="mt-1">{review.content}</p>
+            <div className="">
+              <p className="mt-1 overflow-auto object-contain w-40 h-20">{review.content}</p>
             </div>
             {review.author._id === userProfile._id && (
-              <div className="flex items-center justify-between mt-4 text-sm text-gray-600 fill-current">
+              <div className="flex items-center justify-between text-sm text-gray-600 fill-current">
                 <button
                   onClick={() => handleDeleteReview(review._id)}
-                  className="flex items-center group relative inline-block px-6 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-700 hover:bg-blue-500 py-2 px-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-700 hover:bg-red-600 "
+                  className="flex items-center group relative inline-block px-6 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-700 hover:bg-blue-500 py-2 px-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-700 hover:bg-red-500 "
                 >
                   <span className="ml-2">DELETE</span>
                 </button>
