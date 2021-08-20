@@ -2,8 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import SearchForm from "../SearchForm/SearchForm";
 import { FaBook } from "react-icons/fa";
-import { FaTimes } from "react-icons/fa"; /* for mobil menu */
-import { FaBars } from "react-icons/fa"; /* for mobil menu */
 import "./Navbar.css";
 // import { BiSearch } from "react-icons/fa";
 
@@ -21,7 +19,7 @@ const NavBar = ({ user, userProfile, handleLogout, history }) => {
           </Link>
 
 					<Link to="" onClick={handleLogout}>
-                <button className="group relative inline-block px-6 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-700 hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 my-2">
+                <button className="text-white border border-blue-400 text-black-500 bg-blue-600 block rounded-md font-bold py-2 px-6 my-2 flex items-center hover:bg-blue-500 hover:text-white">
                   Logout
                 </button>
               </Link>
@@ -145,14 +143,14 @@ const NavBar = ({ user, userProfile, handleLogout, history }) => {
           <ul className="nav-menu active nav-menu">
             <li className="text-sm text-gray-400 hover:text-gray-500">
               <Link to="/login">
-                <button className="group relative inline-block px-6 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-700 hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 my-2">
+                <button className="border border-blue-300 text-black-500 bg-blue-600 block rounded-md font-bold py-2 px-6 my-2 flex items-center hover:bg-blue-500 hover:text-white">
                   Login
                 </button>
               </Link>
             </li>
             <li className="text-sm text-gray-400 hover:text-gray-500">
               <Link to="/signup">
-                <button className="group relative inline-block px-6 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-700 hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                <button className="border border-blue-300 text-black-500 bg-blue-600 block rounded-md font-bold py-2 px-6 my-2 flex items-center hover:bg-blue-500 hover:text-white">
                   SignUp
                 </button>
               </Link>

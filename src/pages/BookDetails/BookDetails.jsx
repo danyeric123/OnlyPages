@@ -41,97 +41,85 @@ class BookDetails extends Component {
   render() {
     const { searchResult, reviews } = this.state;
     return (
-      <>
-        <h1 className="font-bold text-black-500 text-3xl text-center">
-          Book Details
-        </h1>
-        <div className="md:p-8 p-2 h-90 border-transparent bg-blue-100 shadow-xl mx-2 my-2 w-full ">
+      this.props.userProfile &&
+      <div className="grid justify-items-center ">
+        <hr/>
+        <h1 className="font-extrabold text-3xl">Book Details</h1>
+        <hr/>
+        <section>
           {searchResult.volumeInfo?.imageLinks ? (
             <img
               src={searchResult.volumeInfo?.imageLinks?.thumbnail}
               alt={searchResult?.volumeInfo?.title}
-              className="flex justify-center card__media  w-screen md:w-full object-contain h-60 w-full"
             />
           ) : (
-            <FaBook
-              size={70}
-              className="flex justify-center card__media  w-screen md:w-full object-contain h-60 w-full"
-            />
+            <FaBook size={70} />
           )}
-          <section>
-            <h3 className="p-1">{searchResult.volumeInfo?.title}</h3>
-            {searchResult.volumeInfo?.subtitle && (
-              <p className="p-1">
-                Subtitle: {searchResult.volumeInfo?.subtitle}
-              </p>
-            )}
-            {/* {searchResult.volumeInfo?.subtitle ? <p>Subtitle: {searchResult.volumeInfo?.subtitle}</p> : <p></p> } */}
-            <h3 className="p-1">
-              Author(s):{" "}
-              {searchResult.volumeInfo?.authors
-                ? searchResult.volumeInfo?.authors.join(" ,")
-                : "N/A"}
-            </h3>
-          </section>
-          <section>
-            <span className="p-1">Description: </span>
-            {searchResult.volumeInfo?.description ? (
-              <div
-                dangerouslySetInnerHTML={{
-                  __html: searchResult?.volumeInfo?.description,
-                }}
-                className="p-2 my-2 object-contain overflow-auto h-48 border border-black-600"
-              />
-            ) : (
-              "N/A"
-            )}
-            {searchResult.volumeInfo?.publisher && (
-              <p className="p-1">
-                Publisher: {searchResult.volumeInfo?.publisher}
-              </p>
-            )}
-            {searchResult.volumeInfo?.publishedDate && (
-              <p className="p-1">
-                PublishedDate:{" "}
-                {moment(searchResult.volumeInfo?.publishedDate).format(
-                  "MMMM Do, YYYY"
-                )}
-              </p>
-            )}
-            {searchResult.volumeInfo?.maturityRating && (
-              <p className="p-1">
-                Maturity Rating: {searchResult.volumeInfo?.maturityRating}
-              </p>
-            )}
-            {searchResult.volumeInfo?.pageCount && (
-              <p className="p-1">
-                PageCount: {searchResult.volumeInfo?.pageCount} pages
-              </p>
-            )}
-          </section>
-          <section className="my-3 px-2">
-            {searchResult.volumeInfo?.title /*  */ && (
-              <BookForm
-                book={searchResult}
-                userProfile={this.props.userProfile}
-                handleAddBook={this.props.handleAddBook}
-              />
-            )}
-          </section>
-        </div>
-        <div className="md:p-8 p-2 h-90 border-transparent shadow-xl mx-2 my-2 w-full">
-          {this.props.userProfile?.read.some(
-            (book) => book.api_id == searchResult.id
-          ) && (
-            <ReviewForm
+          <br />
+        </section>
+        <section className="p-8 rounded-3xl border-4 border-opacity-60 border-blue-500">
+          <h3 className="font-extrabold text-2xl" >{searchResult.volumeInfo?.title}</h3>
+          {searchResult.volumeInfo?.subtitle && (
+            <p>Subtitle: {searchResult.volumeInfo?.subtitle}</p>
+          )}
+          {/* {searchResult.volumeInfo?.subtitle ? <p>Subtitle: {searchResult.volumeInfo?.subtitle}</p> : <p></p> } */}
+          <h3>
+            <span className="font-bold underline">Author(s):</span>{" "}
+            {searchResult.volumeInfo?.authors
+              ? searchResult.volumeInfo?.authors.join(" ,")
+              : "N/A"}
+          </h3>
+        </section>
+        <section className="p-8 mx-16 my-6 rounded-3xl border-4 border-opacity-60 border-blue-500">
+          <span className="font-bold underline">Description: </span>
+          {searchResult.volumeInfo?.description ? (
+            <div
+              dangerouslySetInnerHTML={{
+                __html: searchResult?.volumeInfo?.description,
+              }}
+            />
+          ) : (
+            "N/A"
+          )}
+          {searchResult.volumeInfo?.publisher && (
+            <p>Publisher: {searchResult.volumeInfo?.publisher}</p>
+          )}
+          {searchResult.volumeInfo?.publishedDate && (
+            <p>
+              PublishedDate:{" "}
+              {moment(searchResult.volumeInfo?.publishedDate).format(
+                "MMMM Do, YYYY"
+              )}
+            </p>
+          )}
+          {searchResult.volumeInfo?.maturityRating && (
+            <p>Maturity Rating: {searchResult.volumeInfo?.maturityRating}</p>
+          )}
+          {searchResult.volumeInfo?.pageCount && (
+            <p>PageCount: {searchResult.volumeInfo?.pageCount} pages</p>
+          )}
+        </section>
+        <hr/>
+        <section>
+          <p>
+            If you would like to add this book to your personal library, first
+            select which collection type.
+          </p>
+          {searchResult.volumeInfo?.title /*  */ && (
+            <BookForm
               book={searchResult}
-              handleAddReview={this.handleAddReview}
+              userProfile={this.props.userProfile}
+              handleAddBook={this.props.handleAddBook}
             />
           )}
-        </div>
+        </section>
 
-        {/* <div className="md:p-8 p-2 h-90 border-transparent bg-blue-100 shadow-xl mx-2 my-2 w-full"> */}
-
+        <hr/>
+        <section>
+          {this.props.userProfile?.read.some(book=>book.api_id==searchResult.id)&&
+          <ReviewForm book={searchResult} handleAddReview={this.handleAddReview} />
+        }
+      </section>
         <h1 className="font-bold text-black-500 text-3xl text-center">Reviews</h1>
           <strong>{reviews.length == 0 && "No Reviews"}</strong>
 
@@ -146,10 +134,10 @@ class BookDetails extends Component {
                 ))}
             </section>
           )}
-
-      </>
+          </div>
     );
   }
 }
+
 
 export default BookDetails;

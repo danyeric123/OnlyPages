@@ -35,15 +35,20 @@ const PostLanding = ({userProfile}) => {
  }
 
   return (
-    <div className="postLandignCss">
+    <div className="grid justify-center">
       {!pressed&&
-        <button onClick={()=>setPressed(true)}>Add Post</button>
+        <button 
+          onClick={()=>setPressed(true)}
+          className="mx-9 lg:w-40 and sm:w-full py-5 text-sm rounded-md text-white bg-blue-600 hover:bg-blue-500"
+        >
+          Add Post
+        </button>
       }
       {pressed&&<AddPost setPressed={setPressed} addPost={addPost}/>}
       { isLoading && <div>...loading</div>}
 
-    <div>
-      {posts && <PostList id="cover" posts={posts} title="Recent" handleDelete={handleDeletePost} userProfile={userProfile} /> } 
+      <div>
+        {posts && <PostList posts={posts} title="Recent" handleDelete={handleDeletePost} userProfile={userProfile} /> } 
       </div>    
     </div>
   );
