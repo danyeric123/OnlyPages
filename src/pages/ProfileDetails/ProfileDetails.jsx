@@ -24,12 +24,12 @@ const ProfileDetails = ({userProfile}) => {
         src={profile.avatar}
         alt={profile.name}
         avatar
-        className="inline-block h-60 w-60 rounded-full ring-2 ring-white"
+        className="flex justify-center card__media  w-screen md:w-full object-contain h-60 w-full m-4"
       />:
-        <FaUserCircle size={70} />
+        <FaUserCircle size={70} className="flex justify-center card__media  w-screen md:w-full object-contain h-60 w-full" />
       }
       {userProfile._id===profile._id && <Link to="/profile/edit">
-      <button className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-300 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+      <button className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-500">
         EDIT BUTTON</button></Link>}
   
         <h3 className="font-bold text-black-500 text-3xl text-center py-4 bg-gray-300 my-2">Friends List</h3>
@@ -62,7 +62,7 @@ const ProfileDetails = ({userProfile}) => {
               <img
                 src={`http://books.google.com/books/content?id=${book.api_id}&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api`}
                 alt={`${book.title} front cover`}
-                className="flex justify-center card__media w-screen md:w-full object-contain h-60 bg-blue-100 w-full py-2"
+                className="flex justify-center card__media w-screen md:w-full object-contain h-60 rounded-md w-full py-2"
               />
             </a>
           ))}
@@ -77,7 +77,7 @@ const ProfileDetails = ({userProfile}) => {
               <img
                 src={`http://books.google.com/books/content?id=${book.api_id}&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api`}
                 alt={`${book.title} front cover`}
-                className="flex justify-center card__media w-screen md:w-full object-contain h-60 w-full bg-blue-100 py-2"
+                className="flex justify-center card__media w-screen md:w-full object-contain h-60 w-full  rounded-md py-2"
               />
             </a>
           ))}
@@ -88,10 +88,11 @@ const ProfileDetails = ({userProfile}) => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
           {profile.wantToRead.map((book) => (
             <a href={`/books/${book.api_id}`}>
+              {}
               <img
                 src={`http://books.google.com/books/content?id=${book.api_id}&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api`}
                 alt={`${book.title} front cover`}
-                className="flex justify-center card__media w-screen md:w-full object-contain h-60 w-full bg-blue-100 py-2"
+                className="flex justify-center card__media w-screen md:w-full object-contain h-60 w-full rounded-md py-2"
               />
             </a>
           ))}
