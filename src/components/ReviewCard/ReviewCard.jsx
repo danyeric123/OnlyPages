@@ -3,6 +3,7 @@ import LikeButton from "../LikeButton/LikeButton";
 import * as reviewsAPI from "../../services/reviewService";
 import { FaStar, FaRegStar } from "react-icons/fa";
 import moment from "moment";
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
 const ReviewCard = ({ fetchedReview, userProfile, handleDeleteReview }) => {
   const [review, setReview] = useState(fetchedReview);
@@ -37,7 +38,13 @@ const ReviewCard = ({ fetchedReview, userProfile, handleDeleteReview }) => {
           <div className="ml-6">
             <p className="flex items-baseline">
               <span className="text-gray-600 font-bold">
-                Written by: {review.author.name}
+                Written by: 
+                <Link 
+                  to={`/profiles/${review.author._id}`}
+                  className="text-blue-300 ml-2 underline"
+                >
+                {review.author.name}
+                </Link>
               </span>
             </p>
             <div className="flex items-center mt-1">Rating: {starRating()}</div>

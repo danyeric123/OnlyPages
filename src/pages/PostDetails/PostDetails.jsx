@@ -1,5 +1,5 @@
 import { useParams, useLocation } from "react-router";
-import { Link, } from "react-router-dom";
+import { Link } from "react-router-dom";
 import React,{ useState, useEffect } from 'react';
 import * as postService from "../../services/postService"
 import ReplyForm from "../../components/ReplyForm/ReplyForm";
@@ -20,7 +20,7 @@ const PostDetails = ({userProfile}) => {
       setPost(fetchedPost)
     };
     fetchPost()
-  }, [])
+  }, [userProfile])
 
   const handleLike = async () => {
    const updatedPost = await postService.likeAndUnlike(id)
@@ -38,10 +38,9 @@ const PostDetails = ({userProfile}) => {
   }
 
   return (
-      <div id="wrapper">
+      post&&<div id="wrapper">
       <div id="container">
       <section id="openbook">
-      {post && (
      
         <article id="article" >
           <h1
@@ -52,11 +51,13 @@ const PostDetails = ({userProfile}) => {
             <h3
               className="text-gray-500"
             >By: 
+              <Link to={`/profiles/${post.author._id}`}>
               <span
                 className="font-medium text-blue-500 ml-2"
               >
                 { post.author.name }
               </span>
+              </Link>
             </h3>
             <small
               className="text-gray-500"
@@ -89,16 +90,18 @@ const PostDetails = ({userProfile}) => {
          Edit post
       </button>
      </Link>}
-              </article>
-      )}
+    </article>
 
       <div class='replies'><br/>
       <ReplyForm addReply={addReply} />
-      <h2
+      {<h2
         className="font-bold"
-      >
-        Replies:
+      >{post.replies>0?
+        "Replies:":
+        "No Replies Yet"
+        }
       </h2>
+      }
       {post.replies.map(reply=>{
         return (<ReplyCard 
           reply={reply} 
