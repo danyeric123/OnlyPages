@@ -43,7 +43,7 @@ class Search extends Component {
           <button
             type="submit"
             disabled={this.state.invalidForm}
-            className="border border-blue-400 text-black-500 bg-blue-600 rounded-md font-bold py-2 px-6 my-2 items-center hover:bg-blue-500 hover:text-white"
+            className="border border-blue-400 text-white bg-blue-600 rounded-md font-bold py-2 px-6 my-2 items-center hover:bg-blue-500 hover:text-white"
           >
             Search
           </button>
