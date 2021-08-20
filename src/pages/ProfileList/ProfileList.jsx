@@ -24,9 +24,10 @@ class ProfileList extends Component {
 
   render() { 
     return (
-      <div className="container mx-auto">
-        <div className="grid grid-cols-3 gap-4">
-        <h1>Hello. This is a list of all the users.</h1>
+      // <div className="container mx-auto">
+      <>
+        <h1 className="font-bold text-black-500 text-xl text-center">This is a list of all the community members.</h1>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
         {this.state.profiles.map((profile) => (
           <ProfileCard 
           key={profile._id}
@@ -37,7 +38,7 @@ class ProfileList extends Component {
         ))}
         </div>
         
-      </div>
+      </>
     );
   }
 }

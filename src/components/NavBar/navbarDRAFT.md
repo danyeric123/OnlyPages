@@ -171,3 +171,134 @@ export default Navbar;
     </Listbox>
   )
 }
+
+
+  isFormInvalid() {
+    const { name, email } = this.state
+    return !(name && email )
+  }
+
+  render() {
+    const { name, email, avatar } = this.state;
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-md w-full space-y-8">
+          <div>
+            <FaBook
+              size={30}
+              style={{ color: "blue" }}
+              className="mx-auto h-12 w-auto"
+            />
+            <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
+              Edit Your Profile
+            </h2>
+            <p className="mt-2 text-center text-sm text-gray-600"></p>
+            <form
+              autoComplete="off"
+              onSubmit={this.handleSubmit}
+              className="mt-8 space-y-6"
+            >
+              <input type="hidden" name="remember" defaultValue="true" />
+              <div className="rounded-md shadow-sm -space-y-px">
+                Name
+                <div>
+                  <label htmlFor="name" className="sr-only">
+                    Name
+                  </label>
+                  <input
+                    type="text"
+                    autoComplete="off"
+                    id="name"
+                    value={name}
+                    name="name"
+                    onChange={this.handleChange}
+                    className="appearance-none rounded relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
+                  />
+                </div>
+              </div>
+              <div className="rounded-md shadow-sm -space-y-px">
+                Avatar
+                <div>
+                  <label htmlFor="avatar" className="sr-only">
+                    Avatar Image
+                  </label>
+                  <input
+                    type="text"
+                    autoComplete="off"
+                    id="avatar"
+                    value={avatar}
+                    name="avatar"
+                    onChange={this.handleChange}
+                    className="appearance-none rounded relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
+                  />
+                </div>
+              </div>
+              <div className="rounded-md shadow-sm -space-y-px">
+                Email Address
+                <div>
+                  <label htmlFor="email" className="sr-only">
+                    Email
+                  </label>
+                  <input
+                    type="text"
+                    autoComplete="off"
+                    id="email"
+                    value={email}
+                    name="email"
+                    onChange={this.handleChange}
+                    className="appearance-none rounded relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
+                  />
+                </div>
+              </div>
+              <div>
+                <button
+                  disabled={this.isFormInvalid()}
+                  className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-300 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 my-2"
+                >
+                  SUBMIT
+                </button>
+                <Link to={`/profiles/${this.props.userProfile._id}`}>
+                  <button className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-300 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                    Cancel
+                  </button>
+                </Link>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  <div class="flex items-start">
+  <div class="ml-6">
+    <p class="flex items-baseline">
+      <span class="text-gray-600 font-bold">Mary T.</span>
+      <span class="ml-2 text-green-600 text-xs">Verified Buyer</span>
+    </p>
+    <div class="flex items-center mt-1">
+      <svg class="w-4 h-4 fill-current text-yellow-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+      <svg class="w-4 h-4 fill-current text-yellow-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+      <svg class="w-4 h-4 fill-current text-yellow-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+      <svg class="w-4 h-4 fill-current text-yellow-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+      <svg class="w-4 h-4 fill-current text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+    </div>
+   
+    <div class="mt-3">
+      <p class="mt-1">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+    </div>
+    <div class="flex items-center justify-between mt-4 text-sm text-gray-600 fill-current">
+     
+      <div class="flex items-center">
+        <button class="flex items-center ml-6">
+          <svg class="w-3 h-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M11 0h1v3l3 7v8a2 2 0 0 1-2 2H5c-1.1 0-2.31-.84-2.7-1.88L0 12v-2a2 2 0 0 1 2-2h7V2a2 2 0 0 1 2-2zm6 10h3v10h-3V10z"/></svg>
+          <span class="ml-2">56</span>
+        </button>
+        <button class="flex items-center ml-4">
+          <svg class="w-3 h-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M11 20a2 2 0 0 1-2-2v-6H2a2 2 0 0 1-2-2V8l2.3-6.12A3.11 3.11 0 0 1 5 0h8a2 2 0 0 1 2 2v8l-3 7v3h-1zm6-10V0h3v10h-3z"/></svg>
+          <span class="ml-2">10</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

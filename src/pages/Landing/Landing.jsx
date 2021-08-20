@@ -1,6 +1,8 @@
 import styles from './Landing.module.css'
 
-const Landing = ({user}) => {
+/* https://images.unsplash.com/photo-1515932803766-b49b14f22917?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=750&q=80 */
+
+const Landing = ({ user }) => {
   return (
     <main className="flex flex-col p-12">
       <p 

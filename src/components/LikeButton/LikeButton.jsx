@@ -3,13 +3,12 @@ import {FaThumbsUp, FaThumbsDown} from 'react-icons/fa'
 
 const LikeButton = ({handleLike,likes,userProfile}) => {
   return (
-    <>
-     <button onClick={handleLike}>
+  
+     <button onClick={handleLike} className="flex items-center inline-block my-2">
      <FaThumbsUp/>
-      Like
-      {likes.length}
+      <span class="ml-2">{likes.length} </span>
       </button> 
-    </>
+    
   )
 }
 

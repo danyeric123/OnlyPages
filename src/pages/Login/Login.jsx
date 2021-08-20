@@ -10,13 +10,13 @@ class LoginPage extends Component {
         <div className="max-w-md w-full space-y-8">
           <div>
           
-            <FaBook
-              size={30}
-              style={{ color: "blue" }}
-              className="mx-auto h-12 w-auto"
+          <img
+              src="https://i.imgur.com/ZnXPhEq.jpg"
+              alt="only pages open book logo"
+              className="rounded-full h-20 w-20 mx-auto ring-4 ring-blue hover:opacity-75"
             />
             <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-              Sign in to your account
+              Log in to your account
             </h2>
             <p className="mt-2 text-center text-sm text-gray-600"></p>
           </div>

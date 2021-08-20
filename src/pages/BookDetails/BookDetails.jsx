@@ -16,10 +16,12 @@ class BookDetails extends Component {
   };
 
   async componentDidMount() {
-    const searchResult = await bookAPI.searchOneBook(this.props.match.params.id)
-    console.log(searchResult)
-    let reviews = await reviewsAPI.getReviews(this.props.match.params.id)
-    this.setState({searchResult,reviews})
+    const searchResult = await bookAPI.searchOneBook(
+      this.props.match.params.id
+    );
+    console.log(searchResult);
+    let reviews = await reviewsAPI.getReviews(this.props.match.params.id);
+    this.setState({ searchResult, reviews });
   }
 
   handleAddReview = async (review) => {
@@ -28,16 +30,18 @@ class BookDetails extends Component {
     this.setState({ reviews });
   };
 
-  handleDeleteReview = async id => {
-    let deletedReview = await reviewsAPI.deleteReview(id)
-    const reviews = this.state.reviews.filter(review => review._id != deletedReview._id)
-    this.setState({ reviews })
-  }
+  handleDeleteReview = async (id) => {
+    let deletedReview = await reviewsAPI.deleteReview(id);
+    const reviews = this.state.reviews.filter(
+      (review) => review._id != deletedReview._id
+    );
+    this.setState({ reviews });
+  };
 
   render() {
     const { searchResult, reviews } = this.state;
     return (
-      this.props.userProfile&&
+      this.props.userProfile &&
       <div className="grid justify-items-center ">
         <hr/>
         <h1 className="font-extrabold text-3xl">Book Details</h1>
@@ -117,23 +121,24 @@ class BookDetails extends Component {
           <ReviewForm book={searchResult} handleAddReview={this.handleAddReview} />
         }
       </section>
-        <strong>{reviews.length == 0 && "No Reviews"}</strong>
-        {(reviews?.length > 0) &&
-        <section>
-          <h3>Reviews:</h3>
-          {reviews?.map((review) => (
-            <ReviewCard
-              userProfile={this.props.userProfile}
-              fetchedReview={review}
-              handleDeleteReview={this.handleDeleteReview}
-              />
-              ))}
-        </section>
-        }
-       
-      </div>
+        <h1 className="font-bold text-black-500 text-3xl text-center">Reviews</h1>
+          <strong>{reviews.length == 0 && "No Reviews"}</strong>
+
+          {reviews?.length > 0 && (
+            <section className="grid grid-cols-1 md:grid-cols-3 gap-3">
+              {reviews?.map((review) => (
+                <ReviewCard
+                userProfile={this.props.userProfile}
+                fetchedReview={review}
+                handleDeleteReview={this.handleDeleteReview}
+                />
+                ))}
+            </section>
+          )}
+          </div>
     );
   }
 }
+
 
 export default BookDetails;

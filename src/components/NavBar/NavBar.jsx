@@ -2,23 +2,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 import SearchForm from "../SearchForm/SearchForm";
 import { FaBook } from "react-icons/fa";
-import { FaTimes } from "react-icons/fa"; /* for mobil menu */
-import { FaBars } from "react-icons/fa"; /* for mobil menu */
 import "./Navbar.css";
 // import { BiSearch } from "react-icons/fa";
 
 const NavBar = ({ user, userProfile, handleLogout, history }) => {
-  /*   state = {
-    active: false
-  };
- */
-  /*   handleClick = () => {
-    this.setState({
-      active: !this.state.active
-    })
-  }
-  console.log(state) */
-  // console.log("userProfile.avatar:", userProfile.avatar)
   return (
     <>
       {user ? (
@@ -58,7 +45,7 @@ const NavBar = ({ user, userProfile, handleLogout, history }) => {
                 <span className="text-blue-600">Users</span>
               </Link>
             </li>
-            <li class="text-gray-300">
+            <li className="text-gray-300">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -69,7 +56,7 @@ const NavBar = ({ user, userProfile, handleLogout, history }) => {
                 <path
                   stroke-linecap="round"
                   stroke-linejoin="round"
-                  stroke-width="2"
+                  strokeWidth="2"
                   d="M12 5v0m0 7v0m0 7v0m0-13a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"
                 />
               </svg>
@@ -98,7 +85,7 @@ const NavBar = ({ user, userProfile, handleLogout, history }) => {
                 <span className="h-6 w-6 text-blue-600">My Profile</span>
               </Link>
             </li>
-            <li class="text-gray-300">
+            <li className="text-gray-300">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -109,7 +96,7 @@ const NavBar = ({ user, userProfile, handleLogout, history }) => {
                 <path
                   stroke-linecap="round"
                   stroke-linejoin="round"
-                  stroke-width="2"
+                  strokeWidth="2"
                   d="M12 5v0m0 7v0m0 7v0m0-13a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"
                 />
               </svg>
@@ -130,7 +117,14 @@ const NavBar = ({ user, userProfile, handleLogout, history }) => {
                     d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z"
                   />
                 </svg>
-                <span className="h-6 w-6 pr-12 text-blue-600">All Posts</span>
+                <span className="h-6 w-6 text-blue-600">All Posts</span>
+              </Link>
+            </li>
+            <li className="nav-links">
+              <Link to="" onClick={handleLogout}>
+                <button className="group relative inline-block px-6 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-700 hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 my-2">
+                  Logout
+                </button>
               </Link>
             </li>
 						<SearchForm history={history} />

@@ -149,3 +149,5 @@ JWT:
 ## Credit
 
 The book logo was taken from [here](https://pngtree.com/so/book-logo)
+landing page image Photo by <a href="https://unsplash.com/@bokcily?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Boris Ivanović</a> on <a href="https://unsplash.com/s/photos/blue-books?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+  
