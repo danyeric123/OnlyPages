@@ -40,10 +40,11 @@ class BookDetails extends Component {
   render() {
     const { searchResult, reviews } = this.state;
     return (
-      <>
-        <div>*************</div>
-        <h1>Book Details</h1>
-        <div>*************</div>
+      this.props.userProfile&&
+      <div className="grid justify-items-center ">
+        <hr/>
+        <h1 className="font-extrabold text-3xl">Book Details</h1>
+        <hr/>
         <section>
           {searchResult.volumeInfo?.imageLinks ? (
             <img
@@ -55,21 +56,21 @@ class BookDetails extends Component {
           )}
           <br />
         </section>
-        <section>
-          <h3>{searchResult.volumeInfo?.title}</h3>
+        <section className="p-8 rounded-3xl border-4 border-opacity-60 border-blue-500">
+          <h3 className="font-extrabold text-2xl" >{searchResult.volumeInfo?.title}</h3>
           {searchResult.volumeInfo?.subtitle && (
             <p>Subtitle: {searchResult.volumeInfo?.subtitle}</p>
           )}
           {/* {searchResult.volumeInfo?.subtitle ? <p>Subtitle: {searchResult.volumeInfo?.subtitle}</p> : <p></p> } */}
           <h3>
-            Author(s):{" "}
+            <span className="font-bold underline">Author(s):</span>{" "}
             {searchResult.volumeInfo?.authors
               ? searchResult.volumeInfo?.authors.join(" ,")
               : "N/A"}
           </h3>
         </section>
-        <section>
-          <span>Description: </span>
+        <section className="p-8 mx-16 my-6 rounded-3xl border-4 border-opacity-60 border-blue-500">
+          <span className="font-bold underline">Description: </span>
           {searchResult.volumeInfo?.description ? (
             <div
               dangerouslySetInnerHTML={{
@@ -97,7 +98,7 @@ class BookDetails extends Component {
             <p>PageCount: {searchResult.volumeInfo?.pageCount} pages</p>
           )}
         </section>
-        <div>*************</div>
+        <hr/>
         <section>
           <p>
             If you would like to add this book to your personal library, first
@@ -132,7 +133,7 @@ class BookDetails extends Component {
         </section>
         }
        
-      </>
+      </div>
     );
   }
 }

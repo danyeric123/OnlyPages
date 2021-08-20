@@ -23,12 +23,20 @@ const ReviewCard = ({ fetchedReview, userProfile, handleDeleteReview }) => {
   return (
     <>
       <h5>{review.content}</h5>
+      <div className="flex self-center">
       {starRating()}
+      </div>
       <h5>by {review.author.name}</h5>
       <small>Posted on {moment(review.createdAt).fromNow()}</small>
       {review.author._id === userProfile._id &&
       <>
-        <button onClick={()=> handleDeleteReview(review._id)}>X</button><br></br>
+        <button 
+          onClick={()=> handleDeleteReview(review._id)}
+          className="p-2 border border-transparent text-sm font-medium rounded-md text-white bg-red-300 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+        >
+          X
+          </button>
+          <br></br>
       </>
       }
       <LikeButton userProfile={userProfile} handleLike={handleLike} likes={review.likes}/>

@@ -21,7 +21,7 @@ const ReviewForm = ({book,handleAddReview}) => {
     handleAddReview(formData)
     setContent('');
     setRating(1)
-    setStars([true,false,false,false])
+    setStars([true,false,false,false,false])
     setInvalidForm(true)
   }
 
@@ -42,6 +42,7 @@ const ReviewForm = ({book,handleAddReview}) => {
         onChange={()=>setInvalidForm(!formRef)}
         onSubmit={handleSubmit}
       >
+      <div className="flex" >
       <textarea
         type="text"
         name="content"
@@ -49,18 +50,23 @@ const ReviewForm = ({book,handleAddReview}) => {
         value={content}
         onChange={({target}) => setContent(target.value)}
         required
+        className="border border-black"
       />
-      <label htmlFor="rating">Rating</label>
+      <div className="flex self-center">
+      <label className="pr-4" htmlFor="rating">Rating</label>
         {stars.map((star,idx)=>star?
           <FaStar onClick={()=>changeRating(idx)}/>:
           <FaRegStar onClick={()=>changeRating(idx)}/>
         )}
+        </div>
         <button
           type="submit"
     			disabled={invalidForm}
+          className="px-0 border border-transparent text-sm font-medium rounded-md text-white bg-blue-300 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
           >
 				  Add Review
-        </button>         
+        </button>
+        </div>
       </form>
   </>
 );
