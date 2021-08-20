@@ -7,6 +7,7 @@ import ReplyCard from "../../components/ReplyCard/ReplyCard";
 import moment from "moment";
 import LikeButton from "../../components/LikeButton/LikeButton";
 import postDetailsCss from "./PostDetail.modules.css"
+
 const PostDetails = ({userProfile}) => {
   
 

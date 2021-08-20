@@ -113,7 +113,7 @@ class BookDetails extends Component {
           )}
         </section>
 
-        <div>*************</div>
+        <hr/>
         <section>
           {this.props.userProfile?.read.some(book=>book.api_id==searchResult.id)&&
           <ReviewForm book={searchResult} handleAddReview={this.handleAddReview} />

@@ -32,7 +32,7 @@ const NavBar = ({ user, userProfile, handleLogout, history }) => {
           </Link>
 
 					<Link to="" onClick={handleLogout}>
-                <button className="border border-blue-400 text-black-500 bg-blue-300 block rounded-md font-bold py-2 px-6 my-2 flex items-center hover:bg-blue-600 hover:text-white">
+                <button className="border border-blue-400 text-black-500 bg-blue-600 block rounded-md font-bold py-2 px-6 my-2 flex items-center hover:bg-blue-500 hover:text-white">
                   Logout
                 </button>
               </Link>
@@ -149,14 +149,14 @@ const NavBar = ({ user, userProfile, handleLogout, history }) => {
           <ul className="nav-menu active nav-menu">
             <li className="text-sm text-gray-400 hover:text-gray-500">
               <Link to="/login">
-                <button className="border border-blue-300 text-black-500 bg-blue-300 block rounded-md font-bold py-2 px-6 my-2 flex items-center hover:bg-blue-600 hover:text-white">
+                <button className="border border-blue-300 text-black-500 bg-blue-600 block rounded-md font-bold py-2 px-6 my-2 flex items-center hover:bg-blue-500 hover:text-white">
                   Login
                 </button>
               </Link>
             </li>
             <li className="text-sm text-gray-400 hover:text-gray-500">
               <Link to="/signup">
-                <button className="border border-blue-300 text-black-500 bg-blue-300 block rounded-md font-bold py-2 px-6 my-2 flex items-center hover:bg-blue-600 hover:text-white">
+                <button className="border border-blue-300 text-black-500 bg-blue-600 block rounded-md font-bold py-2 px-6 my-2 flex items-center hover:bg-blue-500 hover:text-white">
                   SignUp
                 </button>
               </Link>
