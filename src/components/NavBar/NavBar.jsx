@@ -8,17 +8,6 @@ import "./Navbar.css";
 // import { BiSearch } from "react-icons/fa";
 
 const NavBar = ({ user, userProfile, handleLogout, history }) => {
-  /*   state = {
-    active: false
-  };
- */
-  /*   handleClick = () => {
-    this.setState({
-      active: !this.state.active
-    })
-  }
-  console.log(state) */
-  // console.log("userProfile.avatar:", userProfile.avatar)
   return (
     <>
       {user ? (

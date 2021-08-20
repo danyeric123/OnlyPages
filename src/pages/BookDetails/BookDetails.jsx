@@ -16,10 +16,12 @@ class BookDetails extends Component {
   };
 
   async componentDidMount() {
-    const searchResult = await bookAPI.searchOneBook(this.props.match.params.id)
-    console.log(searchResult)
-    let reviews = await reviewsAPI.getReviews(this.props.match.params.id)
-    this.setState({searchResult,reviews})
+    const searchResult = await bookAPI.searchOneBook(
+      this.props.match.params.id
+    );
+    console.log(searchResult);
+    let reviews = await reviewsAPI.getReviews(this.props.match.params.id);
+    this.setState({ searchResult, reviews });
   }
 
   /*
@@ -31,18 +33,22 @@ class BookDetails extends Component {
     this.setState({ reviews });
   };
 
-  handleDeleteReview = async id => {
-    let deletedReview = await reviewsAPI.deleteReview(id)
-    const reviews = this.state.reviews.filter(review => review._id != deletedReview._id)
-    this.setState({ reviews })
-  }
+  handleDeleteReview = async (id) => {
+    let deletedReview = await reviewsAPI.deleteReview(id);
+    const reviews = this.state.reviews.filter(
+      (review) => review._id != deletedReview._id
+    );
+    this.setState({ reviews });
+  };
 
   render() {
     const { searchResult, reviews } = this.state;
     return (
       <>
-          <h1 className="font-bold text-black-500 text-xl text-center">Book Details</h1>
-        <section>
+        <h1 className="font-bold text-black-500 text-3xl text-center">
+          Book Details
+        </h1>
+        <div className="md:p-8 p-2 h-90 border-transparent bg-blue-100 shadow-xl mx-2 my-2 w-full ">
           {searchResult.volumeInfo?.imageLinks ? (
             <img
               src={searchResult.volumeInfo?.imageLinks?.thumbnail}
@@ -50,89 +56,100 @@ class BookDetails extends Component {
               className="flex justify-center card__media  w-screen md:w-full object-contain h-60 w-full"
             />
           ) : (
-            <FaBook size={70}  className="flex justify-center card__media  w-screen md:w-full object-contain h-60 w-full"/>
-          )}
-          <br />
-        </section>
-        <section>
-          <h3>{searchResult.volumeInfo?.title}</h3>
-          {searchResult.volumeInfo?.subtitle && (
-            <p>Subtitle: {searchResult.volumeInfo?.subtitle}</p>
-          )}
-          {/* {searchResult.volumeInfo?.subtitle ? <p>Subtitle: {searchResult.volumeInfo?.subtitle}</p> : <p></p> } */}
-          <h3>
-            Author(s):{" "}
-            {searchResult.volumeInfo?.authors
-              ? searchResult.volumeInfo?.authors.join(" ,")
-              : "N/A"}
-          </h3>
-        </section>
-        <section>
-          <span>Description: </span>
-          {searchResult.volumeInfo?.description ? (
-            <div
-              dangerouslySetInnerHTML={{
-                __html: searchResult?.volumeInfo?.description,
-              }}
-            />
-          ) : (
-            "N/A"
-          )}
-          {searchResult.volumeInfo?.publisher && (
-            <p>Publisher: {searchResult.volumeInfo?.publisher}</p>
-          )}
-          {searchResult.volumeInfo?.publishedDate && (
-            <p>
-              PublishedDate:{" "}
-              {moment(searchResult.volumeInfo?.publishedDate).format(
-                "MMMM Do, YYYY"
-              )}
-            </p>
-          )}
-          {searchResult.volumeInfo?.maturityRating && (
-            <p>Maturity Rating: {searchResult.volumeInfo?.maturityRating}</p>
-          )}
-          {searchResult.volumeInfo?.pageCount && (
-            <p>PageCount: {searchResult.volumeInfo?.pageCount} pages</p>
-          )}
-        </section>
-        <div>*************</div>
-        <section>
-          <p>
-            If you would like to add this book to your personal library, first
-            select which collection type.
-          </p>
-          {searchResult.volumeInfo?.title /*  */ && (
-            <BookForm
-              book={searchResult}
-              userProfile={this.props.userProfile}
-              handleAddBook={this.props.handleAddBook}
+            <FaBook
+              size={70}
+              className="flex justify-center card__media  w-screen md:w-full object-contain h-60 w-full"
             />
           )}
-        </section>
-        <div className="w-full px-4">
-          {/* <ReviewForm
-              userProfile={this.props.userProfile}
-              handleAddReview={this.handleAddReview}
-              /> */}
-          {this.props.userProfile?.read.some(book=>book.api_id==searchResult.id)&&
-          <ReviewForm book={searchResult} handleAddReview={this.handleAddReview} />
-        }
-      </div>
-        <strong>{reviews.length == 0 && "No Reviews"}</strong>
-        {(reviews?.length > 0) &&
-        <section className="flex items-center mt-1">
-          <h3>Reviews:</h3>
-          {reviews?.map((review) => (
-            <ReviewCard
-              userProfile={this.props.userProfile}
-              fetchedReview={review}
-              handleDeleteReview={this.handleDeleteReview}
+          <section>
+            <h3 className="p-1">{searchResult.volumeInfo?.title}</h3>
+            {searchResult.volumeInfo?.subtitle && (
+              <p className="p-1">
+                Subtitle: {searchResult.volumeInfo?.subtitle}
+              </p>
+            )}
+            {/* {searchResult.volumeInfo?.subtitle ? <p>Subtitle: {searchResult.volumeInfo?.subtitle}</p> : <p></p> } */}
+            <h3 className="p-1">
+              Author(s):{" "}
+              {searchResult.volumeInfo?.authors
+                ? searchResult.volumeInfo?.authors.join(" ,")
+                : "N/A"}
+            </h3>
+          </section>
+          <section>
+            <span className="p-1">Description: </span>
+            {searchResult.volumeInfo?.description ? (
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: searchResult?.volumeInfo?.description,
+                }}
+                className="p-2 my-2 object-contain overflow-auto h-48 border border-black-600"
               />
-              ))}
-        </section>
-        }
-       
+            ) : (
+              "N/A"
+            )}
+            {searchResult.volumeInfo?.publisher && (
+              <p className="p-1">
+                Publisher: {searchResult.volumeInfo?.publisher}
+              </p>
+            )}
+            {searchResult.volumeInfo?.publishedDate && (
+              <p className="p-1">
+                PublishedDate:{" "}
+                {moment(searchResult.volumeInfo?.publishedDate).format(
+                  "MMMM Do, YYYY"
+                )}
+              </p>
+            )}
+            {searchResult.volumeInfo?.maturityRating && (
+              <p className="p-1">
+                Maturity Rating: {searchResult.volumeInfo?.maturityRating}
+              </p>
+            )}
+            {searchResult.volumeInfo?.pageCount && (
+              <p className="p-1">
+                PageCount: {searchResult.volumeInfo?.pageCount} pages
+              </p>
+            )}
+          </section>
+          <section className="my-3 px-2">
+            {searchResult.volumeInfo?.title /*  */ && (
+              <BookForm
+                book={searchResult}
+                userProfile={this.props.userProfile}
+                handleAddBook={this.props.handleAddBook}
+              />
+            )}
+          </section>
+        </div>
+        <div className="md:p-8 p-2 h-90 border-transparent shadow-xl mx-2 my-2 w-full">
+          {this.props.userProfile?.read.some(
+            (book) => book.api_id == searchResult.id
+          ) && (
+            <ReviewForm
+              book={searchResult}
+              handleAddReview={this.handleAddReview}
+            />
+          )}
+        </div>
+
+        {/* <div className="md:p-8 p-2 h-90 border-transparent bg-blue-100 shadow-xl mx-2 my-2 w-full"> */}
+
+        <h1 className="font-bold text-black-500 text-xl text-center">Reviews</h1>
+          <strong>{reviews.length == 0 && "No Reviews"}</strong>
+
+          {reviews?.length > 0 && (
+            <section className="grid grid-cols-1 md:grid-cols-3 gap-3">
+              {reviews?.map((review) => (
+                <ReviewCard
+                userProfile={this.props.userProfile}
+                fetchedReview={review}
+                handleDeleteReview={this.handleDeleteReview}
+                />
+                ))}
+            </section>
+          )}
+
       </>
     );
   }
