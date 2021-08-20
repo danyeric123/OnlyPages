@@ -41,17 +41,16 @@ class BookDetails extends Component {
     const { searchResult, reviews } = this.state;
     return (
       <>
-        <div>*************</div>
-        <h1>Book Details</h1>
-        <div>*************</div>
+          <h1 className="font-bold text-black-500 text-xl text-center">Book Details</h1>
         <section>
           {searchResult.volumeInfo?.imageLinks ? (
             <img
               src={searchResult.volumeInfo?.imageLinks?.thumbnail}
               alt={searchResult?.volumeInfo?.title}
+              className="flex justify-center card__media  w-screen md:w-full object-contain h-60 w-full"
             />
           ) : (
-            <FaBook size={70} />
+            <FaBook size={70}  className="flex justify-center card__media  w-screen md:w-full object-contain h-60 w-full"/>
           )}
           <br />
         </section>

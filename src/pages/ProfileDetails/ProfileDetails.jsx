@@ -3,7 +3,7 @@ import { FaUserCircle } from "react-icons/fa";
 import { Link, useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { getProfile } from "../../services/profileService";
 
-const ProfileDetails = ({location,userProfile}) => {
+const ProfileDetails = ({userProfile}) => {
   const {id} = useParams()
   const [profile, setProfile] = useState(null)
   
@@ -11,10 +11,9 @@ const ProfileDetails = ({location,userProfile}) => {
     const fetchProfile = async () => {
       const profileFetched = await getProfile(id);
       setProfile(profileFetched);
-      console.log("ehy")
     };
     fetchProfile();
-  }, [id]);
+  }, [id,userProfile]);
 
   return (
     profile && userProfile&&

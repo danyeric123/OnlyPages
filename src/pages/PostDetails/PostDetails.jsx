@@ -62,14 +62,15 @@ const PostDetails = ({userProfile}) => {
                   </small>
                   </Link>
                 )
-              })}
-      <LikeButton handleLike={handleLike} likes={post.likes} />
-              </article>
-      )}
+              })}<br/>
+      <LikeButton handleLike={handleLike} likes={post.likes} /> <br/>
      {post.author._id===userProfile._id&&<Link to={{pathname:'/edit',state:post}}>
        <button>Edit post</button>
      </Link>}
-      <div class='replies'>
+              </article>
+      )}
+
+      <div class='replies'><br/>
       <ReplyForm addReply={addReply} />
       <h2>Replies</h2>
       {post.replies.map(reply=><ReplyCard reply={reply} deleteReply={deleteReply} userProfile={userProfile} />)}

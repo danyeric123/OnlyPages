@@ -12,7 +12,7 @@ const BookCard = ({ book, userProfile, handleAddBook, handleRemoveBook }) => {
   book.id = id;
 
   return (
-    <div className="md:p-8 p-2 h-90 border-transparent bg-blue-100 shadow-xl mx-2 my-2 md:w-full ">
+    <div className="md:p-8 p-2 h-90 border-transparent bg-blue-100 shadow-xl mx-2 my-2 w-full ">
       {/* <section className="border border border-red-500 p-2"> */}
         {book.imageLinks ? (
           <img

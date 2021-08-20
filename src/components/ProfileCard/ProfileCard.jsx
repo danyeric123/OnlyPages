@@ -6,7 +6,7 @@ const ProfileCard = ({ profile, userProfile, handleFriend }) => {
   return (
     <>
     {/*  <div className="max-w-sm rounded overflow-hidden shadow-lg my-4"> */}
-    <div className="md:p-8 p-2 border-transparent bg-blue-100 shadow-lg mx-2 my-2 md:w-full">
+    <div className="md:p-8 p-2 border-transparent bg-blue-100 shadow-lg mx-2 my-2 w-full">
       <Link
         to={{
           pathname: `/profiles/${profile._id}`,

@@ -4,7 +4,7 @@ import SearchForm from "../SearchForm/SearchForm";
 import { FaBook } from "react-icons/fa";
 import { FaTimes } from "react-icons/fa"; /* for mobil menu */
 import { FaBars } from "react-icons/fa"; /* for mobil menu */
-//import "./Navbar.css";
+import "./Navbar.css";
 // import { BiSearch } from "react-icons/fa";
 
 const NavBar = ({ user, userProfile, handleLogout, history }) => {
@@ -24,27 +24,22 @@ const NavBar = ({ user, userProfile, handleLogout, history }) => {
       {user ? (
         <nav className="relative px-4 py-4 flex justify-between items-center bg-white">
           <Link to="/">
-            <FaBook
-              size={30}
-              style={{ color: "blue" }}
-              className="text-sm text-gray-400 hover:text-gray-500"
+            <img
+              src="https://i.imgur.com/ZnXPhEq.jpg"
+							alt="logo"
+              className="rounded-full h-20 w-20 ring-4 ring-blue hover:opacity-75"
             />
           </Link>
-          <SearchForm history={history} />
-          {/* <div className="menu-icon">
-            <FaTimes
-              className="fas fa-times"
-              size={30}
-              style={{ color: "white" }}
-            />
-            <FaBars
-              className="fas fa-bars"
-              size={30}
-              style={{ color: "white" }}
-            />
-          </div> */}
-          <ul className="relative px-4 py-4 flex justify-between items-center bg-white">
-            <li className="text-sm text-gray-400 hover:text-gray-500">
+
+					<Link to="" onClick={handleLogout}>
+                <button className="border border-blue-400 text-black-500 bg-blue-300 block rounded-md font-bold py-2 px-6 my-2 flex items-center hover:bg-blue-600 hover:text-white">
+                  Logout
+                </button>
+              </Link>
+
+          
+          <ul className="relative  py-4 flex justify-between self-start items-center bg-white">
+            <li className="text-sm text-gray-400 hover:opacity-50">
               <Link to="/users">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -79,12 +74,7 @@ const NavBar = ({ user, userProfile, handleLogout, history }) => {
                 />
               </svg>
             </li>
-            <li className="nav-links">
-              {/*   {userProfile.avatar ? (
-                    <img src={userProfile.avatar} alt={userProfile.name} avatar />
-                  ) : (
-                    <FaUserCircle size={70} style={{ color: "blue" }} />
-                  )} */}
+            <li className="nav-links hover:opacity-50">
 
               <Link
                 to={{
@@ -124,7 +114,7 @@ const NavBar = ({ user, userProfile, handleLogout, history }) => {
                 />
               </svg>
             </li>
-            <li className="nav-links">
+            <li className="nav-links hover:opacity-50 ">
               <Link to="/posts">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -150,6 +140,8 @@ const NavBar = ({ user, userProfile, handleLogout, history }) => {
                 </button>
               </Link>
             </li>
+						<SearchForm history={history} />
+            
           </ul>
         </nav>
       ) : (

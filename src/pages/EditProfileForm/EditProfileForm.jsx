@@ -3,17 +3,17 @@ import { Link } from "react-router-dom";
 import { FaBook } from "react-icons/fa";
 // import styles from './EditProfileForm.module.css'
 
-const EditProfileForm = ({ userProfile, user, updateUserProfile, history }) => {
-  const [name, setName] = useState(userProfile.name);
-  const [email, setEmail] = useState(user.email);
-  const [avatar, setAvatar] = useState(userProfile.avatar);
-  const [validForm, setValidForm] = useState(true);
+const EditProfileForm = ({userProfile,user,updateUserProfile,history}) => {
+  const [name, setName] = useState(userProfile.name)
+  const [email, setEmail] = useState(user.email)
+  const [avatar, setAvatar] = useState(userProfile.avatar)
+  const [validForm, setValidForm] = useState(false)
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      updateUserProfile({ name, email, avatar });
-      history.push(`/profiles/${userProfile._id}`);
+      history.push(`/profiles/${userProfile._id}`)
+      updateUserProfile({name,email,avatar})
     } catch (err) {
       console.log(err);
     }

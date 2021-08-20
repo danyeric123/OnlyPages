@@ -42,8 +42,8 @@ const PostLanding = ({userProfile}) => {
       {pressed&&<AddPost setPressed={setPressed} addPost={addPost}/>}
       { isLoading && <div>...loading</div>}
 
-    <div  id="cover">
-      {posts && <PostList posts={posts} title="Recent" handleDelete={handleDeletePost} userProfile={userProfile} /> } 
+    <div>
+      {posts && <PostList id="cover" posts={posts} title="Recent" handleDelete={handleDeletePost} userProfile={userProfile} /> } 
       </div>    
     </div>
   );
