@@ -61,8 +61,8 @@ class App extends Component {
     this.setState({ userProfile: updatedProfile });
   };
 
-  handleRemoveBook = async (api_id, collection) => {
-    const updatedProfile = await profileAPI.removeBook(api_id, collection);
+  handleRemoveBook = async (api_id) => {
+    const updatedProfile = await profileAPI.removeBook(api_id);
     this.setState({ userProfile: updatedProfile });
   };
 

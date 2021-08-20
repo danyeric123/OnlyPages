@@ -60,9 +60,9 @@ export function update(id,profileUpdate) {
     ).then((res) => res.json())
 }
 
-export function removeBook(id,collection) {
+export function removeBook(id) {
   return fetch(
-    `${BASE_URL}/books/${id}/${collection}`,
+    `${BASE_URL}/books/${id}`,
     {
       method: 'DELETE',
       headers: { Authorization: "Bearer " + tokenService.getToken() }

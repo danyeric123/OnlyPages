@@ -175,7 +175,17 @@ function addToCollection(profile, book, collection,res){
 function removeBook(req,res){
   Profile.findById(req.user.profile)
   .then(profile=>{
-    removeFromCollection(profile,req.body.api_id,req.params.collection,res)
+    Book.findOne({api_id:req.params.bookId})
+        .then(book=>{
+          profile.read.remove(book._id)
+          profile.currentlyReading.remove(book._id)
+          profile.wantToRead.remove(book._id)
+          profile.save()
+          populateAll(profile)
+          .then(profile=>{
+            res.json(profile)
+          })
+        }) 
   })
   .catch(err=>{
     console.log(err)

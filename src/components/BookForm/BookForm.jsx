@@ -1,7 +1,7 @@
 import React, { useEffect,useState } from "react";
 
 
-const BookForm = ({book,userProfile,handleAddBook}) => {
+const BookForm = ({book,userProfile,handleAddBook,handleRemove}) => {
   const [formData, setFormData] = useState({
     api_id: book.id,
     title: book.title,
@@ -40,9 +40,18 @@ const BookForm = ({book,userProfile,handleAddBook}) => {
             )
         })}
         </select>
-        <button onClick={handleClick} className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" >ADD BOOK TO COLLECTION</button>
-         <br />
-        <br />
+        <button 
+          onClick={handleClick} 
+          className="group my-3 relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" 
+        >
+          ADD BOOK TO COLLECTION
+          </button>
+         <button 
+            onClick={()=> handleRemove(book.id)}
+            className="p-2 mb-12 w-full border border-transparent text-sm font-medium rounded-md text-white bg-red-700 hover:bg-red-500"
+          >
+          Remove Book
+          </button>
         
       </>
   )

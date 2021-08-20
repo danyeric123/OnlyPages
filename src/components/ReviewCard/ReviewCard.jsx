@@ -32,7 +32,7 @@ const ReviewCard = ({ fetchedReview, userProfile, handleDeleteReview }) => {
       <>
         <button 
           onClick={()=> handleDeleteReview(review._id)}
-          className="p-2 border border-transparent text-sm font-medium rounded-md text-white bg-red-700 hover:bg-red-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+          className="p-2 border border-transparent text-sm font-medium rounded-md text-white bg-red-700 hover:bg-red-500"
         >
           X
           </button>
