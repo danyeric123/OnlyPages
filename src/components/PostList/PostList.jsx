@@ -9,7 +9,6 @@ const PostList = ({ posts, title, handleDelete, userProfile }) => {
    
     <div className="flex flex-col justify-center">
       <h2 className="font-extrabold text-2xl">{title} Posts</h2>
-  {/* \/ this render all post on by\/*/}
   <div className='text-center text-gray-50 grid grid-cols-3 md:grid-cols-6'>
       {posts.map((post) => (
         <div className="p-5 mx-4 rounded-2xl shadow-2xl hover:shadow-none bg-blue-600" key={post._id}>

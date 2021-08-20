@@ -2,8 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import SearchForm from "../SearchForm/SearchForm";
 import { FaBook } from "react-icons/fa";
-import "./Navbar.css";
-// import { BiSearch } from "react-icons/fa";
 
 const NavBar = ({ user, userProfile, handleLogout, history }) => {
   return (

@@ -38,18 +38,31 @@ const PostDetails = ({userProfile}) => {
   }
 
   return (
-      post&&
       <div id="wrapper">
       <div id="container">
       <section id="openbook">
-      
-      {/* { isLoading && <div>...loading</div>} */}
       {post && (
      
         <article id="article" >
-          <h1>{ post.title }</h1>
-            <h3>By: { post.author.name }</h3>
-            <small>Posted on {moment(post.createdAt).fromNow()}</small>
+          <h1
+            className="font-extrabold text-3xl"
+          >
+            { post.title }
+          </h1>
+            <h3
+              className="text-gray-500"
+            >By: 
+              <span
+                className="font-medium text-blue-500 ml-2"
+              >
+                { post.author.name }
+              </span>
+            </h3>
+            <small
+              className="text-gray-500"
+            >
+              Posted on {moment(post.createdAt).fromNow()}
+            </small>
               <p> { post.body }</p>
               {post.categories.map(cat=>{
                 return (
@@ -58,23 +71,41 @@ const PostDetails = ({userProfile}) => {
                       pathname: `/posts/category/${cat}`,
                     }}
                   >
-                  <small>
+                  <small
+                    className="text-blue-500"
+                  >
                     {cat}
                   </small>
                   </Link>
                 )
               })}<br/>
-      <LikeButton handleLike={handleLike} likes={post.likes} /> <br/>
+      <LikeButton 
+        handleLike={handleLike} likes={post.likes} 
+      />
      {post.author._id===userProfile._id&&<Link to={{pathname:'/edit',state:post}}>
-       <button>Edit post</button>
+       <button
+        className="group my-3 relative flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-yellow-400 hover:bg-yellow-300" 
+       >
+         Edit post
+      </button>
      </Link>}
               </article>
       )}
 
       <div class='replies'><br/>
       <ReplyForm addReply={addReply} />
-      <h2>Replies</h2>
-      {post.replies.map(reply=><ReplyCard reply={reply} deleteReply={deleteReply} userProfile={userProfile} />)}
+      <h2
+        className="font-bold"
+      >
+        Replies:
+      </h2>
+      {post.replies.map(reply=>{
+        return (<ReplyCard 
+          reply={reply} 
+          deleteReply={deleteReply} 
+          userProfile={userProfile} 
+        />)
+      })}
     </div>
    
    
