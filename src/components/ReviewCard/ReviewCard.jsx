@@ -21,7 +21,7 @@ const ReviewCard = ({ fetchedReview, userProfile, handleDeleteReview }) => {
 
   return (
     /* border-transparent */
-    <div className="md:p-8 p-2 h-90 border bg-blue-100 border-red-600 shadow-xl mx-2 my-2 w-full ">
+    <div className="md:p-8 p-2 h-90 border bg-blue-100  shadow-xl mx-2 my-2 w-full ">
       <div className="flex items-start overflow-auto object-contain w-30 h-30 mx-2">
         <div className="flex-shrink-0">
           <div className="inline-block relative">
