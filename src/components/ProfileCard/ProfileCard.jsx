@@ -6,7 +6,7 @@ const ProfileCard = ({ profile, userProfile, handleFriend }) => {
   return (
     <>
     {/*  <div className="max-w-sm rounded overflow-hidden shadow-lg my-4"> */}
-    <div className="md:p-8 p-2 bg-white shadow-lg border border-blue-100  mx-2 my-2 md:w-full">
+    <div className="md:p-8 p-2 border-transparent bg-blue-100 shadow-lg mx-2 my-2 md:w-full">
       <Link
         to={{
           pathname: `/profiles/${profile._id}`,
@@ -38,7 +38,7 @@ const ProfileCard = ({ profile, userProfile, handleFriend }) => {
           ) && (
             <button
               onClick={() => handleFriend(profile._id)}
-              className="mt-1 w-full bg-blue-600 border border-transparent border-red-300 rounded-md py-3 px-4 flex justify-center text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+              className="mt-1 w-full bg-blue-700 border border-transparent rounded-md py-3 px-4 flex justify-center text-base font-medium text-white hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
             >
               Friend
             </button>
@@ -49,7 +49,7 @@ const ProfileCard = ({ profile, userProfile, handleFriend }) => {
           ) && (
             <button
               onClick={() => handleFriend(profile._id)}
-              className="mt-1 w-full bg-blue-600 border border-transparent rounded-md py-3 px-4 flex justify-center text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+              className="mt-1 w-full bg-blue-700 border border-transparent rounded-md py-3 px-4 flex justify-center text-base font-medium text-white hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
             >
               Unfriend
             </button>
