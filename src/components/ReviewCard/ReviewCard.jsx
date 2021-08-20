@@ -41,7 +41,7 @@ const ReviewCard = ({ fetchedReview, userProfile, handleDeleteReview }) => {
                 Written by: 
                 <Link 
                   to={`/profiles/${review.author._id}`}
-                  className="text-blue-300 ml-2 underline"
+                  className="text-blue-400 ml-2 underline"
                 >
                 {review.author.name}
                 </Link>

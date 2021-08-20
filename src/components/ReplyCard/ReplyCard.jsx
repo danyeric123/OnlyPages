@@ -1,6 +1,7 @@
 import moment from 'moment'
 import React from 'react'
 import { FaUserCircle } from 'react-icons/fa'
+import { Link } from 'react-router-dom/cjs/react-router-dom.min'
 
 const ReplyCard = ({reply,deleteReply,userProfile}) => {
   
@@ -11,7 +12,11 @@ const ReplyCard = ({reply,deleteReply,userProfile}) => {
       <h3
         className="font-medium text-blue-500 flex justify-items-center"
       >
-        {reply.author.name}
+        <Link 
+          to={`/profiles/${reply.author._id}`}
+          className="text-blue-600 ml-2"
+        >{reply.author.name}
+        </Link>
         {reply.author.avatar?
           <img
           src={reply.author.avatar}
@@ -23,8 +28,11 @@ const ReplyCard = ({reply,deleteReply,userProfile}) => {
         }
       </h3>
       <p>{reply.content}</p>
-      <small>Replied on {moment(reply.createdAt).fromNow()}</small>
-      <br/>
+      <small
+        className="my-3"
+      >
+        Replied on {moment(reply.createdAt).fromNow()}
+      </small>
       {reply.author._id===userProfile._id&&
       <button 
         onClick={()=>deleteReply(reply._id)}
