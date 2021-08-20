@@ -135,7 +135,7 @@ class BookDetails extends Component {
 
         {/* <div className="md:p-8 p-2 h-90 border-transparent bg-blue-100 shadow-xl mx-2 my-2 w-full"> */}
 
-        <h1 className="font-bold text-black-500 text-xl text-center">Reviews</h1>
+        <h1 className="font-bold text-black-500 text-3xl text-center">Reviews</h1>
           <strong>{reviews.length == 0 && "No Reviews"}</strong>
 
           {reviews?.length > 0 && (
