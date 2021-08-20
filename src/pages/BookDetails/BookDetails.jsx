@@ -110,12 +110,7 @@ class BookDetails extends Component {
             />
           )}
         </section>
-
-        <div>*************</div>
         <div className="w-full px-4">
-          {/* Put reviews form here */}
-          <h3 class="font-medium tracking-tight">Review this item</h3>
-          <p className="text-gray-700 text-sm py-1">Leave a review!</p>
           {/* <ReviewForm
               userProfile={this.props.userProfile}
               handleAddReview={this.handleAddReview}
