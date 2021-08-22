@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import PostList from "../../components/PostList/PostList";
 import * as postAPI from '../../services/postService.js'
-import { useLocation, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 
 const PostCategory = ({userProfile}) => {
   const category = useParams().categoryName
@@ -18,7 +18,7 @@ const PostCategory = ({userProfile}) => {
    }
    
    getPosts()
-  }, []);
+  }, [category]);
  
   async function handleDeletePost(id){
    const posts = await postAPI.deleteOne(id)

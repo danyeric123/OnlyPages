@@ -33,7 +33,7 @@ class BookDetails extends Component {
   handleDeleteReview = async (id) => {
     let deletedReview = await reviewsAPI.deleteReview(id);
     const reviews = this.state.reviews.filter(
-      (review) => review._id != deletedReview._id
+      (review) => review._id !== deletedReview._id
     );
     this.setState({ reviews });
   };
@@ -117,12 +117,12 @@ class BookDetails extends Component {
 
         <hr/>
         <section>
-          {this.props.userProfile?.read.some(book=>book.api_id==searchResult.id)&&
+          {this.props.userProfile?.read.some(book=>book.api_id===searchResult.id)&&
           <ReviewForm book={searchResult} handleAddReview={this.handleAddReview} />
         }
       </section>
         <h1 className="font-bold text-black-500 text-3xl text-center">Reviews</h1>
-          <strong>{reviews.length == 0 && "No Reviews"}</strong>
+          <strong>{reviews.length === 0 && "No Reviews"}</strong>
 
           {reviews?.length > 0 && (
             <section className="grid grid-cols-1 md:grid-cols-3 gap-3">

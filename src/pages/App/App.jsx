@@ -14,7 +14,6 @@ import PostDetails from "../PostDetails/PostDetails";
 import PostLanding from "../PostLanding/PostLanding";
 import PostUpdate from "../PostUpdate/PostUpdate";
 import EditProfileForm from '../EditProfileForm/EditProfileForm'
-import PostList from "../../components/PostList/PostList";
 import PostCategory from "../../components/PostCategory/PostCategory";
 // import * as bookAPI from '../../services/bookService
 import "tailwindcss/tailwind.css";

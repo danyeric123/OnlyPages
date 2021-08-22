@@ -36,7 +36,7 @@ class SignupForm extends Component {
   }
 
   render() {
-    const { name, email, avatar, password, passwordConf } = this.state;
+    const { name, email, password, passwordConf } = this.state;
     return (
       <form
         autoComplete="off"
@@ -62,22 +62,7 @@ class SignupForm extends Component {
             />
           </div>
         </div>
-        <div>
-          <label htmlFor="avatar" className="sr-only">
-            Avatar Image
-          </label>
-          <input
-            type="text"
-            autoComplete="off"
-            id="avatar"
-            value={avatar}
-            name="avatar"
-            onChange={this.handleChange}
-            required
-            className="appearance-none rounded relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
-            placeholder="Your avatar image link"
-          />
-        </div>
+        
         <div >
           <label htmlFor="email" className="sr-only">
             Email

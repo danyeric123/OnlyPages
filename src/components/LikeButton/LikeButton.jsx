@@ -1,5 +1,5 @@
 import React from 'react'
-import {FaThumbsUp, FaThumbsDown} from 'react-icons/fa'
+import {FaThumbsUp} from 'react-icons/fa'
 
 const LikeButton = ({handleLike,likes,userProfile}) => {
   return (

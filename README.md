@@ -17,7 +17,7 @@
   - [Credit](#credit)
 
 
-## [OnlyPages](https://only-pages.herokuapp.com/) :books:
+## OnlyPages :books:
 
 > Tagline "I'm a fan of your works"
 
@@ -27,7 +27,7 @@ To create a community of readers where they can discuss their favorite books and
 #### Introduction:
 A group project with <a href="https://www.linkedin.com/in/kcygibson/" target="_blank">Katia Gibson</a> and <a target="_blank" href="https://www.linkedin.com/in/zouhrab-haider/">Zouhrab Haider</a> where we build a coupled app using MongoDB, Express.js, React, and Node.js to give the user a social media experience around books. Users can review books, add to their different collections, and post about their book-related topic of choice.
 
-
+[Link to deployed version](https://only-pages.herokuapp.com/)
 
 ## Trello Board
 

@@ -1,7 +1,5 @@
 import React, { useState, useRef } from "react";
 import { Link } from "react-router-dom";
-import { FaBook } from "react-icons/fa";
-// import styles from './EditProfileForm.module.css'
 
 const EditProfileForm = ({userProfile,user,updateUserProfile,history}) => {
   const [name, setName] = useState(userProfile.name)

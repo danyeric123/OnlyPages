@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import SearchForm from "../SearchForm/SearchForm";
-import { FaBook } from "react-icons/fa";
 
 const NavBar = ({ user, userProfile, handleLogout, history }) => {
   return (
@@ -122,12 +121,12 @@ const NavBar = ({ user, userProfile, handleLogout, history }) => {
           </ul>
         </nav>
       ) : (
-        <nav className="NavbarItems">
+        <nav className="relative px-4 py-4 flex sm:flex-col justify-between items-center">
           <Link to="/">
-            <FaBook
-              size={30}
-              style={{ color: "blue" }}
-              className="navbar-logo"
+            <img
+              src="https://i.imgur.com/ZnXPhEq.jpg"
+							alt="logo"
+              className="justify-self rounded-full h-20 w-20 ring-4 ring-blue hover:opacity-75"
             />
           </Link>
           <ul className="nav-menu active nav-menu">
@@ -141,7 +140,7 @@ const NavBar = ({ user, userProfile, handleLogout, history }) => {
             <li className="text-sm">
               <Link to="/signup">
                 <button className="border border-blue-300 text-white bg-blue-600 block rounded-md font-bold py-2 px-6 my-2 flex items-center hover:bg-blue-500 hover:text-white">
-                  SignUp
+                  Sign Up
                 </button>
               </Link>
             </li>
