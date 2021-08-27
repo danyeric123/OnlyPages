@@ -19,7 +19,7 @@ app.use(cors())
 app.use(logger('dev'))
 app.use(express.json())
 
-app.use('/profiles', profilesRouter)
+app.use('/api/profiles', profilesRouter)
 app.use('/posts', postsRouter)
 app.use('/reviews', reviewsRouter)
 app.use('/boards', boardsRouter)

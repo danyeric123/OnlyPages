@@ -1,5 +1,5 @@
 import * as tokenService from "./tokenService"
-const BASE_URL = "/profiles"
+const BASE_URL = "/api/profiles"
 
 export function getUserProfile() {
   return fetch(
