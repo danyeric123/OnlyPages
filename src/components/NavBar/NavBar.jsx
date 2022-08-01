@@ -10,18 +10,17 @@ const NavBar = ({ user, userProfile, handleLogout, history }) => {
           <Link to="/">
             <img
               src="https://i.imgur.com/ZnXPhEq.jpg"
-							alt="logo"
+              alt="logo"
               className="justify-self rounded-full h-20 w-20 ring-4 ring-blue hover:opacity-75"
             />
           </Link>
 
-					<Link to="" onClick={handleLogout}>
-                <button className="text-white border border-blue-400 text-black-500 bg-blue-600 block rounded-md font-bold py-2 px-6 my-2 flex items-center hover:bg-blue-500 hover:text-white">
-                  Logout
-                </button>
-              </Link>
+          <Link to="" onClick={handleLogout}>
+            <button className="text-white border border-blue-400 text-black-500 bg-blue-600 block rounded-md font-bold py-2 px-6 my-2 flex items-center hover:bg-blue-500 hover:text-white">
+              Logout
+            </button>
+          </Link>
 
-          
           <ul className="py-4 text-2xl flex justify-between self-end items-center bg-white">
             <li className="text-gray-400 hover:opacity-50">
               <Link to="/users">
@@ -59,7 +58,6 @@ const NavBar = ({ user, userProfile, handleLogout, history }) => {
               </svg>
             </li>
             <li className="nav-links hover:opacity-50">
-
               <Link
                 to={{
                   pathname: `/profiles/${userProfile?._id}`,
@@ -125,7 +123,7 @@ const NavBar = ({ user, userProfile, handleLogout, history }) => {
           <Link to="/">
             <img
               src="https://i.imgur.com/ZnXPhEq.jpg"
-							alt="logo"
+              alt="logo"
               className="justify-self rounded-full h-20 w-20 ring-4 ring-blue hover:opacity-75"
             />
           </Link>

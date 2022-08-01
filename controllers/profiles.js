@@ -1,6 +1,6 @@
-import { Book } from "../models/book.js"
-import { Profile } from "../models/profile.js"
-import { User } from "../models/user.js"
+import { Book } from "../models/book.js";
+import { Profile } from "../models/profile.js";
+import { User } from "../models/user.js";
 
 export {
   userProfile,
@@ -11,198 +11,185 @@ export {
   edit,
   update,
   removeBook,
-}
+};
 
 function show(req, res) {
   Profile.findById(req.params.id)
-  .then(profile => {
-    populateAll(profile)
-    .then(profile=>res.json(profile))
-  })
-  .catch(err=>{
-    console.log(err)
-    return res.status(400).json(err)
-  })
+    .then((profile) => {
+      populateAll(profile).then((profile) => res.json(profile));
+    })
+    .catch((err) => {
+      console.log(err);
+      return res.status(400).json(err);
+    });
 }
 function userProfile(req, res) {
   Profile.findById(req.user.profile)
-  .then(profile => {
-    populateAll(profile)
-    .then(profile=>res.json(profile))
-  })
-  .catch(err=>{
-    console.log(err)
-    return res.status(400).json(err)
-  })
+    .then((profile) => {
+      populateAll(profile).then((profile) => res.json(profile));
+    })
+    .catch((err) => {
+      console.log(err);
+      return res.status(400).json(err);
+    });
 }
 
 // Helper function for helping populate everything
-function populateAll(profile){
-  return profile.populate('posts')
-  .populate('read')
-  .populate('wantToRead')
-  .populate('currentlyReading')
-  .populate('friends')
-  .populate('authors').execPopulate()
+function populateAll(profile) {
+  return profile
+    .populate("posts")
+    .populate("read")
+    .populate("wantToRead")
+    .populate("currentlyReading")
+    .populate("friends")
+    .populate("authors")
+    .execPopulate();
 }
 
 function index(req, res) {
   Profile.find({})
-  .populate('posts')
-  .populate('read')
-  .populate('wantToRead')
-  .populate('currentlyReading')
-  .populate('friends')
-  .then((users) => {
-    res.json(users)
-  })
-  .catch(err=>{
-    console.log(err)
-    return res.status(400).json(err)
-  })
+    .populate("posts")
+    .populate("read")
+    .populate("wantToRead")
+    .populate("currentlyReading")
+    .populate("friends")
+    .then((users) => {
+      res.json(users);
+    })
+    .catch((err) => {
+      console.log(err);
+      return res.status(400).json(err);
+    });
 }
 
 // Get the user profile and give them the form to edit it
 function edit(req, res) {
   Profile.findById(req.params.id)
-        .then(profile => {
-          if(req.user.profile.equals(req.params.id)){
-            res.json(profile)
-          }else{
-            return res.status(400)
-          }
-        })
-        .catch(err=>{
-          console.log(err)
-          return res.status(400).json(err)
-        })
+    .then((profile) => {
+      if (req.user.profile.equals(req.params.id)) {
+        res.json(profile);
+      } else {
+        return res.status(400);
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+      return res.status(400).json(err);
+    });
 }
 
 //Update the profile given an id
 function update(req, res) {
-    Profile.findByIdAndUpdate(req.params.id, req.body, {new: true})
-        .then((profile) => {
-          User.findOneAndUpdate({profile:req.params.id},req.body,{new: true})
-              .then((user)=>{
-                console.log(user)
-                populateAll(profile)
-                .then(profile=>{
-                  res.json({profile,user})
-                })
-              })
-          
-        })
-        .catch(err=>{
-          console.log(err)
-          return res.status(400).json(err)
-        })
+  Profile.findByIdAndUpdate(req.params.id, req.body, { new: true })
+    .then((profile) => {
+      User.findOneAndUpdate({ profile: req.params.id }, req.body, {
+        new: true,
+      }).then((user) => {
+        console.log(user);
+        populateAll(profile).then((profile) => {
+          res.json({ profile, user });
+        });
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      return res.status(400).json(err);
+    });
 }
 
 //Fix this functionality to do unfriending too
 function friendAndUnfriend(req, res) {
   Profile.findById(req.user.profile)
-  .then(profile=> {
-    if(profile.friends.includes(req.params.id)){
-      profile.friends.remove(req.params.id)
-      Profile.findById(req.params.id)
-              .then(friend=>{
-                friend.friends.remove(req.user.profile)
-                friend.save()
-              })
-    }else{
-      profile.friends.push(req.params.id)
-      Profile.findById(req.params.id)
-              .then(friend=>{
-                friend.friends.push(req.user.profile)
-                friend.save()
-              })
-    }
-    profile.populate("friends").execPopulate()
-    profile.save()
-    .then(()=> res.json(profile))
-  })
-  .catch(err=>{
-    console.log(err)
-    return res.status(400).json(err)
-  })
+    .then((profile) => {
+      if (profile.friends.includes(req.params.id)) {
+        profile.friends.remove(req.params.id);
+        Profile.findById(req.params.id).then((friend) => {
+          friend.friends.remove(req.user.profile);
+          friend.save();
+        });
+      } else {
+        profile.friends.push(req.params.id);
+        Profile.findById(req.params.id).then((friend) => {
+          friend.friends.push(req.user.profile);
+          friend.save();
+        });
+      }
+      profile.populate("friends").execPopulate();
+      profile.save().then(() => res.json(profile));
+    })
+    .catch((err) => {
+      console.log(err);
+      return res.status(400).json(err);
+    });
 }
 
 /**
  * One controller for all three book lists
- * 
+ *
  * You also create the book document here since the book model is only for use
  * by the profile user
- * 
- * The params.collection will give you which collection it should go to 
+ *
+ * The params.collection will give you which collection it should go to
  * (params.id gives you which book based on api_id)
- * 
+ *
  * When you add you will need to check if the book is already in our database
  * If it isn't, then create it. Otherwise just add it
  */
-function addBook(req,res){
-    Book.findOne({api_id:req.body.api_id})
-    .then(book=>{
-      if(book){
-        addToCollection(req.user.profile, book,req.params.collection,res)
-      }else{
-        Book.create(req.body)
-        .then(book=>{
-          addToCollection(req.user.profile,book,req.params.collection,res)
-        })
+function addBook(req, res) {
+  Book.findOne({ api_id: req.body.api_id })
+    .then((book) => {
+      if (book) {
+        addToCollection(req.user.profile, book, req.params.collection, res);
+      } else {
+        Book.create(req.body).then((book) => {
+          addToCollection(req.user.profile, book, req.params.collection, res);
+        });
       }
     })
-    .catch(err=>{
-      console.log(err)
-      return res.status(400).json(err)
-    })
+    .catch((err) => {
+      console.log(err);
+      return res.status(400).json(err);
+    });
 }
 
-function addToCollection(profile, book, collection,res){
-  Profile.findById(profile)
-  .then(profile=>{
-    profile.read.remove(book._id)
-    profile.currentlyReading.remove(book._id)
-    profile.wantToRead.remove(book._id)
-    profile[collection].push(book._id)
-    profile.save()
-    populateAll(profile)
-    .then(profile=>{
-      res.json(profile)
-    })
-  })
+function addToCollection(profile, book, collection, res) {
+  Profile.findById(profile).then((profile) => {
+    profile.read.remove(book._id);
+    profile.currentlyReading.remove(book._id);
+    profile.wantToRead.remove(book._id);
+    profile[collection].push(book._id);
+    profile.save();
+    populateAll(profile).then((profile) => {
+      res.json(profile);
+    });
+  });
 }
 
-function removeBook(req,res){
+function removeBook(req, res) {
   Profile.findById(req.user.profile)
-  .then(profile=>{
-    Book.findOne({api_id:req.params.bookId})
-        .then(book=>{
-          profile.read.remove(book._id)
-          profile.currentlyReading.remove(book._id)
-          profile.wantToRead.remove(book._id)
-          profile.save()
-          populateAll(profile)
-          .then(profile=>{
-            res.json(profile)
-          })
-        }) 
-  })
-  .catch(err=>{
-    console.log(err)
-    return res.status(400).json(err)
-  })
+    .then((profile) => {
+      Book.findOne({ api_id: req.params.bookId }).then((book) => {
+        profile.read.remove(book._id);
+        profile.currentlyReading.remove(book._id);
+        profile.wantToRead.remove(book._id);
+        profile.save();
+        populateAll(profile).then((profile) => {
+          res.json(profile);
+        });
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      return res.status(400).json(err);
+    });
 }
 
-function removeFromCollection(profile,bookId,collection,res){
-  Book.findOne({api_id:bookId})
-  .then(book=>{
-    profile[collection].remove({_id:book._id})
-    profile.save()
-    populateAll(profile)
-            .then(profile=>{
-              res.json(profile)
-            })
-  })
-
+function removeFromCollection(profile, bookId, collection, res) {
+  Book.findOne({ api_id: bookId }).then((book) => {
+    profile[collection].remove({ _id: book._id });
+    profile.save();
+    populateAll(profile).then((profile) => {
+      res.json(profile);
+    });
+  });
 }
-

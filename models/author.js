@@ -1,8 +1,6 @@
-import mongoose from 'mongoose'
+import mongoose from "mongoose";
 
-export {
-  Author
-}
+export { Author };
 
 /**
  * The API provides practically everything you need for the author; it might not
@@ -16,12 +14,12 @@ const authorSchema = new mongoose.Schema(
     avatar: String,
     // Is the API link necessary on the backend??
     apiLink: String,
-    books: [{type: mongoose.Schema.Types.ObjectId, ref: "Book"}],
-    followers: [{type: mongoose.Schema.Types.ObjectId, ref: "Profile"}],
+    books: [{ type: mongoose.Schema.Types.ObjectId, ref: "Book" }],
+    followers: [{ type: mongoose.Schema.Types.ObjectId, ref: "Profile" }],
   },
   {
     timestamps: true,
   }
-)
+);
 
-const Author = mongoose.model('Author', authorSchema)
+const Author = mongoose.model("Author", authorSchema);

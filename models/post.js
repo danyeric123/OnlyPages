@@ -1,27 +1,30 @@
-import mongoose from 'mongoose'
-import { replySchema } from './reply.js'
+import mongoose from "mongoose";
+import { replySchema } from "./reply.js";
 
-export {
-  Post,
-}
+export { Post };
 
-const Schema = mongoose.Schema
+const Schema = mongoose.Schema;
 
-const postSchema = new Schema({
-  title: String,
-  body: String,
-  author: {
-    type: Schema.Types.ObjectId,
-    ref: 'Profile'
+const postSchema = new Schema(
+  {
+    title: String,
+    body: String,
+    author: {
+      type: Schema.Types.ObjectId,
+      ref: "Profile",
+    },
+    categories: [String],
+    replies: [replySchema],
+    likes: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Profile",
+      },
+    ],
   },
-  categories: [String],
-  replies: [replySchema],
-  likes: [{
-    type: Schema.Types.ObjectId,
-    ref: 'Profile'
-  }],
-},{
-  timestamps: true
-})
+  {
+    timestamps: true,
+  }
+);
 
-const Post = mongoose.model('Post', postSchema)
+const Post = mongoose.model("Post", postSchema);

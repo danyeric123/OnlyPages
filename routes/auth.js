@@ -1,14 +1,12 @@
-import { Router } from 'express'
-import * as authCtrl from '../controllers/auth.js'
+import { Router } from "express";
+import * as authCtrl from "../controllers/auth.js";
 
-export {
-  router
-}
+export { router };
 
-const router = Router()
+const router = Router();
 
 /*---------- Public Routes ----------*/
-router.post('/signup', authCtrl.signup)
-router.post('/login', authCtrl.login)
+router.post("/signup", authCtrl.signup);
+router.post("/login", authCtrl.login);
 
 /*---------- Protected Routes ----------*/

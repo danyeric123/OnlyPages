@@ -15,7 +15,7 @@ const ReviewCard = ({ fetchedReview, userProfile, handleDeleteReview }) => {
   const starRating = () => {
     const stars = Array(5).fill(<FaRegStar />);
     for (let i = 0; i < review.rating; i++) {
-      stars[i] = <FaStar key={i}/>;
+      stars[i] = <FaStar key={i} />;
     }
     return stars;
   };
@@ -38,12 +38,12 @@ const ReviewCard = ({ fetchedReview, userProfile, handleDeleteReview }) => {
           <div className="ml-6">
             <p className="flex items-baseline">
               <span className="text-gray-600 font-bold">
-                Written by: 
-                <Link 
+                Written by:
+                <Link
                   to={`/profiles/${review.author._id}`}
                   className="text-blue-400 ml-2 underline"
                 >
-                {review.author.name}
+                  {review.author.name}
                 </Link>
               </span>
             </p>
@@ -54,7 +54,9 @@ const ReviewCard = ({ fetchedReview, userProfile, handleDeleteReview }) => {
               </div>
             </div>
             <div className="">
-              <p className="mt-1 overflow-auto object-contain w-40 h-20">{review.content}</p>
+              <p className="mt-1 overflow-auto object-contain w-40 h-20">
+                {review.content}
+              </p>
             </div>
             {review.author._id === userProfile._id && (
               <div className="flex items-center justify-between text-sm text-gray-600 fill-current">

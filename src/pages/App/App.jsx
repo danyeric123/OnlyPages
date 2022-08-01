@@ -13,7 +13,7 @@ import BookDetails from "../BookDetails/BookDetails";
 import PostDetails from "../PostDetails/PostDetails";
 import PostLanding from "../PostLanding/PostLanding";
 import PostUpdate from "../PostUpdate/PostUpdate";
-import EditProfileForm from '../EditProfileForm/EditProfileForm'
+import EditProfileForm from "../EditProfileForm/EditProfileForm";
 import PostCategory from "../../components/PostCategory/PostCategory";
 // import * as bookAPI from '../../services/bookService
 import "tailwindcss/tailwind.css";
@@ -108,17 +108,22 @@ class App extends Component {
           />
         </Route>
 
-        <Route exact path="/profile/edit" render={({ location }) =>
-					authService.getUser() ?
-					<EditProfileForm
-						userProfile={userProfile}
-						user={user}
-            history={this.props.history}
-						updateUserProfile={this.updateUserProfile}
-          />: (
+        <Route
+          exact
+          path="/profile/edit"
+          render={({ location }) =>
+            authService.getUser() ? (
+              <EditProfileForm
+                userProfile={userProfile}
+                user={user}
+                history={this.props.history}
+                updateUserProfile={this.updateUserProfile}
+              />
+            ) : (
               <Redirect to="/login" />
             )
-          }/>
+          }
+        />
 
         <Route
           exact

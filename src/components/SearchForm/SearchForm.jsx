@@ -24,10 +24,12 @@ class Search extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    this.setState({invalidForm: true,
+    this.setState({
+      invalidForm: true,
       formData: {
         query: "",
-      }})
+      },
+    });
     this.props.history.push(`/search/${this.state.formData.query}`);
   };
 

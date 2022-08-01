@@ -42,9 +42,12 @@ const ReviewForm = ({ book, handleAddReview }) => {
             className="rounded-full h-20 w-20 mx-auto ring-4 ring-blue hover:opacity-75"
           />
           <p className="mt-2 text-center text-2xl font-extrabold text-gray-900">
-            What did you think of this book? 
+            What did you think of this book?
           </p>
-          <p className="mt-2 text-center text-xl font-extrabold text-gray-900"> Leave a review and give it a star rating! </p>
+          <p className="mt-2 text-center text-xl font-extrabold text-gray-900">
+            {" "}
+            Leave a review and give it a star rating!{" "}
+          </p>
           <form
             ref={formRef}
             onChange={() => setInvalidForm(!formRef)}
@@ -53,7 +56,6 @@ const ReviewForm = ({ book, handleAddReview }) => {
           >
             <input type="hidden" name="remember" defaultValue="true" />
             <div className="rounded-md shadow-sm -space-y-px">
-             
               <div>
                 <label htmlFor="name" className="sr-only">
                   Review
@@ -71,8 +73,9 @@ const ReviewForm = ({ book, handleAddReview }) => {
             </div>
             <div className="flex justify-center items-center">
               <div className="flex items-center mt-2 mb-4">
-               
-                <label htmlFor="rating" className="sr-only">Rating</label>
+                <label htmlFor="rating" className="sr-only">
+                  Rating
+                </label>
                 {stars.map((star, idx) =>
                   star ? (
                     <FaStar onClick={() => changeRating(idx)} />

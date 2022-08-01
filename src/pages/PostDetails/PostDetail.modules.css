@@ -3,20 +3,15 @@
 *,
 :before,
 :after {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
-
-
-
-
-
 
 #wrapper {
   margin-left: auto;
   margin-right: auto;
   max-width: 80em;
- 
-  box-shadow: rgba(0,0,0,0.5) 0 1em 1em;
+
+  box-shadow: rgba(0, 0, 0, 0.5) 0 1em 1em;
   padding: 4px;
   bottom: 1px;
 }
@@ -25,24 +20,21 @@
   float: left;
   padding: 10px;
   width: 100%;
-  top:1px;
-  
+  top: 1px;
 }
 
-#openbook{
+#openbook {
   background: rgb(246, 249, 237);
-  box-shadow: rgba(0,0,0,0.5) 0 1em em;
+  box-shadow: rgba(0, 0, 0, 0.5) 0 1em em;
   color: #000;
   padding: 1em;
 }
-
-
 
 #openbook:before {
   background-color: #1f39a9;
   border-radius: 0.25em;
   bottom: -60em;
-  content: '';
+  content: "";
   left: 10px;
   position: absolute;
   right: 10px;
@@ -51,37 +43,38 @@
 }
 
 #openbook:after {
-  background: linear-gradient(to right, transparent 0%,rgba(0,0,0,0.2) 46%,rgba(0,0,0,0.5) 49%,rgba(0,0,0,0.6) 50%,rgba(0,0,0,0.5) 51%,rgba(0,0,0,0.2) 52%,transparent 100%);
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(0, 0, 0, 0.2) 46%,
+    rgba(0, 0, 0, 0.5) 49%,
+    rgba(0, 0, 0, 0.6) 50%,
+    rgba(0, 0, 0, 0.5) 51%,
+    rgba(0, 0, 0, 0.2) 52%,
+    transparent 100%
+  );
   bottom: -29.5em;
-  content: '';
+  content: "";
   left: 50%;
   position: absolute;
   top: 13.8em;
-  transform: translate(-50%,0);
+  transform: translate(-50%, 0);
   width: 3em;
   z-index: 1;
-  
 }
-
-
-
-
-
-
 
 #openbook {
   margin: 1em;
   position: relative;
-  display:flex;
+  display: flex;
   justify-content: space-between;
-  
 }
 
 #openbook:before {
   background-color: #27539f;
   border-radius: 0.25em;
   bottom: -1em;
-  content: '';
+  content: "";
   left: -1em;
   position: absolute;
   right: -1em;
@@ -90,13 +83,22 @@
 }
 
 #openbook:after {
-  background: linear-gradient(to right, transparent 0%,rgba(0,0,0,0.2) 46%,rgba(0,0,0,0.5) 49%,rgba(0,0,0,0.6) 50%,rgba(0,0,0,0.5) 51%,rgba(0,0,0,0.2) 52%,transparent 100%);
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(0, 0, 0, 0.2) 46%,
+    rgba(0, 0, 0, 0.5) 49%,
+    rgba(0, 0, 0, 0.6) 50%,
+    rgba(0, 0, 0, 0.5) 51%,
+    rgba(0, 0, 0, 0.2) 52%,
+    transparent 100%
+  );
   bottom: -1em;
-  content: '';
+  content: "";
   left: 50%;
   position: absolute;
   top: -1em;
-  transform: translate(-50%,0);
+  transform: translate(-50%, 0);
   width: 4em;
   z-index: 1;
 }
@@ -113,8 +115,4 @@
   /* position: relative; */
   z-index: 1;
   width: 45%;
-  
-
 }
-
-
